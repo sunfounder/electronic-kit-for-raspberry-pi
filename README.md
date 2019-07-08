@@ -19,11 +19,11 @@ We are looking forward to your projects and hope that you can share your achieve
 
 <a id="update"></a>
 ### Update:
-2019-06-19:
+2019-07-8:
  - New Release
 
 <a id="trouble"></a>
-###Trouble Shootings:
+
 
 ----------------------------------------------
 <a id="about_sunfounder"></a>
