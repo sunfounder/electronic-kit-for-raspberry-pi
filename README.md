@@ -1,5 +1,5 @@
 ## electronic-kit-for-raspberry-pi
-This repository is for SunFounder Electronic Kit for Raspberry Pi. you can buy it on [our website](https://www.sunfounder.com/), or search sunfounder in Amazon.
+This repository is for SunFounder Electronic Kit. you can buy it on [our website](https://www.sunfounder.com/), or search sunfounder in Amazon.
 
 Quick Links:
 
@@ -12,10 +12,8 @@ Quick Links:
 
 <a id="about_this_kit"></a>
 ### About this kit:
-SunFounder Electronic Kit for Raspberry Pi is a basic kit suitable to intelligent beginners who have project schedule. It contains 26 commonly used input and output components and modules and a number of basic electronic devices (such as resistors, capacitors) which can provide powerful assistance in your programming learning. 
-In the light of the kit, you can learn some basic knowledge on Raspberry Pi, including the installation method of Raspberry Pi, knowledge of Bash shell and GPIO. Having understood these knowledge, you can start programming.
-If you have no knowledge background of hardware, this document about the Kit provides you with 30 lessons for reference and learning, including 26 basic I/o lessons and 4 simple practical examples. It should be noted that the arrangement of these courses is not based on the degree of difficulty, but on the functions in practice. You can find corresponding courses in accordance with your needs. In other words, even if you haven't finished reading the entire course or mastered the use of the components mentioned, this document will play an important role in guiding you to complete practical projects in the future.
-We are looking forward to your projects and hope that you can share your achievements or creation on our BBS while reading this document.
+SunFounder Electronic kit is a basic kit for beginners, having high rate of quantity and price. It contains 12 commonly used input and output components, three ICs, and a number of basic electronic components (such as resistor, capacitor). It is an economical choice for fast mastering programming.
+With this kit, you can quickly master the necessary knowledge to achieve complex projects with Raspberry Pi. In this matching document, you are provided with 20 courses for reference and learning. These courses are designed for beginners, even if you are firstly exposed to Raspberry Pi, or even firstly contact with programming, you can get started smoothly. Meanwhile, the practice difficulty of the course is gradually increasing. We hope that you can share your achievements or creations on our forum after you learn all courses.
 
 <a id="update"></a>
 ### Update:
