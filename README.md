@@ -1,4 +1,4 @@
-## electronic-kit-for-raspberry-pi
+## electronic-kit
 This repository is for SunFounder Electronic Kit. you can buy it on [our website](https://www.sunfounder.com/), or search sunfounder in Amazon.
 
 Quick Links:
@@ -13,7 +13,7 @@ Quick Links:
 <a id="about_this_kit"></a>
 ### About this kit:
 SunFounder Electronic kit is a basic kit for beginners, having high rate of quantity and price. It contains 12 commonly used input and output components, three ICs, and a number of basic electronic components (such as resistor, capacitor). It is an economical choice for fast mastering programming.
-With this kit, you can quickly master the necessary knowledge to achieve complex projects with Raspberry Pi. In this matching document, you are provided with 20 courses for reference and learning. These courses are designed for beginners, even if you are firstly exposed to Raspberry Pi, or even firstly contact with programming, you can get started smoothly. Meanwhile, the practice difficulty of the course is gradually increasing. We hope that you can share your achievements or creations on our forum after you learn all courses.
+With this kit, you can quickly master the necessary knowledge to achieve complex projects with Raspberry Pi or Arduino. Meanwhile, the practice difficulty of the course is gradually increasing. We hope that you can share your achievements or creations on our forum after you learn all courses.
 
 <a id="update"></a>
 ### Update:
