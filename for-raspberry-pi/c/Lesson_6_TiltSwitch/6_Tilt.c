@@ -40,7 +40,7 @@ int main(void)
 	}
 
 	pinMode(TiltPin, INPUT);
-	pinMode(Gpin, OUTPUT,);
+	pinMode(Gpin, OUTPUT);
 	pinMode(Rpin, OUTPUT);
 
 

@@ -17,7 +17,7 @@ With this kit, you can quickly master the necessary knowledge to achieve complex
 
 <a id="update"></a>
 ### Update:
-2019-07-8:
+2019-09-06:
  - New Release
 
 <a id="trouble"></a>
