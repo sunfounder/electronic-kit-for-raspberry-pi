@@ -17,6 +17,10 @@ With this kit, you can quickly master the necessary knowledge to achieve complex
 
 <a id="update"></a>
 ### Update:
+2020-01-03:
+ - Modify the servo code
+ 
+### Update:
 2019-09-06:
  - New Release
 
