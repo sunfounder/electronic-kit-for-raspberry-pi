@@ -1,60 +1,49 @@
 /**********************************************************************
 * Filename    : 16_Servo.c
 * Description : Servo sweep
-* Author      : Robot
+* Author      : sunfounder
 * E-mail      : support@sunfounder.com
 * website     : www.sunfounder.com
-* Update      : Cavon    2016/07/01
+* Update      : 2019/08/05
 **********************************************************************/
 #include <wiringPi.h>
 #include <softPwm.h>
 #include <stdio.h>
 
-#define servoPin    1       //define the GPIO number connected to servo
-long map(long value,long fromLow,long fromHigh,long toLow,long toHigh){
+#define ServoPin    1       //define the servo to GPIO1
+long Map(long value,long fromLow,long fromHigh,long toLow,long toHigh){
     return (toHigh-toLow)*(value-fromLow) / (fromHigh-fromLow) + toLow;
 }
-void servoWrite(int pin, int angle){    //Specif a certain rotation angle (0-180) for the servo
+void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
     if(angle < 0)
         angle = 0;
     if(angle > 180)
         angle = 180;
-    softPwmWrite(pin,map(angle,0,180,5,25));   
+    softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
 } 
 
 int main(void)
 {
     int i;
-	printf("\n");
-	printf("\n");
-	printf("========================================\n");
-	printf("|                Servo                 |\n");
-	printf("|    ------------------------------    |\n");
-	printf("|   Servo pin connect to GPIO 1(pin 12)|\n");
-	printf("|                                      |\n");
-	printf("|         Controlling a Servo          |\n");
-	printf("|                                      |\n");
-	printf("|                            SunFounder|\n");
-	printf("========================================\n");
-	printf("\n");
-	printf("\n");    
-    if(wiringPiSetup() == -1){ //when initialize wiring faiservo,print message to screen
+	  
+    if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
         printf("setup wiringPi failed !");
         return 1; 
     }
-    softPwmCreate(servoPin,  0, 200);       //initialize PMW pin of servo
+    softPwmCreate(ServoPin, 0, 200);       //initialize PMW pin of servo
     while(1){
-        for(i=0;i<181;i++){  //make servo rotate from minimum angle to maximum angle
-            servoWrite(servoPin,i);
-            delay(1);
+        for(i=0;i<181;i++){     // Let servo rotate from 0 to 180; the angle plus 5 deg every 2ms.
+            setAngle(ServoPin,i);
+            delay(2);
         }
-        delay(500);
-        for(i=181;i>-1;i--){  //make servo rotate from maximum angle to minimum angle
-            servoWrite(servoPin,i);
-            delay(1);
+        delay(1000);
+        for(i=181;i>-1;i--){        // Let servo rotate from 180 to 0; the angle plus 5 deg every 2ms.
+            setAngle(ServoPin,i);
+            delay(2);
         }
-        delay(500);
+        delay(1000);
     }
     return 0;
 }
+
 
