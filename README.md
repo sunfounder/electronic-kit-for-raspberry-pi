@@ -4,8 +4,8 @@ This repository is for SunFounder Electronic Kit. you can buy it on [our website
 Quick Links:
 
  * [About this kit](#about_this_kit)
- * [Update](#update)
  * [Trouble Shootings](#trouble)
+ * [Update](#update)
  * [About SunFounder](#about_sunfounder)
  * [License](#license)
  * [Contact us](#contact_us)
@@ -15,12 +15,31 @@ Quick Links:
 SunFounder Electronic kit is a basic kit for beginners, having high rate of quantity and price. It contains 12 commonly used input and output components, three ICs, and a number of basic electronic components (such as resistor, capacitor). It is an economical choice for fast mastering programming.
 With this kit, you can quickly master the necessary knowledge to achieve complex projects with Raspberry Pi or Arduino. Meanwhile, the practice difficulty of the course is gradually increasing. We hope that you can share your achievements or creations on our forum after you learn all courses.
 
+<a id="trouble"></a>
+## Trouble Shootings:
+You’ll need a new wiringPi for the Raspberry Pi 4B.
+To upgrade:
+```bash
+cd /tmp
+wget https://project-downloads.drogon.net/wiringpi-latest.deb
+sudo dpkg -i wiringpi-latest.deb
+```
+Check with:
+```bash
+gpio -v
+```
+and make sure it’s version 2.52. 
+
+It will hopefully be part of the official release soon, but not for now.
+
 <a id="update"></a>
 ### Update:
+2020-07-09:
+ - Add the note for the wiringPi library(Raspberry Pi 4B)
+ 
 2020-01-03:
  - Modify the servo code
  
-### Update:
 2019-09-06:
  - New Release
 
