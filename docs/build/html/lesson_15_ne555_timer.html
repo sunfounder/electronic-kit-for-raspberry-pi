@@ -1,0 +1,550 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Lesson 16 Servo" href="lesson_16_servo.html" /><link rel="prev" title="Lesson 14 Quiz Buzzer System" href="lesson_14_quiz_buzzer_system.html" />
+
+    <meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
+        <title>Lesson 15 NE555 Timer - SunFounder Electronic Kit 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/styles/furo.css?digest=59ab60ac09ea94ccfe6deddff6d715cce948a6fc">
+    <link rel="stylesheet" href="_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="_static/pygments_dark.css">
+    
+
+
+<style>
+  :root {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/topHead.css" />
+    <link rel="stylesheet" href="_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b"></head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">SunFounder Electronic Kit 1.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">SunFounder Electronic Kit 1.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Component List</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="for_rasberrypi_user.html">For Rasberry Pi User</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="preparation/preparation.html">Preparation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="preparation/installing_the_os.html">Installing the OS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preparation/set_up_your_raspberry_pi.html">Set up Your Raspberry Pi</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download_the_code.html">Download the Code</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="lessons.html">Lessons</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="lesson_1_blinking_led.html"><strong>Lesson 1 Blinking LED</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_2_flowing_led_lights.html"><strong>Lesson 2 Flowing LED Lights</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_3_breathing_led.html"><strong>Lesson 3 Breathing LED</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_4_rgb_led.html"><strong>Lesson 4 RGB LED</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_5_controlling_led_by_button.html"><strong>Lesson 5 Controlling LED by Button</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_6_tilt_switch.html"><strong>Lesson 6 Tilt Switch</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_7_slide_switch.html"><strong>Lesson 7 Slide Switch</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_8_relay.html"><strong>Lesson 8 Relay</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_9_4n35.html"><strong>Lesson 9 4N35</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_10_active_buzzer.html"><strong>Lesson 10 Active Buzzer</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_11_doorbell.html"><strong>Lesson 11 Doorbell</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_12_passive_buzzer.html"><strong>Lesson 12 Passive Buzzer</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_13_button_piano.html"><strong>Lesson 13 Button Piano</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_14_quiz_buzzer_system.html"><strong>Lesson 14 Quiz Buzzer System</strong></a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#"><strong>Lesson 15 NE555 Timer</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_16_servo.html"><strong>Lesson 16 Servo</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_17_lcd1602.html"><strong>Lesson 17 LCD1602</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_18_driving_leds_by_74hc595.html"><strong>Lesson 18 Driving LEDs by 74HC595</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_19_7-segment.html"><strong>Lesson 19 7-segment</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lesson_20_traffic_Light.html"><strong>Lesson 20 Traffic Light</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="for_arduino_user.html">For Arduino User</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="lesson_1_install_and_introduce_arduino_ide.html"><strong>Lesson 1 Install and Introduce Arduino IDE</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_2_blinking_led.html"><strong>Lesson 2 Blinking LED</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_3_controlling_led_by_button.html"><strong>Lesson 3 Controlling LED by Button</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_4_controlling_an_led_by_potentiometer.html"><strong>Lesson 4 Controlling an LED by Potentiometer</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_5_doorbell.html"><strong>Lesson 5 Doorbell</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_6_Photoresistor.html"><strong>Lesson 6 Photoresistor</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_7_rgb_led.html"><strong>Lesson 7 RGB LED</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_8_tilt_switch.html"><strong>Lesson 8 Tilt Switch</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_9_slide_switch.html"><strong>Lesson 9 Slide Switch</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_10_relay.html"><strong>Lesson 10 Relay</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_11_4n35.html"><strong>Lesson 11 4N35</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_12_ne555_timer.html"><strong>Lesson 12 NE555 Timer</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_13_servo.html"><strong>Lesson 13 Servo</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_14_lcd1602.html"><strong>Lesson 14 LCD1602</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_15_thermistor.html"><strong>Lesson 15 Thermistor</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_16_voltmeter.html"><strong>Lesson 16 Voltmeter</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_17_automatically_tracking_light_source.html"><strong>Lesson 17 Automatically Tracking Light Source</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_18_light_alarm.html"><strong>Lesson 18 Light Alarm</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_19_answer_machine.html"><strong>Lesson 19 Answer Machine</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_20_controlling_voice_by_light.html"><strong>Lesson 20 Controlling Voice by Light</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lesson_21_74HC595.html"><strong>Lesson 21 74HC595</strong></a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="lesson-15-ne555-timer">
+<h1><strong>Lesson 15 NE555 Timer</strong><a class="headerlink" href="#lesson-15-ne555-timer" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The NE555 Timer, a mixed circuit composed of analog and digital
+circuits, integrates analog and logical functions into an independent
+IC, thus tremendously expanding the applications of analog integrated
+circuits. It is widely used in various timers, pulse generators, and
+oscillators. In this experiment, the Raspberry Pi is used to test the
+frequencies of square waves generated by the 555 oscillating circuit and
+show them on terminal windows.</p>
+</div>
+<div class="section" id="newly-added-components">
+<h2><strong>Newly Added Components</strong><a class="headerlink" href="#newly-added-components" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/image235.png"><img alt="_images/image235.png" class="align-center" src="_images/image235.png" style="width: 800px;"/></a>
+</div>
+<div class="section" id="principle">
+<h2><strong>Principle</strong><a class="headerlink" href="#principle" title="Permalink to this headline">¶</a></h2>
+<p><strong>Potentiometer</strong></p>
+<a class="reference internal image-reference" href="_images/image236.png"><img alt="_images/image236.png" class="align-center" src="_images/image236.png" style="width: 600px;"/></a>
+<p>Potentiometer is also a resistance component with
+3 terminals and its resistance value can be adjusted according to some
+regular variation. Potentiometer usually consists of resistor and
+movable brush. When the brush is moving along the resistor, there is a
+certain resistance or voltage output depending on the displacement.</p>
+<p>The functions of the potentiometer in the circuit are as follows:</p>
+<p>1.Serving as a voltage divider
+Potentiometer is a continuously adjustable resistor.
+When you adjust the shaft or sliding handle of the
+potentiometer, the movable contact will slide on the resistor.
+At this point, a voltage can be output depending on the voltage
+applied onto the potentiometer and the angle the movable arm has
+rotated to or the distance it moves.</p>
+<p>2.Serving as a rheostat
+When the potentiometer
+is used as a rheostat, connect the middle pin and one
+of the other 2 pins in the circuit. Thus you can get a
+smoothly and continuously changed resistance value cused
+by moving contact.</p>
+<p>3.Serving as a current controller
+When the potentiometer acts as a current controller,
+the sliding contact terminal must be connected as
+one of the output terminals.</p>
+<p><strong>555 IC</strong></p>
+<p>The 555 IC was originally used as a timer,
+hence the name 555 time base circuit. It is
+now widely used in various electronic products because
+of its reliability, convenience, and low price. The
+555 is a complex hybrid circuit with dozens of components such
+as a divider, comparator, basic R-S trigger, discharge
+tube, and buffer.</p>
+<p><strong>Pins and functions:</strong></p>
+<a class="reference internal image-reference" href="_images/image162.png"><img alt="_images/image162.png" class="align-center" src="_images/image162.png" style="width: 800px;"/></a>
+<p>As shown in the picture, the pins are set dual
+in-line with the 8-pin package.</p>
+<ul class="simple">
+<li><p>Pin 1 (GND): the ground</p></li>
+<li><p>Pin 2 (TRIGGER ): when the voltage at the pin reduces to 1/3 of the VCC (or the threshold defined by the control board), the output terminal sends out a High level</p></li>
+<li><p>Pin 3 (OUTPUT): outputs High or Low, two states 0 and 1 decided by the input electrical level; maximum output current approx. 200mA at High</p></li>
+<li><p>Pin 4 (RESET): when a Low level is received at the pin, the timer will be reset and the output will return to Low level; usually connected to positive pole or neglected</p></li>
+<li><p>Pin 5 (CONTROL VOLTAGE): to control the threshold voltage of the chip (if it skips connection, by default, the threshold voltage is 1/3 VCC and 2/3 VCC)</p></li>
+<li><p>Pin 6 (THRESHOLD): when the voltage at the pin increases to 2/3 VCC (or the threshold defined by the control board), the output terminal sends out a High level.</p></li>
+<li><p>Pin 7 (DISCHARGE): output synchronized with Pin 3, with the same logical level; but this pin does not output current, so pin 3 is the real High (or Low) when pin 7 is the virtual High (or Low); connected to the open  collector (OC) inside to discharge the capacitor.</p></li>
+<li><p>Pin 8 (VCC): positive terminal for the NE555 timer IC, ranging +4.5V to +16V</p></li>
+<li><p>The NE555 timer works under the monostable, astable and bistable modes. In this experiment, apply it under the astable mode, which means it works as an oscillator, as shown below:</p></li>
+</ul>
+<p><strong>Cap</strong></p>
+<a class="reference internal image-reference" href="_images/image163.jpeg"><img alt="_images/image163.jpeg" class="align-center" src="_images/image163.jpeg" style="width: 400px;"/></a>
+<p>A ceramic capacitor is a capacitor that is made of ceramic material
+and works as a dielectric. It is coated with a metal film on the surface
+of the ceramic and sintered at a high temperature. The ceramic capacitor is
+commonly used in high-stability oscillator circuits as loops, bypass capacitors,
+and pad capacitors. It is a non-polar capacitor, so this capacitor does not need
+to distinguish between positive and negative during installation.</p>
+<p>In the circuit of this lesson, the main function of the ceramic
+capacitor, high-frequency filtering is to remove some clutter
+that may occur in the working process of the NE555 chip, so that
+the waveform is more stable.</p>
+</div>
+<div class="section" id="schematic-diagram">
+<h2><strong>Schematic Diagram</strong><a class="headerlink" href="#schematic-diagram" title="Permalink to this headline">¶</a></h2>
+<p>Build the circuit according to the following schematic diagram.</p>
+<a class="reference internal image-reference" href="_images/image237.png"><img alt="_images/image237.png" class="align-center" src="_images/image237.png" style="width: 800px;"/></a>
+</div>
+<div class="section" id="working-process">
+<h2><strong>Working Process:</strong><a class="headerlink" href="#working-process" title="Permalink to this headline">¶</a></h2>
+<p>The oscillator starts to shake once the circuit is power on. During
+energizing, since the voltage at C1 cannot change abruptly, which means
+pin 2 is Low level initially, set the timer to 1, so pin 3 is High
+level. The capacitor C1 charges via R1 and R2 in a time span:</p>
+<p>When the voltage at C1 reaches the threshold 2/3Vcc, the timer is reset
+and pin 3 is Low level. Then C1 discharges via R2 till 2/3Vcc in a time
+span:</p>
+<p>Then the capacitor is recharged and the output voltage flips again:</p>
+</div>
+<div class="section" id="build-the-circuit">
+<h2><strong>Build the Circuit</strong><a class="headerlink" href="#build-the-circuit" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/image238.png"><img alt="_images/image238.png" class="align-center" src="_images/image238.png" style="width: 800px;"/></a>
+</div>
+<div class="section" id="for-c-language-users">
+<h2><strong>For C Language Users</strong><a class="headerlink" href="#for-c-language-users" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="command">
+<h3><strong>Command</strong><a class="headerlink" href="#command" title="Permalink to this headline">¶</a></h3>
+<p><strong>1.</strong> Go to the folder of the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">electronic</span><span class="o">-</span><span class="n">kit</span><span class="o">/</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="n">Lesson_15_NE555_Timer</span>
+</pre></div>
+</div>
+<p><strong>2.</strong> Compile the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mi">15</span><span class="n">_NE555_Timer</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>3.</strong> Run the executable file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>When the code is running, you will see the number of pulses on the
+display screen and the level of pin3 in NE555 at this time.</p>
+</div>
+<div class="section" id="code">
+<h3><strong>Code</strong><a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &lt;stdio.h&gt;</span>
+<span class="mf">2.</span><span class="c1">#include &lt;string.h&gt;</span>
+<span class="mf">3.</span><span class="c1">#include &lt;errno.h&gt;</span>
+<span class="mf">4.</span><span class="c1">#include &lt;stdlib.h&gt;</span>
+<span class="mf">5.</span><span class="c1">#include &lt;wiringPi.h&gt;</span>
+<span class="mf">6.</span>
+<span class="mf">7.</span><span class="c1">#define  OutPin  1</span>
+<span class="mf">8.</span>
+<span class="mf">9.</span><span class="n">static</span> <span class="n">volatile</span> <span class="nb">int</span> <span class="n">globalCounter</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span><span class="n">void</span> <span class="n">exInt0_ISR</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>  <span class="o">//</span><span class="n">GPIO</span> <span class="mi">1</span> <span class="n">interrupt</span> <span class="n">service</span> <span class="n">routine</span>
+<span class="mf">12.</span><span class="p">{</span>
+<span class="mf">13.</span>    <span class="o">++</span><span class="n">globalCounter</span><span class="p">;</span>
+<span class="mf">14.</span><span class="p">}</span>
+<span class="mf">15.</span>
+<span class="mf">16.</span><span class="n">int</span> <span class="n">main</span> <span class="p">(</span><span class="n">void</span><span class="p">)</span>
+<span class="mf">17.</span><span class="p">{</span>
+<span class="mf">18.</span>  <span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
+<span class="mf">19.</span>    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s2">"Unable to setup wiringPi:</span><span class="si">%s</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span><span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
+<span class="mf">20.</span>    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="mf">21.</span>  <span class="p">}</span>
+<span class="mf">22.</span>
+<span class="mf">23.</span>    <span class="n">delay</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+<span class="mf">24.</span>    <span class="n">pinMode</span><span class="p">(</span><span class="n">OutPin</span><span class="p">,</span><span class="n">INPUT</span><span class="p">);</span>
+<span class="mf">25.</span>    <span class="n">pullUpDnControl</span><span class="p">(</span><span class="n">OutPin</span><span class="p">,</span><span class="n">PUD_UP</span><span class="p">);</span>
+<span class="mf">26.</span>    <span class="n">wiringPiISR</span><span class="p">(</span><span class="n">OutPin</span><span class="p">,</span> <span class="n">INT_EDGE_FALLING</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">exInt0_ISR</span><span class="p">);</span>
+<span class="mf">27.</span>
+<span class="mf">28.</span>   <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="mf">29.</span>    <span class="n">printf</span><span class="p">(</span><span class="s2">"Current pluse number is : </span><span class="si">%d</span><span class="s2">, </span><span class="si">%d</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">globalCounter</span><span class="p">,</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">OutPin</span><span class="p">));</span>
+<span class="mf">30.</span>        <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="mf">31.</span>    <span class="p">}</span>
+<span class="mf">32.</span>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">33.</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="code-explanation">
+<h3><strong>Code Explanation</strong><a class="headerlink" href="#code-explanation" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">9.</span><span class="n">static</span> <span class="n">volatile</span> <span class="nb">int</span> <span class="n">globalCounter</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span>
+</pre></div>
+</div>
+<p>Define a variable to record the number of pulses,
+and initialize the number of pulses to 0.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">11.</span><span class="n">void</span> <span class="n">exInt0_ISR</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+<span class="mf">12.</span><span class="p">{</span>
+<span class="mf">13.</span>    <span class="o">++</span><span class="n">globalCounter</span><span class="p">;</span>
+<span class="mf">14.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Set an external interrupt function and globalCounter will
+automatically +1 when an interrupt occurs.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">24.</span>  <span class="n">pinMode</span><span class="p">(</span><span class="n">OutPin</span><span class="p">,</span><span class="n">INPUT</span><span class="p">);</span>
+<span class="mf">25.</span> <span class="n">pullUpDnControl</span><span class="p">(</span><span class="n">OutPin</span><span class="p">,</span><span class="n">PUD_UP</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Set the out pin of NE555 to INPUT mode,
+then let the pin be in pull-up state (1).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">26.</span>  <span class="n">wiringPiISR</span><span class="p">(</span><span class="n">OutPin</span><span class="p">,</span> <span class="n">INT_EDGE_FALLING</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">exInt0_ISR</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Set an interrupt in OutPin, when the value of OutPin changes from 1 to 0.
+Then call the exInt0_ISR() function to let the variable globalCounter add 1.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">29.</span>    <span class="n">printf</span><span class="p">(</span><span class="s2">"Current pluse number is : </span><span class="si">%d</span><span class="s2">, </span><span class="si">%d</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">globalCounter</span><span class="p">,</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">OutPin</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Print out the number of pulses, globalCounter and the value of OutPin at this time.</p>
+</div>
+</div>
+<div class="section" id="for-python-language-users">
+<h2><strong>For Python Language Users</strong><a class="headerlink" href="#for-python-language-users" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3><strong>Command</strong><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p><strong>1.</strong> Go to the folder of the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">electronic</span><span class="o">-</span><span class="n">kit</span><span class="o">/</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
+<p><strong>2.</strong> Run the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mi">15</span><span class="n">_NE555</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>When the code is running, you can see the number of pulses on the
+display.</p>
+</div>
+<div class="section" id="id2">
+<h3><strong>Code</strong><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="mf">2.</span><span class="kn">import</span> <span class="nn">time</span>
+<span class="mf">3.</span>
+<span class="mf">4.</span><span class="n">SigPin</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="mf">5.</span>
+<span class="mf">6.</span><span class="n">g_count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mf">7.</span>
+<span class="mf">8.</span><span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="n">ev</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="mf">9.</span>    <span class="k">global</span> <span class="n">g_count</span>
+<span class="mf">10.</span>    <span class="n">g_count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="mf">11.</span>
+<span class="mf">12.</span><span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+<span class="mf">13.</span>    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+<span class="mf">14.</span>    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">SigPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">pull_up_down</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">PUD_UP</span><span class="p">)</span>
+<span class="mf">15.</span>    <span class="n">GPIO</span><span class="o">.</span><span class="n">add_event_detect</span><span class="p">(</span><span class="n">SigPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">RISING</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">count</span><span class="p">)</span> <span class="c1"># wait for rasing</span>
+<span class="mf">16.</span>
+<span class="mf">17.</span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="mf">18.</span>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="mf">19.</span>        <span class="nb">print</span> <span class="p">(</span><span class="s1">'g_count = </span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="n">g_count</span><span class="p">)</span>
+<span class="mf">20.</span>        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="mf">21.</span>
+<span class="mf">22.</span><span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+<span class="mf">23.</span>    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>    <span class="c1"># Release resource</span>
+<span class="mf">24.</span>
+<span class="mf">25.</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>     <span class="c1"># Program start from here</span>
+<span class="mf">26.</span>    <span class="n">setup</span><span class="p">()</span>
+<span class="mf">27.</span>    <span class="k">try</span><span class="p">:</span>
+<span class="mf">28.</span>        <span class="n">main</span><span class="p">()</span>
+<span class="mf">29.</span>    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>  <span class="c1"># When 'Ctrl+C' is pressed, the child program destroy() will be  executed.</span>
+<span class="mf">30.</span>        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3><strong>Code Explanation</strong><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">6.</span> <span class="n">g_count</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Define a variable to record the
+number of pulses, and initialize the number of pulses to 0.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">7.</span><span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="n">ev</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="mf">8.</span><span class="k">global</span> <span class="n">g_count</span>
+<span class="mf">9.</span>   <span class="n">g_count</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>This function will change the value of the global variable g_count.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">14.</span>      <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">SigPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">pull_up_down</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">PUD_UP</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Set the SigPin to input mode and pull up to high level(3.3V).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">15.</span>  <span class="n">GPIO</span><span class="o">.</span><span class="n">add_event_detect</span><span class="p">(</span><span class="n">SigPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">RISING</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">count</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Set an interrupt in SigPin, when the value of SigPin changes from
+0 to 1. Then call the count() function to let the variable g_count add 1.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">18.</span>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="mf">19.</span>        <span class="nb">print</span> <span class="p">(</span><span class="s1">'g_count = </span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="n">g_count</span><span class="p">)</span>
+<span class="mf">20.</span>        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Print out the value of the number of pulse g_count at an interval of 0.01s.</p>
+</div>
+</div>
+<div class="section" id="phenomenon-picture">
+<h2><strong>Phenomenon Picture</strong><a class="headerlink" href="#phenomenon-picture" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/image166.jpeg"><img alt="_images/image166.jpeg" class="align-center" src="_images/image166.jpeg" style="width: 800px;"/></a>
+</div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="lesson_16_servo.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><strong>Lesson 16 Servo</strong></div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="lesson_14_quiz_buzzer_system.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><strong>Lesson 14 Quiz Buzzer System</strong></div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, sunfounder
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="_sources/lesson_15_ne555_timer.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#"><strong>Lesson 15 NE555 Timer</strong></a><ul>
+<li><a class="reference internal" href="#introduction"><strong>Introduction</strong></a></li>
+<li><a class="reference internal" href="#newly-added-components"><strong>Newly Added Components</strong></a></li>
+<li><a class="reference internal" href="#principle"><strong>Principle</strong></a></li>
+<li><a class="reference internal" href="#schematic-diagram"><strong>Schematic Diagram</strong></a></li>
+<li><a class="reference internal" href="#working-process"><strong>Working Process:</strong></a></li>
+<li><a class="reference internal" href="#build-the-circuit"><strong>Build the Circuit</strong></a></li>
+<li><a class="reference internal" href="#for-c-language-users"><strong>For C Language Users</strong></a><ul>
+<li><a class="reference internal" href="#command"><strong>Command</strong></a></li>
+<li><a class="reference internal" href="#code"><strong>Code</strong></a></li>
+<li><a class="reference internal" href="#code-explanation"><strong>Code Explanation</strong></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#for-python-language-users"><strong>For Python Language Users</strong></a><ul>
+<li><a class="reference internal" href="#id1"><strong>Command</strong></a></li>
+<li><a class="reference internal" href="#id2"><strong>Code</strong></a></li>
+<li><a class="reference internal" href="#id3"><strong>Code Explanation</strong></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#phenomenon-picture"><strong>Phenomenon Picture</strong></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </main>
+</div>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="https://ezblock.cc/readDocFile/topHead.js"></script>
+    <script src="_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
+</html>
