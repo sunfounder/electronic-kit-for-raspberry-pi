@@ -23,8 +23,6 @@ copyright = '2021, sunfounder'
 author = 'www.sunfounder.com'
 
 
-# The full version, including alpha/beta/rc tags
-release = '1.0'
 
 # -- General configuration ---------------------------------------------------
 
