@@ -1,4 +1,4 @@
-**Lesson 1 Install and Introduce Arduino IDE**
+Lesson 1 Install and Introduce Arduino IDE
 ======================================================
 
 **Description**
@@ -29,7 +29,7 @@ You're recommended to download the former.
 **For Installer File**
 -----------------------
 
-**Step 1**: Find the .exe file just downloaded.
+**Step 1:** Find the .exe file just downloaded.
 
 .. image:: media_arduino/image14.png
     :width: 150
@@ -46,7 +46,7 @@ Click **I Agree**.
 .. image:: media_arduino/image16.png
     :align: center
 
-**Step 4**: Select the path to install. By default, it's set in the C
+**Step 4:** Select the path to install. By default, it's set in the C
 disk. You can click **Browse** and choose other paths. Click **OK**.
 Then click Install.
 
@@ -115,8 +115,7 @@ So the computer can recognize the board now. Click **Close**.
 -----------------------------------------
 
 Double-click the Arduino icon (arduino.exe) created by the installation
-process
-
+process.
 Then the Arduino IDE will appear. Let's check details of the software.
 
 .. image:: media_arduino/image23.png

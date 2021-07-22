@@ -1,4 +1,4 @@
-**Lesson 20 Controlling Voice by Light**
+Lesson 20 Controlling Voice by Light
 ==============================================
 
 **Introduction**
@@ -82,10 +82,9 @@ buzzer beeping will slow down.
 
         sensorValue = analogRead(photocellPin); //read the value of A0
 
-        digitalWrite(buzzerPin, HIGH); //
+        digitalWrite(buzzerPin, HIGH); 
 
-        delay(sensorValue); //wait for a while,and the delay time depend on the
-        sensorValue
+        delay(sensorValue); //wait for a while,and the delay time depend on the sensorValue
 
         digitalWrite(buzzerPin, LOW);
 

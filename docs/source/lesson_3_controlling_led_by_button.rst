@@ -1,4 +1,4 @@
-**Lesson 3 Controlling LED by Button**
+Lesson 3 Controlling LED by Button
 ============================================
 
 **Introduction**
@@ -78,13 +78,12 @@ The schematic diagram：
 
 **Step 4:** Upload the sketch to the board.
 
-Now, press the button, and the LED on the Uno board will light up.
-
-.. image:: media_arduino/image213.png
+.. image:: media_arduino/image228.png
     :align: center
 
-.. image:: media_arduino/image54.png
-    :width: 800
+Now, press the button, and the LED on the Uno board will light up.
+
+.. image:: media_arduino/image229.png
     :align: center
 
 **Code**
@@ -99,9 +98,9 @@ Now, press the button, and the LED on the Uno board will light up.
 
 .. code-block:: arduino
 
-    const int buttonPin = 12; //the button connect to pin 12
+    const int buttonPin = 12; // the button connect to pin 12
 
-    const int ledPin = 13;//the led connect to pin13
+    const int ledPin = 13; // the led connect to pin13
 
     int buttonState = 0; // variable for reading the pushbutton status
 
@@ -113,9 +112,9 @@ variable *buttonState* to restore the state of the button.
 
 .. code-block:: arduino
 
-    pinMode(buttonPin, INPUT); //initialize thebuttonPin as input
+    pinMode(buttonPin, INPUT); // initialize thebuttonPin as input
 
-    pinMode(ledPin, OUTPUT); //initialize the led pin as output
+    pinMode(ledPin, OUTPUT); // initialize the led pin as output
 
 We need to know the status of the button in this experiment, so here set
 the *buttonPin* as INPUT; to set HIGH/LOW of the LED, we set *LedPin* as
@@ -143,7 +142,7 @@ either HIGH or LOW.
 
     {
 
-        digitalWrite(ledPin, HIGH); //turn the led on
+        digitalWrite(ledPin, HIGH); // turn the led on
 
     }
 
@@ -151,7 +150,7 @@ either HIGH or LOW.
 
     {
 
-        digitalWrite(ledPin, LOW); //turn the led off
+        digitalWrite(ledPin, LOW); // turn the led off
 
     }
 

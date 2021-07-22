@@ -1,4 +1,4 @@
-**Lesson 8 Relay**
+Lesson 8 Relay
 ====================
 
 **Introduction**
@@ -20,7 +20,7 @@ control and protect the equipment.
 **Principle**
 -----------------
 
-Relay
+**Relay**
 
 As we may know, relay is a device which is used to provide connection
 between two or more points or devices in response to the input signal
@@ -49,15 +49,13 @@ be completed.
 
 4. Set of electrical **contacts** - There are two contact points:
 
-    ． **Normally open** - connected when the relay is activated, and
-    disconnected when it is inactive.
+* **Normally open** - connected when the relay is activated, and disconnected when it is inactive.
 
-    ．**Normally close** - not connected when the relay is activated,
-    and connected when it is inactive.
+* **Normally close** - not connected when the relay is activated, and connected when it is inactive.
 
 5. Molded frame - Relays are covered with plastic for protection.
 
-Working of Relay
+**Working of Relay**
 
 The working principle of relay is simple. When power is supplied to the
 relay, currents start flowing through the control coil; as a result, the
@@ -73,7 +71,7 @@ of a load circuit. 
     :width: 800
     :align: center
 
-Transistor
+**Transistor**
 
 .. image:: media_pi/image126.jpeg
     :width: 150
@@ -108,7 +106,7 @@ energized. But a PNP one needs a Low level signal to manage it. Both
 types of transistor are frequently used for contactless switches, just
 like in this experiment.
 
-Diode1N4007
+**Diode1N4007**
 
 .. image:: media_pi/image128.jpeg
     :width: 800
@@ -180,52 +178,51 @@ normally close contact and closing the normally open one.
 **Code**
 ^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: C
 
-    1.#include <wiringPi.h>  
-    2.#include <stdio.h>  
-    3.  
-    4.#define RelayPin 0  
-    5.  
-    6.int main(void){  
-    7.    if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen  
-    8.        printf("setup wiringPi failed !");  
-    9.        return 1;   
-    10.    }  
-    11.      
-    12.    pinMode(RelayPin, OUTPUT);     
-    13.  
-    14.    while(1){  
-    15.        // Tick   
-    16.        printf("......Relay Open \n");  
-    17.        digitalWrite(RelayPin, LOW);  
-    18.        delay(1000);  
-    19.        // Tock  
-    20.        printf("Relay Close......\n");  
-    21.        digitalWrite(RelayPin, HIGH);  
-    22.        delay(1000);  
-    23.    }  
-    24.    return 0;  
-    25.}  
+    #include <wiringPi.h>  
+    #include <stdio.h>  
+      
+    #define RelayPin 0  
+      
+    int main(void){  
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen  
+            printf("setup wiringPi failed !");  
+            return 1;   
+        }  
+          
+        pinMode(RelayPin, OUTPUT);     
+      
+        while(1){  
+            // Tick   
+            printf("......Relay Open \n");  
+            digitalWrite(RelayPin, LOW);  
+            delay(1000);  
+            // Tock  
+            printf("Relay Close......\n");  
+            digitalWrite(RelayPin, HIGH);  
+            delay(1000);  
+        }  
+        return 0;  
+    }  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block::
-
+.. code-block:: C
 
     17.        digitalWrite(RelayPin, LOW); 
 
-Set the I/O port RelayPin as LOW (0V), so the 
+Set the I/O port **RelayPin** as **LOW** (0V), so the 
 transistor is not energized and the coil is not 
 powered. There is no electromagnetic force, so the 
 relay opens and the LED remains off.
 
-.. code-block::
+.. code-block:: C
 
-21.        digitalWrite(RelayPin, HIGH); 
+    21.        digitalWrite(RelayPin, HIGH); 
 
-Set the I/O port as HIGH (5V) to energize the transistor. 
+Set the I/O port as **HIGH** (5V) to energize the transistor. 
 The coil of the relay is powered and generate electromagnetic 
 force, and the relay closes. Then you can see the LED is lit.
 
@@ -253,57 +250,57 @@ the normally closed contact and closing the normally open one.
 **Code**
 ^^^^^^^^^^
 
-.. code-block::
+.. code-block:: Python
 
-    1.import RPi.GPIO as GPIO  
-    2.import time  
-    3.  
-    4.relayPin = 17  
-    5.  
-    6.# Define a setup function for some setup  
-    7.def setup():  
-    8.    GPIO.setmode(GPIO.BCM)  
-    9.    GPIO.setup(relayPin, GPIO.OUT, initial=GPIO.LOW)  
-    10.  
-    11.# Define a main function for main process  
-    12.def main():  
-    13.    while True:  
-    14.        print ('...Relay open')  
-    15.        # Tick  
-    16.        GPIO.output(relayPin, GPIO.LOW)  
-    17.        time.sleep(1)  
-    18.        print ('Relay close...')  
-    19.        # Tock  
-    20.        GPIO.output(relayPin, GPIO.HIGH)   
-    21.        time.sleep(1)  
-    22.  
-    23.def destroy():  
-    24.    # Turn off LED  
-    25.    GPIO.output(relayPin, GPIO.LOW)  
-    26.    # Release resource  
-    27.    GPIO.cleanup()                       
-    28.  
-    29.# If run this script directly, do:  
-    30.if __name__ == '__main__':  
-    31.    setup()  
-    32.    try:  
-    33.        main()  
-    34.    # When 'Ctrl+C' is pressed, the child program   
-    35.    # destroy() will be  executed.  
-    36.    except KeyboardInterrupt:  
-    37.        destroy()  
+    import RPi.GPIO as GPIO  
+    import time  
+      
+    relayPin = 17  
+      
+    # Define a setup function for some setup  
+    def setup():  
+        GPIO.setmode(GPIO.BCM)  
+        GPIO.setup(relayPin, GPIO.OUT, initial=GPIO.LOW)  
+      
+    # Define a main function for main process  
+    def main():  
+        while True:  
+            print ('...Relay open')  
+            # Tick  
+            GPIO.output(relayPin, GPIO.LOW)  
+            time.sleep(1)  
+            print ('Relay close...')  
+            # Tock  
+            GPIO.output(relayPin, GPIO.HIGH)   
+            time.sleep(1)  
+      
+    def destroy():  
+        # Turn off LED  
+        GPIO.output(relayPin, GPIO.LOW)  
+        # Release resource  
+        GPIO.cleanup()                       
+      
+    # If run this script directly, do:  
+    if __name__ == '__main__':  
+        setup()  
+        try:  
+            main()  
+        # When 'Ctrl+C' is pressed, the child program   
+        # destroy() will be  executed.  
+        except KeyboardInterrupt:  
+            destroy()  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: Python
 
     9.    GPIO.setup(relayPin, GPIO.OUT, initial=GPIO.LOW) 
 
 Initialize pins. And the output pin of relay is set to 
 output mode and default low level.
 
-.. code-block::
+.. code-block:: Python
 
     17.        time.sleep(1)
 
@@ -312,7 +309,7 @@ the relay by changing this parameter.
 Note: Relay is a kind of metal dome formed in mechanical structure. 
 So its lifespan will be shortened under high-frequency using.
 
-.. code-block::
+.. code-block:: Python
 
     16.        GPIO.output(relayPin, GPIO.LOW)
 
@@ -321,7 +318,7 @@ transistor is not energized and the
 coil is not powered. There is no electromagnetic 
 force, so the relay opens and the LED remains off.
 
-.. code-block::
+.. code-block:: Python
 
     20.        GPIO.output(relayPin, GPIO.HIGH) 
 

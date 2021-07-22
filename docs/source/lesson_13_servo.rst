@@ -1,4 +1,4 @@
-**Lesson 13 Servo**
+Lesson 13 Servo
 =======================
 
 **Introduction**
@@ -46,7 +46,7 @@ The schematic diagram:
 **Experimental Procedures**
 ------------------------------
 
-**Step 1:** Build the circuit (Brown to GND, Red to VCC, Orange to pin 9
+**Step 1:** Build the circuit. (Brown to GND, Red to VCC, Orange to pin 9
 of the control board)
 
 .. image:: media_arduino/image128.png
@@ -80,11 +80,11 @@ direction.
 .. code-block:: arduino
 
     #include <Servo.h>
-    Servo myservo;//create servo object to control a servo
+    Servo myservo;     //create servo object to control a servo
 
 With the Servo.h file included, you can call the functions in this file later.                                                                                                                    
 Servo is a built-in library in the Arduino IDE. You can find the Servo folder under the installation path 
-*C:/\Program Files/\Arduino/\libraries*.
+*C:\\Program Files\\Arduino\\libraries*.
 
 **Code Analysis** **13-2** **Initialize the servo**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -93,11 +93,11 @@ Servo is a built-in library in the Arduino IDE. You can find the Servo folder un
 
     {
 
-        myservo.attach(9);//attachs the servo on pin 9 to servo object
+        myservo.attach(9);  //attachs the servo on pin 9 to servo object
 
-        myservo.write(0);//back to 0 degrees
+        myservo.write(0);   //back to 0 degrees
 
-        delay(1000);//wait for a second
+        delay(1000);        //wait for a second
 
     }
 
@@ -122,9 +122,9 @@ stay in the 0 angle firstly.
 
         {
 
-            myservo.write(i); //write the i angle to the servo
+            myservo.write(i);   //write the i angle to the servo
 
-            delay(15); //delay 15ms
+            delay(15);          //delay 15ms
 
         }
 
@@ -132,13 +132,13 @@ stay in the 0 angle firstly.
 
         {
 
-            myservo.write(i); //write the i angle to the servo
+            myservo.write(i);   //write the i angle to the servo
 
-            delay(15); //delay 15ms
+            delay(15);          //delay 15ms
 
         }
 
     }
 
 Use 2 for() statement to write 0 - 180 to the servo, so that you can
-see the servo rotate from 0 to 180 angle,then turn back to 0.
+see the servo rotate from 0 to 180 angle, then turn back to 0.

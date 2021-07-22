@@ -1,4 +1,4 @@
-**Lesson 9 Slide Switch**
+Lesson 9 Slide Switch
 ==========================
 
 **Introduction**
@@ -66,7 +66,7 @@ at one end to VCC. After connecting a 10K resistor and a 104 capacitor,
 connect the last one pin to GND (to let the switch output stable level
 signal). Connect an LED to pin 6. Push the handle of the slide switch to
 the pin connected with pin 12 which is High level, we can light up the
-LED at pin 6 by programming
+LED at pin 6 by programming.
 
 **Experimental Procedures**
 --------------------------------
@@ -109,7 +109,7 @@ When you toggle the switch to pin12, the LED lights.
 
         switchState = digitalRead(switchPin);
 
-        if (switchState == HIGH ) //if it is,the state is HIGH
+        if (switchState == HIGH )       //if it is,the state is HIGH
 
         {
 
@@ -121,7 +121,7 @@ When you toggle the switch to pin12, the LED lights.
 
         {
 
-            digitalWrite(ledPin, LOW); //turn the led off
+            digitalWrite(ledPin, LOW);  //turn the led off
 
         }
 

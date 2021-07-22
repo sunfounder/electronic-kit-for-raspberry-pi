@@ -1,4 +1,4 @@
-**Lesson 4 Controlling an LED by Potentiometer**
+Lesson 4 Controlling an LED by Potentiometer
 =================================================
 
 **Introduction**
@@ -167,8 +167,10 @@ potentiometer knob.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
-    inputValue = analogRead(analogPin);//read the value from the
-    potentiometer
+
+    inputValue = analogRead(analogPin); // read the value from the potentiometer
+
+This line is to store the values A0 has read in the inputValue which has been defined before. 
 
 **analog Read()** reads the value from the specified analog pin. This
 means that it will map input voltages between 0 and 5 volts into integer
@@ -179,9 +181,9 @@ values between 0 and 1023.
 
 .. code-block:: arduino
 
-    Serial.print("Input: "); //print "Input"
+    Serial.print("Input: "); // print "Input"
 
-    Serial.println(inputValue); //print inputValue
+    Serial.println(inputValue); // print inputValue
 
 **Serial.print():**\ Prints data to the serial port as human-readable
 ASCII text. This command can take many forms. Numbers are printed using
@@ -190,15 +192,16 @@ digits, defaulting to two decimal places. Bytes are sent as a single
 character. Characters and strings are sent as is.
 
 **Serial.print():** Commandant takes the same forms as Serial.print(),
-but it is followed by a carriage return character (ASCII 13, or '\r')
-and a newline character (ASCII 10, or '\n').
+but it is followed by a carriage return character (ASCII 13, or '\\r')
+and a newline character (ASCII 10, or '\\n').
 
 **Code Analysis 4-3 Map the values**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
-    outputValue = map(inputValue, 0, 1023, 0, 255); //Convert from 0-1023
-    proportional to the number of a number of from 0 to 255
+
+    outputValue = map(inputValue, 0, 1023, 0, 255); 
+    // Convert from 0-1023 proportional to the number of a number of from 0 to 255
 
 **map(value, Fromm, from High, to Low, thigh)** re-maps a number from
 one range to another. That is, a **value** of **Fromm** would get mapped
@@ -214,17 +217,16 @@ the Serial Monitor and analyze it.
 
 .. code-block:: arduino
 
-    Serial.print("Output: "); //print "Output"
+    Serial.print("Output: "); // print "Output"
 
-    Serial.println(outputValue); //print outputValue
+    Serial.println(outputValue); // print outputValue
 
 **Code Analysis** **4-4** **Write the value of the potentiometer to LED**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
 
-    analogWrite(ledPin, outputValue); //turn the LED on depending on the
-    output value
+    analogWrite(ledPin, outputValue); // turn the LED on depending on the output value
 
 Write the output value to *led Pin* and you will see that the luminance
 of LED changes with your spinning of the potentiometer knob.

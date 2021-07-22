@@ -1,5 +1,5 @@
-**Lesson 19 Answer Machine**
-=============================
+Lesson 19 Answer Machine
+============================
 
 **Introduction**
 -----------------------
@@ -64,7 +64,7 @@ press button 4 again to reset before you press other buttons.
 ---------------------
 
 The code for this experiment may be a bit long. But the syntax issimple. 
-Let's see.**Workflow:** Read the state of button 4, if button 4 is pressed, 
+Let's see. **Workflow:** Read the state of button 4, if button 4 is pressed, 
 theLED on pin 10 is illuminated while reading the state of the remaining
 buttons. If one of the buttons is detected to be pressed, the buzzer
 beeps and lights the corresponding LED until button 4 is pressed
@@ -79,28 +79,27 @@ again.
 
 .. code-block:: arduino
 
-    b4State = digitalRead(button4); //read the value of button4 to see if it
-    was pressed.
+    b4State = digitalRead(button4); // read the value of button4 to see if it was pressed.
 
-    Serial.println(b4State); //print it value.
+    Serial.println(b4State); // print it value.
 
     //when button4 pressed
 
-    if(b4State == 0) //if the button4 is pressed, the b4State=0
+    if(b4State == 0) // if the button4 is pressed, the b4State=0
 
     {
 
-        if(b4State == 0) //confirm that the button4 is pressed. One pin of the
+        if(b4State == 0) /*confirm that the button4 is pressed. One pin of the
         button is connected to pin 9, the other pin is connected to GND, and
-        when the button is pressed, pin 9 is pulled low.
+        when the button is pressed, pin 9 is pulled low.*/
 
         {
 
-            flag = 1; //if so,flag is 1
+            flag = 1; // if so,flag is 1
 
-            digitalWrite(LED4, HIGH); //turn the reset LED on
+            digitalWrite(LED4, HIGH); // turn the reset LED on
 
-            delay(200); //delay 200ms
+            delay(200); // delay 200ms
 
         }
 
@@ -110,7 +109,7 @@ again.
 
     {
 
-        //read the state of other buttons
+        // read the state of other buttons
 
         b1State = digitalRead(button1);
 
@@ -118,26 +117,25 @@ again.
 
         b3State = digitalRead(button3);
 
-        //If the button1 press the first
+        // If the button1 press the first
 
-        if(b1State == 0) //if button1 is pressed
+        if(b1State == 0) // if button1 is pressed
 
         {
 
-            flag = 0; //flag equals to 0
+            flag = 0; // flag equals to 0
 
             digitalWrite(LED4, LOW);
 
-            Alarm(); //buzzer sound
+            Alarm(); // buzzer sound
 
-            digitalWrite(LED1,HIGH); //turn the LED1 on only
+            digitalWrite(LED1,HIGH); // turn the LED1 on only
 
             digitalWrite(LED2,LOW);
 
             digitalWrite(LED3,LOW);
 
-            while(digitalRead(button4)); //detect the button4,if pressed,out of the
-            while loop
+            while(digitalRead(button4)); // detect the button4,if pressed,out of the while loop
 
         }
 
@@ -156,15 +154,16 @@ corresponding LED until button 4 is pressed again.
 
     {
 
-        for(int i=0;i<100;i++){
+        for(int i=0;i<100;i++)
+        {
 
-        digitalWrite(buzzerPin,HIGH); //the buzzer sound
+            digitalWrite(buzzerPin,HIGH); // the buzzer sound
 
-        delay(2); //delay 2ms
+            delay(2); // delay 2ms
 
-        digitalWrite(buzzerPin,LOW); //without sound
+            digitalWrite(buzzerPin,LOW); // without sound
 
-        delay(2); //when delay time changed,the frequency changed
+            delay(2); // when delay time changed,the frequency changed
 
         }
 

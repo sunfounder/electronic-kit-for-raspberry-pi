@@ -1,4 +1,4 @@
-**Lesson 2 Blinking LED**
+Lesson 2 Blinking LED
 ===========================
 
 **Introduction**
@@ -163,7 +163,7 @@ Then plug the board into the computer with a 5V USB cable.
     :align: center
 
 **Step 2**: Open the Lesson_2_Blinking_LED.ino code file in the path of
-*electronic-kit\for-Arduino\code\Lesson_2_Blinking_LED*
+*electronic-kit\\for-Arduino\\code\\Lesson_2_Blinking_LED*
 
 **Step 3:** Select the Board and Port
 
@@ -213,7 +213,7 @@ You should now see the LED blinking.
 
 .. code-block:: arduino
 
-    const int ledPin = 9; //the number of the LED pin
+    const int ledPin = 9; // the number of the LED pin
 
 You should define every variable before using in case of making
 mistakes. This line defines a constant variable *ledPin* for the pin 9.
@@ -239,7 +239,7 @@ not stop unless something happens like power outages.
 
     {
 
-        pinMode(ledPin,OUTPUT);//initialize the digital pin as an output
+        pinMode(ledPin,OUTPUT); // initialize the digital pin as an output
 
     }
 
@@ -261,13 +261,13 @@ function. Otherwise there will be errors in compiling.
 
     {
 
-        digitalWrite(ledPin,HIGH);//turn the LED on
+        digitalWrite(ledPin,HIGH); // turn the LED on
 
-        delay(500); //wait for half a second
+        delay(500); // wait for half a second
 
-        digitalWrite(ledPin,LOW); //turn the LED off
+        digitalWrite(ledPin,LOW); // turn the LED off
 
-        delay(500); //wait for half a second
+        delay(500); // wait for half a second
 
     }
 

@@ -1,4 +1,4 @@
-**Lesson 11 4N35**
+Lesson 11 4N35
 =======================
 
 **Introduction**
@@ -121,14 +121,14 @@ burnt. Have a try!
 
     {
 
-        digitalWrite(OptoPin, LOW); //set the OptoPin as LOW level,then the led
-        connected on the output of 4n35 will be light
+        digitalWrite(OptoPin, LOW); 
+        //set the OptoPin as LOW level,then the led connected on the output of 4n35 will be light
 
-        delay(500); //delay 500ms
+        delay(500);                  //delay 500ms
 
         digitalWrite(OptoPin, HIGH); //turn off the led
 
-        delay(500); //delay 500ms
+        delay(500);                  //delay 500ms
 
     }
 

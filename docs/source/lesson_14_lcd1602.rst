@@ -1,4 +1,4 @@
-**Lesson 14 LCD1602**
+Lesson 14 LCD1602
 ============================
 
 **Introduction**
@@ -116,14 +116,14 @@ world**" rolling on the LCD.
 
 .. code-block:: arduino
 
-    #include <LiquidCrystal.h>// include the library code
+    #include <LiquidCrystal.h> // include the library code
 
 With the *LiquidCrystal.h* file included, you can call the functions in
 this file later.
 
 LiquidCrystal is a built-in library in the Arduino IDE. You can find the
-LiquidCrystal folder under the installation path *C:/\Program
-Files/\Arduino/\libraries*.
+LiquidCrystal folder under the installation path *C:\\Program
+Files\\Arduino\\libraries*.
 
 .. image:: media_arduino/image134.png
     :width: 800
@@ -141,9 +141,9 @@ you can look up in the file *LiquidCrystal.cpp*.
 
 .. code-block:: arduino
 
-    char array1[]=" SunFounder "; //the string to print on the LCD
+    char array1[]=" SunFounder ";   // the string to print on the LCD
 
-    char array2[]="hello, world! "; //the string to print on the LCD
+    char array2[]="hello, world! ";   // the string to print on the LCD
 
 These are two character type arrays: *arry1[]* and *array2[]*. The
 contents in the quotation marks ”xxx” are their elements, including 26
@@ -174,9 +174,8 @@ to pin 6, and d4-d7 to pin10-13 respectively.
 
 .. code-block:: arduino
 
-    lcd.begin(16, 2); // set up the LCD's number of columns and rows:
-
-begin(col,row) is to set the display of LCD. Here set as 16 x 2.
+    lcd.begin(16, 2); 
+    // set up the LCD's number of columns and rows: begin(col,row) is to set the display of LCD. Here set as 16 x 2.
 
 **Code Analysis** **14-5** **Set the cursor position of LCD**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -193,45 +192,40 @@ the characters start to show. Here set it as 15col, 0 row.
 
 .. code-block:: arduino
 
-    for ( int positionCounter1 = 0; positionCounter1 < 26;
-    positionCounter1++)
+    for (int positionCounter1 = 0; positionCounter1 < 26; positionCounter1++)
 
     {
-
-        lcd.scrollDisplayLeft(); //Scrolls the contents of the display one space
-        to the left.
+        
+        lcd.scrollDisplayLeft();             // Scrolls the contents of the display one space to the left.
 
         lcd.print(array1[positionCounter1]); // Print a message to the LCD.
 
-        delay(tim); //wait for 250 microseconds
-
+        delay(tim);                          // wait for 250 microseconds
+    
     }
 
-    When *positionCounter1*\ =0, which accords with *positionCounter1*\ <26,
-    *positionCounter1* adds 1. Move one bit to the left through
-    *lcd.scrollDisplayLeft()*. Make the LCD display array1[0] by
-    *lcd.print*\ (array1[positionCounter1]) and delay for *tim* ms (250 ms).
-    After 26 loops, all the elements in *array1[]* have been displayed.
+When positionCounter1=0, which accords with positionCounter1<26, positionCounter1 adds 1. Move one bit to the left through lcd.scrollDisplayLeft(). Make the LCD display array1[0] by lcd.print(array1[positionCounter1]) and delay for tim ms (250 ms). After 26 loops, all the elements in array1[] have been displayed. 
 
-    lcd.clear(); //Clears the LCD screen.
+.. code-block:: arduino
 
-    Clear the screen with *lcd.clear()* so it won't influence the display
-    next time.
+    lcd.clear(); // Clears the LCD screen.
 
-    lcd.setCursor(15,1); // set the cursor to column 15, line 1 // Set the
-    cursor at Col. 15 Line 1, where the characters will start to show.
+Clear the screen with lcd.clear() so it won't influence the display next time. 
 
-    for (int positionCounter2 = 0; positionCounter2 < 26;
-    positionCounter2++)
+.. code-block:: arduino
 
+    lcd.setCursor(15,1); 
+    // set the cursor to column 15, line 1 
+    // Set the cursor at Col. 15 Line 1, where the characters will start to show.
+
+    for (int positionCounter2 = 0; positionCounter2 < 26; positionCounter2++)
     {
 
-        lcd.scrollDisplayLeft(); //Scrolls the contents of the display one space
-        to the left.
+        lcd.scrollDisplayLeft();             // Scrolls the contents of the display one space to the left.
 
         lcd.print(array2[positionCounter2]); // Print a message to the LCD.
 
-        delay(tim); //wait for 250 microseconds
+        delay(tim);                          // wait for 250 microseconds
 
     }
 

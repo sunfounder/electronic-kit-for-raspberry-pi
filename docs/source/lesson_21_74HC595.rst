@@ -1,4 +1,4 @@
-**Lesson 21 74HC595**
+Lesson 21 74HC595
 ==========================
 
 **Introduction**
@@ -180,8 +180,7 @@ You should now see the 7-segment display from 0 to 9 and A to F.
 
 .. code-block:: arduino
 
-    int datArray[16] = {252, 96, 218, 242, 102, 182, 190, 224, 254, 246,
-    238, 62, 156, 122, 158, 142};
+    int datArray[16] = {252, 96, 218, 242, 102, 182, 190, 224, 254, 246, 238, 62, 156, 122, 158, 142};
 
 This array stores the data of the 16 characters from 0 to F. 218 stands
 for 2, which you can calculate by yourself. To display 2, the segment f
@@ -211,18 +210,17 @@ calculate other characters similarly.
 
     {
 
-        digitalWrite(STcp,LOW); //ground ST_CP and hold low for as long as you
-        are transmitting
+        digitalWrite(STcp,LOW); // ground ST_CP and hold low for as long as you are transmitting
 
         shiftOut(DS,SHcp,MSBFIRST,datArray[num]);
 
-        //return the latch pin high to signal chip that it
+        // return the latch pin high to signal chip that it
 
-        //no longer needs to listen for information
+        // no longer needs to listen for information
 
-        digitalWrite(STcp,HIGH); //pull the ST_CPST_CP to save the data
+        digitalWrite(STcp,HIGH); // pull the ST_CPST_CP to save the data
 
-        delay(1000); //wait for a second
+        delay(1000); // wait for a second
 
     }
 

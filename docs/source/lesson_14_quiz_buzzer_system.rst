@@ -1,4 +1,4 @@
-**Lesson 14 Quiz Buzzer System**
+Lesson 14 Quiz Buzzer System
 ======================================
 
 **Introduction**
@@ -68,103 +68,102 @@ you will see the corresponding LED light up and the buzzer will beep.
 Then press button 4 again to reset before you press other buttons.
 
 **Code**
----------
 
-.. code-block::
+.. code-block:: C
 
-    1.#include <wiringPi.h>  
-    2.#include <stdio.h>  
-    3.  
-    4.#define BeepPin 0  
-    5.#define ResetBtnPin 1  
-    6.const int BtnPin[] = {2,3,4};  
-    7.const int LedPin[] = {21,22,23,24};  
-    8.  
-    9.void Alarm()  
-    10.{  
-    11.    for(int i=0;i<50;i++){  
-    12.    digitalWrite(BeepPin,HIGH); //the buzzer sound  
-    13.    delay(2); //delay 2ms  
-    14.    digitalWrite(BeepPin,LOW);  //without sound  
-    15.    delay(2);         
-    16.  }  
-    17.}  
-    18.  
-    19.int main(void){  
-    20.    if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen  
-    21.        printf("setup wiringPi failed !");  
-    22.        return 1;   
-    23.    }  
-    24.      
-    25.     pinMode(BeepPin, OUTPUT);     
-    26.    for(int j=1;j<4;j++)  
-    27.    {  
-    28.        pinMode(LedPin[j], OUTPUT);  
-    29.        digitalWrite(LedPin[j],LOW);  
-    30.    }  
-    31.    pinMode(LedPin[0], OUTPUT);  
-    32.    digitalWrite(LedPin[0],HIGH);  
-    33.    for(int k;k<3;k++)  
-    34.    {  
-    35.        pinMode(BtnPin[k], INPUT);  
-    36.    }  
-    37.  
-    38.    int flag = 1;  
-    39.      
-    40.    while(1){  
-    41.        // if reset button is pressed  
-    42.        if(digitalRead(ResetBtnPin) == 1)  
-    43.        {  
-    44.                flag = 1;                
-    45.                digitalWrite(LedPin[0], HIGH);//Reset Led turns on  
-    46.                digitalWrite(LedPin[1],LOW);  
-    47.                digitalWrite(LedPin[2],LOW);  
-    48.                digitalWrite(LedPin[3],LOW);             
-    49.        }  
-    50.        if(flag==1)  
-    51.        {         
-    52.            //If the button1 press the first  
-    53.            if(digitalRead(BtnPin[0]) == 1)  
-    54.            {  
-    55.                    flag = 0;  
-    56.                    digitalWrite(LedPin[0],LOW);  
-    57.                    Alarm();  //buzzer sound  
-    58.                    digitalWrite(LedPin[1],HIGH);//turn the LED1 on only  
-    59.                    digitalWrite(LedPin[2],LOW);  
-    60.                    digitalWrite(LedPin[3],LOW);  
-    61.                    while(digitalRead(ResetBtnPin));            
-    62.            }  
-    63.             if(digitalRead(BtnPin[1]) == 1)  
-    64.            {          
-    65.                    flag = 0;  
-    66.                    digitalWrite(LedPin[0],LOW);  
-    67.                    Alarm();  //buzzer sound  
-    68.                    digitalWrite(LedPin[1],LOW);  
-    69.                    digitalWrite(LedPin[2],HIGH);//turn the LED2 on only  
-    70.                    digitalWrite(LedPin[3],LOW);  
-    71.                    while(digitalRead(ResetBtnPin));               
-    72.            }  
-    73.             if(digitalRead(BtnPin[2]) == 1)  
-    74.            {                                
-    75.                    flag = 0;  
-    76.                    digitalWrite(LedPin[0],LOW);  
-    77.                    Alarm();  //buzzer sound  
-    78.                    digitalWrite(LedPin[1],LOW);  
-    79.                    digitalWrite(LedPin[2],LOW);  
-    80.                    digitalWrite(LedPin[3],HIGH);//turn the LED3 on only  
-    81.                    while(digitalRead(ResetBtnPin));                  
-    82.            }            
-    83.        }         
-    84.    }  
-    85.    return 0;  
-    86.}  
+    #include <wiringPi.h>  
+    #include <stdio.h>  
+      
+    #define BeepPin 0  
+    #define ResetBtnPin 1  
+    const int BtnPin[] = {2,3,4};  
+    const int LedPin[] = {21,22,23,24};  
+      
+    void Alarm()  
+    {  
+        for(int i=0;i<50;i++){  
+        digitalWrite(BeepPin,HIGH); //the buzzer sound  
+        delay(2); //delay 2ms  
+        digitalWrite(BeepPin,LOW);  //without sound  
+        delay(2);         
+      }  
+    }  
+      
+    int main(void){  
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen  
+            printf("setup wiringPi failed !");  
+            return 1;   
+        }  
+          
+        pinMode(BeepPin, OUTPUT);     
+        for(int j=1;j<4;j++)  
+        {  
+            pinMode(LedPin[j], OUTPUT);  
+            digitalWrite(LedPin[j],LOW);  
+        }  
+        pinMode(LedPin[0], OUTPUT);  
+        digitalWrite(LedPin[0],HIGH);  
+        for(int k;k<3;k++)  
+        {  
+            pinMode(BtnPin[k], INPUT);  
+        }  
+      
+        int flag = 1;  
+          
+        while(1){  
+            // if reset button is pressed  
+            if(digitalRead(ResetBtnPin) == 1)  
+            {  
+                flag = 1;                
+                digitalWrite(LedPin[0], HIGH);//Reset Led turns on  
+                digitalWrite(LedPin[1],LOW);  
+                digitalWrite(LedPin[2],LOW);  
+                digitalWrite(LedPin[3],LOW);             
+            }  
+            if(flag==1)  
+            {         
+                //If the button1 press the first  
+                if(digitalRead(BtnPin[0]) == 1)  
+                {  
+                    flag = 0;  
+                    digitalWrite(LedPin[0],LOW);  
+                    Alarm();  //buzzer sound  
+                    digitalWrite(LedPin[1],HIGH);//turn the LED1 on only  
+                    digitalWrite(LedPin[2],LOW);  
+                    digitalWrite(LedPin[3],LOW);  
+                    while(digitalRead(ResetBtnPin));            
+                }  
+                if(digitalRead(BtnPin[1]) == 1)  
+                {          
+                    flag = 0;  
+                    digitalWrite(LedPin[0],LOW);  
+                    Alarm();  //buzzer sound  
+                    digitalWrite(LedPin[1],LOW);  
+                    digitalWrite(LedPin[2],HIGH);//turn the LED2 on only  
+                    digitalWrite(LedPin[3],LOW);  
+                    while(digitalRead(ResetBtnPin));               
+                }  
+                if(digitalRead(BtnPin[2]) == 1)  
+                {                                
+                    flag = 0;  
+                    digitalWrite(LedPin[0],LOW);  
+                    Alarm();  //buzzer sound  
+                    digitalWrite(LedPin[1],LOW);  
+                    digitalWrite(LedPin[2],LOW);  
+                    digitalWrite(LedPin[3],HIGH);//turn the LED3 on only  
+                    while(digitalRead(ResetBtnPin));                  
+                }            
+            }         
+        }  
+        return 0;  
+    }  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: C
 
-    9.void Alarm()  
+    9. void Alarm()  
     10.{  
     11.    for(int i=0;i<50;i++){  
     12.    digitalWrite(BeepPin,HIGH); //the buzzer sound  
@@ -177,7 +176,7 @@ Then press button 4 again to reset before you press other buttons.
 Define a function to control the buzzer. The buzzer rings when this 
 function is called in the main function.
 
-.. code-block::
+.. code-block:: C
 
     38.    int flag = 1; 
 
@@ -186,31 +185,31 @@ When flag = 0, it indicates that someone is currently scrambling, and
 others cannot continue to answer first; when flag = 1, it means that the 
 reset button has been pressed, and a new round of answer rush can be conducted.
 
-.. code-block::
+.. code-block:: C
 
     42.        if(digitalRead(ResetBtnPin) == 1)  
     43.        {  
-    44.                flag = 1;                  
-    45.                digitalWrite(LedPin[0], HIGH);//Reset Led turns on  
-    46.                digitalWrite(LedPin[1],LOW);  
-    47.                digitalWrite(LedPin[2],LOW);  
-    48.                digitalWrite(LedPin[3],LOW);           
+    44.            flag = 1;                  
+    45.            digitalWrite(LedPin[0], HIGH);//Reset Led turns on  
+    46.            digitalWrite(LedPin[1],LOW);  
+    47.            digitalWrite(LedPin[2],LOW);  
+    48.            digitalWrite(LedPin[3],LOW);           
     49.        }  
 
 If the reset button is detected to have been pressed, it means that the answer 
 begins. Now set flag to 1 and let the referee LED light up, the rest of the LED lights out.
 
-.. code-block::
+.. code-block:: C
 
     53.            if(digitalRead(BtnPin[0]) == 1)  
     54.            {  
-    55.                    flag = 0;  
-    56.                    digitalWrite(LedPin[0],LOW);  
-    57.                    Alarm();  //buzzer sound  
-    58.                    digitalWrite(LedPin[1],HIGH);//turn the LED1 on only  
-    59.                    digitalWrite(LedPin[2],LOW);  
-    60.                    digitalWrite(LedPin[3],LOW);  
-    61.                    while(digitalRead(ResetBtnPin));           
+    55.                flag = 0;  
+    56.                digitalWrite(LedPin[0],LOW);  
+    57.                Alarm();  //buzzer sound  
+    58.                digitalWrite(LedPin[1],HIGH);//turn the LED1 on only  
+    59.                digitalWrite(LedPin[2],LOW);  
+    60.                digitalWrite(LedPin[3],LOW);  
+    61.                while(digitalRead(ResetBtnPin));           
     62.            }  
 
 In the process of quick answering, if the first button is recognized to 
@@ -219,7 +218,7 @@ detected. At this time, the buzzer alarms, indicating that someone has
 successfully responsed, and the corresponding LED lights up. The 
 identification codes of the remaining buttons are explained as above. 
 
-.. code-block::
+.. code-block:: C
 
     61.                    while(digitalRead(ResetBtnPin)); 
 
@@ -251,91 +250,91 @@ you will see the corresponding LED light up and the buzzer will beep.
 Then press button 4 again to reset before you press other buttons.
 
 **Code**
-^^^^^^^
 
-.. code-block::
 
-    1.import RPi.GPIO as GPIO  
-    2.import time  
-    3.  
-    4.BeepPin = 17  
-    5.ResetBtnPin = 18  
-    6.BtnPin =(27,22,23)  
-    7.LedPin =(5,6,13,19)  
-    8.  
-    9.def setup():  
-    10.    GPIO.setmode(GPIO.BCM)  
-    11.    GPIO.setup(BeepPin, GPIO.OUT, initial=GPIO.LOW)  
-    12.    GPIO.setup(ResetBtnPin, GPIO.IN)  
-    13.    GPIO.setup(LedPin[0], GPIO.OUT, initial=GPIO.HIGH)  
-    14.    for i in range(1,4):  
-    15.        GPIO.setup(LedPin[i], GPIO.OUT, initial=GPIO.LOW)  
-    16.    for i in range(0,3):  
-    17.        GPIO.setup(BtnPin[i], GPIO.IN)  
-    18.  
-    19.def Alarm():  
-    20.    for i in range(0,50):  
-    21.        GPIO.output(BeepPin,GPIO.HIGH)  
-    22.        time.sleep(0.003)  
-    23.        GPIO.output(BeepPin,GPIO.LOW)  
-    24.        time.sleep(0.003)  
-    25.  
-    26.def loop():  
-    27.    flag = 1  
-    28.    while True:  
-    29.        if GPIO.input(ResetBtnPin) == 1:  
-    30.            flag = 1  
-    31.            GPIO.output(LedPin[0],GPIO.HIGH)  
-    32.            GPIO.output(LedPin[1],GPIO.LOW)  
-    33.            GPIO.output(LedPin[2],GPIO.LOW)  
-    34.            GPIO.output(LedPin[3],GPIO.LOW)  
-    35.        if flag == 1:  
-    36.            if GPIO.input(BtnPin[0]) == 1:  
-    37.                flag = 0  
-    38.                GPIO.output(LedPin[0],GPIO.LOW)  
-    39.                Alarm()  
-    40.                GPIO.output(LedPin[1],GPIO.HIGH)  
-    41.                GPIO.output(LedPin[2],GPIO.LOW)  
-    42.                GPIO.output(LedPin[3],GPIO.LOW)  
-    43.            elif GPIO.input(BtnPin[1]) == 1:  
-    44.                flag = 0  
-    45.                GPIO.output(LedPin[0],GPIO.LOW)  
-    46.                Alarm()  
-    47.                GPIO.output(LedPin[1],GPIO.LOW)  
-    48.                GPIO.output(LedPin[2],GPIO.HIGH)  
-    49.                GPIO.output(LedPin[3],GPIO.LOW)  
-    50.            elif GPIO.input(BtnPin[2]) == 1:  
-    51.                flag = 0  
-    52.                GPIO.output(LedPin[0],GPIO.LOW)  
-    53.                Alarm()  
-    54.                GPIO.output(LedPin[1],GPIO.LOW)  
-    55.                GPIO.output(LedPin[2],GPIO.LOW)  
-    56.                GPIO.output(LedPin[3],GPIO.HIGH)  
-    57.  
-    58.def destroy():  
-    59.    # Turn off buzzer  
-    60.    GPIO.output(BeepPin, GPIO.LOW)  
-    61.    GPIO.output(LedPin[0],GPIO.LOW)  
-    62.    GPIO.output(LedPin[1],GPIO.LOW)  
-    63.    GPIO.output(LedPin[2],GPIO.LOW)  
-    64.    GPIO.output(LedPin[3],GPIO.HIGH)  
-    65.    # Release resource  
-    66.    GPIO.cleanup()      
-    67.  
-    68.# If run this script directly, do:  
-    69.if __name__ == '__main__':  
-    70.    setup()  
-    71.    try:  
-    72.        loop()  
-    73.    # When 'Ctrl+C' is pressed, the child program   
-    74.    # destroy() will be  executed.  
-    75.    except KeyboardInterrupt:  
-    76.        destroy()  
+.. code-block:: python
+
+    import RPi.GPIO as GPIO  
+    import time  
+      
+    BeepPin = 17  
+    ResetBtnPin = 18  
+    BtnPin =(27,22,23)  
+    LedPin =(5,6,13,19)  
+      
+    def setup():  
+        GPIO.setmode(GPIO.BCM)  
+        GPIO.setup(BeepPin, GPIO.OUT, initial=GPIO.LOW)  
+        GPIO.setup(ResetBtnPin, GPIO.IN)  
+        GPIO.setup(LedPin[0], GPIO.OUT, initial=GPIO.HIGH)  
+        for i in range(1,4):  
+            GPIO.setup(LedPin[i], GPIO.OUT, initial=GPIO.LOW)  
+        for i in range(0,3):  
+            GPIO.setup(BtnPin[i], GPIO.IN)  
+      
+    def Alarm():  
+        for i in range(0,50):  
+            GPIO.output(BeepPin,GPIO.HIGH)  
+            time.sleep(0.003)  
+            GPIO.output(BeepPin,GPIO.LOW)  
+            time.sleep(0.003)  
+      
+    def loop():  
+        flag = 1  
+        while True:  
+            if GPIO.input(ResetBtnPin) == 1:  
+                flag = 1  
+                GPIO.output(LedPin[0],GPIO.HIGH)  
+                GPIO.output(LedPin[1],GPIO.LOW)  
+                GPIO.output(LedPin[2],GPIO.LOW)  
+                GPIO.output(LedPin[3],GPIO.LOW)  
+            if flag == 1:  
+                if GPIO.input(BtnPin[0]) == 1:  
+                    flag = 0  
+                    GPIO.output(LedPin[0],GPIO.LOW)  
+                    Alarm()  
+                    GPIO.output(LedPin[1],GPIO.HIGH)  
+                    GPIO.output(LedPin[2],GPIO.LOW)  
+                    GPIO.output(LedPin[3],GPIO.LOW)  
+                elif GPIO.input(BtnPin[1]) == 1:  
+                    flag = 0  
+                    GPIO.output(LedPin[0],GPIO.LOW)  
+                    Alarm()  
+                    GPIO.output(LedPin[1],GPIO.LOW)  
+                    GPIO.output(LedPin[2],GPIO.HIGH)  
+                    GPIO.output(LedPin[3],GPIO.LOW)  
+                elif GPIO.input(BtnPin[2]) == 1:  
+                    flag = 0  
+                    GPIO.output(LedPin[0],GPIO.LOW)  
+                    Alarm()  
+                    GPIO.output(LedPin[1],GPIO.LOW)  
+                    GPIO.output(LedPin[2],GPIO.LOW)  
+                    GPIO.output(LedPin[3],GPIO.HIGH)  
+      
+    def destroy():  
+        # Turn off buzzer  
+        GPIO.output(BeepPin, GPIO.LOW)  
+        GPIO.output(LedPin[0],GPIO.LOW)  
+        GPIO.output(LedPin[1],GPIO.LOW)  
+        GPIO.output(LedPin[2],GPIO.LOW)  
+        GPIO.output(LedPin[3],GPIO.HIGH)  
+        # Release resource  
+        GPIO.cleanup()      
+      
+    # If run this script directly, do:  
+    if __name__ == '__main__':  
+        setup()  
+        try:  
+            loop()  
+        # When 'Ctrl+C' is pressed, the child program   
+        # destroy() will be  executed.  
+        except KeyboardInterrupt:  
+            destroy()   
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: python
 
     19.def Alarm():  
     20.    for i in range(0,50):  
@@ -345,19 +344,19 @@ Then press button 4 again to reset before you press other buttons.
     24.        time.sleep(0.003)  
 
 Define a function to control the buzzer. The buzzer rings 
-when this function is called in the function main.
+when this function is called in the function **main**.
 
-.. code-block::
+.. code-block:: python
 
     27.    flag = 1 
 
 Define a flag bit to judge whether the responder is in the 
-state of answering. When flag = 0, it indicates that someone is 
+state of answering. When **flag** = 0, it indicates that someone is 
 currently scrambling, and others cannot continue to answer first; 
-when flag = 1, it means that the reset button has been pressed, 
+when **flag** = 1, it means that the reset button has been pressed, 
 and a new round of answer rush can be conducted.
 
-.. code-block::
+.. code-block:: python
 
     29.        if GPIO.input(ResetBtnPin) == 1:  
     30.            flag = 1  
@@ -370,7 +369,7 @@ If the recognition that reset button has been pressed is done, it means
 that answer begins. Now, set flag to 1, and let the referee LED light up, 
 other LEDs light out.
 
-.. code-block::
+.. code-block:: python
 
     36.            if GPIO.input(BtnPin[0]) == 1:  
     37.                flag = 0  

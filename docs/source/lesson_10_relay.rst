@@ -1,4 +1,4 @@
-**Lesson 10 Relay**
+Lesson 10 Relay
 =====================
 
 **Introduction**
@@ -40,11 +40,9 @@ There are 5 parts in every relay:
 
 4. Set of electrical **contacts** – There are two contact points:
 
-    1.Normally open – connected when the relay is activated, and
-    disconnected when it is inactive.
+* Normally open – connected when the relay is activated, and disconnected when it is inactive.
 
-    2.Normally close – not connected when the relay is activated, and
-    connected when it is inactive.
+* Normally close – not connected when the relay is activated, and connected when it is inactive.
 
 5. **Molded frame** – Relays are covered with plastic for protection.
 
@@ -139,7 +137,7 @@ The schematic diagram:
 **Experimental Procedures**
 -----------------------------
 
-**Step 1:**\ Build the circuit
+**Step 1:** Build the circuit
 
 **Step 2:** Open the code file.
 
@@ -175,11 +173,11 @@ contact and closing the normally open one.
 
         digitalWrite(relayPin, HIGH); //drive relay closure conduction
 
-        delay(1000); //wait for a second
+        delay(1000);                  //wait for a second
 
-        digitalWrite(relayPin, LOW); //drive the relay is closed off
+        digitalWrite(relayPin, LOW);  //drive the relay is closed off
 
-        delay(1000); //wait for a second
+        delay(1000);                  //wait for a second
 
     }
 

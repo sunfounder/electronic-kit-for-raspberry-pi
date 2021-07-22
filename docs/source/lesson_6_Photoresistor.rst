@@ -1,4 +1,4 @@
-**Lesson 6 Photoresistor**
+Lesson 6 Photoresistor
 ===============================
 
 **Introduction**
@@ -75,12 +75,11 @@ When you place it in a dark environment, all the LEDs will go out.
 
 .. code-block:: arduino
 
-    const int NbrLEDs = 8;//8 leds
+    const int NbrLEDs = 8;  // 8 leds
 
-    const int ledPins[] = {5, 6, 7, 8, 9, 10, 11, 12};//8 leds attach to pin
-    5-12 respectively
+    const int ledPins[] = {5, 6, 7, 8, 9, 10, 11, 12}; // 8 leds attach to pin 5-12 respectively
 
-    const int photocellPin = A0; //photoresistor attach to A0
+    const int photocellPin = A0; // photoresistor attach to A0
 
     int sensorValue = 0; // value read from the sensor
 
@@ -95,11 +94,11 @@ store the pins, ledPins[0] is equal to 5, ledPins[1] to 6 and so on.
 .. code-block:: arduino
 
     for (int led = 0; led < NbrLEDs; led++)
-
+    
     {
 
         pinMode(ledPins[led], OUTPUT);// make all the LED pins outputs
-
+    
     }
 
 Using the for() statement set the 8 pins to OUTPUT. The variable led is
@@ -111,7 +110,7 @@ OUTPUT in turn.
 
 .. code-block:: arduino
 
-    sensorValue = analogRead(photocellPin); //read the value of A0
+    sensorValue = analogRead(photocellPin); // read the value of A0
 
 Read the analog value of the **photocellPin(A0**) and store to the
 variable **sensorValue.**
@@ -125,13 +124,12 @@ voltage(5V or 3.3V) into integer values between 0 and 1023.
 
     Serial.print("SensorValue: ");
 
-    Serial.println(sensorValue); //Print the analog value of the
-    photoresistor
+    Serial.println(sensorValue); // Print the analog value of the photoresistor
 
 Use the Serial.print()function to print the analog value of the
 photoresistor. You can see them on the Serial Monitor.
 
-**Serial.print():**\ Prints data to the serial port as human-readable
+**Serial.print():** Prints data to the serial port as human-readable
 ASCII text. This command can take many forms. Numbers are printed using
 an ASCII character for each digit. Floats are similarly printed as ASCII
 digits, defaulting to two decimal places. Bytes are sent as a single
@@ -139,15 +137,14 @@ character. Characters and strings are sent as is.
 
 **Serial.println():** Thiscommand takes the same forms as
 Serial.print(), but it is followed by a carriage return character (ASCII
-13, or '\r') and a newline character (ASCII 10, or '\n').
+13, or '\\r') and a newline character (ASCII 10, or '\\n').
 
 **Code Analysis** **6-4** **Map the analog value to 8 LEDs**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
 
-    ledLevel = map(sensorValue, 0, 1023, 0, NbrLEDs); // map to the number
-    of LEDs
+    ledLevel = map(sensorValue, 0, 1023, 0, NbrLEDs); // map to the number of LEDs
 
     Serial.print("ledLevel: ");
 
@@ -176,8 +173,7 @@ in-between to values in-between, etc.
 
     {
 
-        if (led <= ledLevel ) //When led is smaller than ledLevel, run the
-        following code.
+        if (led <= ledLevel ) // When led is smaller than ledLevel, run the following code.
 
         {
 

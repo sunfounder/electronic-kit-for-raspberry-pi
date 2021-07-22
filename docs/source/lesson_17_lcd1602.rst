@@ -1,4 +1,4 @@
-**Lesson 17 LCD1602**
+Lesson 17 LCD1602
 ============================
 
 **Introduction**
@@ -123,77 +123,77 @@ appear one by one on the LCD.
 **Code**
 ^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: c
 
-    1.#include <stdio.h>  
-    2.#include <stdlib.h>  
-    3.#include <wiringPi.h>  
-    4.#include <lcd.h>  
-    5.  
-    6.const unsigned char Buf[] = "---SUNFOUNDER---";  
-    7.const unsigned char myBuf[] = "  sunfounder.com";  
-    8.  
-    9.int main(void)  
-    10.{  
-    11.    int fd;  
-    12.    int i;  
-    13.      
-    14.    if(wiringPiSetup() == -1){  
-    15.        exit(1);  
-    16.    }  
-    17.      
-    18.    fd = lcdInit(2,16,4,2,3, 0,0,0,0,6,5,4,1); //see /usr/local/include/lcd.h  
-    19.    printf("%d", fd);  
-    20.    if (fd == -1){  
-    21.        printf("lcdInit 1 failed\n") ;  
-    22.        return 1;  
-    23.    }  
-    24.
-    25.    delay(1000);  
-    26.    lcdClear(fd);  
-    27.    lcdPosition(fd, 0, 0);   
-    28.    lcdPuts(fd, "Welcome To--->");  
-    29.    lcdPosition(fd, 0, 1);  
-    30.    lcdPuts(fd, "sunfounder.com");  
-    31.    delay(1000);  
-    32.    lcdClear(fd);  
-    33.  
-    34.    while(1){  
-    35.        lcdClear(fd);  
-    36.        for(i=0; i<16; i++){  
-    37.            lcdPosition(fd, i, 0);  
-    38.            lcdPutchar(fd, *(myBuf+i));  
-    39.            delay(100);  
-    40.        }  
-    41.        for(i=0;i<sizeof(Buf)-1;i++){  
-    42.            lcdPosition(fd, i, 1);  
-    43.            lcdPutchar(fd, *(Buf+i));  
-    44.            delay(200);  
-    45.        }  
-    46.        delay(500);  
-    47.    }  
-    48.    return 0;  
-    49.}  
+    #include <stdio.h>  
+    #include <stdlib.h>  
+    #include <wiringPi.h>  
+    #include <lcd.h>  
+      
+    const unsigned char Buf[] = "---SUNFOUNDER---";  
+    const unsigned char myBuf[] = "  sunfounder.com";  
+      
+    int main(void)  
+    {  
+        int fd;  
+        int i;  
+          
+        if(wiringPiSetup() == -1){  
+            exit(1);  
+        }  
+          
+        fd = lcdInit(2,16,4,2,3, 0,0,0,0,6,5,4,1); //see /usr/local/include/lcd.h  
+        printf("%d", fd);  
+        if (fd == -1){  
+            printf("lcdInit 1 failed\n") ;  
+            return 1;  
+        }  
+
+        delay(1000);  
+        lcdClear(fd);  
+        lcdPosition(fd, 0, 0);   
+        lcdPuts(fd, "Welcome To--->");  
+        lcdPosition(fd, 0, 1);  
+        lcdPuts(fd, "sunfounder.com");  
+        delay(1000);  
+        lcdClear(fd);  
+      
+        while(1){  
+            lcdClear(fd);  
+            for(i=0; i<16; i++){  
+                lcdPosition(fd, i, 0);  
+                lcdPutchar(fd, *(myBuf+i));  
+                delay(100);  
+            }  
+            for(i=0;i<sizeof(Buf)-1;i++){  
+                lcdPosition(fd, i, 1);  
+                lcdPutchar(fd, *(Buf+i));  
+                delay(200);  
+            }  
+            delay(500);  
+        }  
+        return 0;  
+    }  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: c
 
-    4.   #include <lcd.h>  
+    #include <lcd.h>  
 
 This is a library that integrates lcd1602 functional functions, 
 in which functions are defined such as lcdClear(), lcdPosition(), 
 lcdPuts(), and so on. These functions can be called directly after 
 importing into the library.
 
-.. code-block::
+.. code-block:: c
 
-    18. fd = lcdInit(2,16,4,2,3, 0,0,0,0,6,5,4,1); //see /usr/local/include/lcd.h  
+    18.    fd = lcdInit(2,16,4,2,3, 0,0,0,0,6,5,4,1); //see /usr/local/include/lcd.h  
     19.    printf("%d", fd);  
     20.    if (fd == -1){  
     21.        printf("lcdInit 1 failed\n") ; 
-    22.     return 1;       
+    22.    return 1;       
 
 Initialize the lcd1602. The prototype of lcdInit() is as follows:
 
@@ -202,10 +202,11 @@ int d0, int d1, int d2, int d3, int d4, int d5, int d6, int d7) ;
 
 This is the main initialisation function and must be called 
 before you use any other LCD functions.
-Rows and cols are the rows and columns on the display 
-(e.g. 2, 16 or 4,20). Bits is the number of bits wide on the interface 
-(4 or 8). The rs and strb represent the pin numbers of the display RS 
-pin and Strobe (E) pin. The parameters d0 through d7 are the pin 
+
+**Rows** and **cols** are the rows and columns on the display 
+(e.g. 2, 16 or 4,20). **Bits** is the number of bits wide on the interface 
+(4 or 8). The **rs** and **strb** represent the pin numbers of the display RS 
+pin and Strobe (E) pin. The parameters **d0** through **d7** are the pin 
 numbers of the 8 data pins connected from the Pi to the display. 
 Only the first 4 are used if you are running the display in 4-bit mode.
 
@@ -213,14 +214,14 @@ The return value is the ‘handle’ to be used for all subsequent calls to
 the lcd library when dealing with that LCD, or -1 to indicate a fault. 
 (Usually incorrect parameters)
 
-.. code-block::
+.. code-block:: c
 
     26.    lcdClear(fd);  
 
 This function is used to clear the lcd screen. After 
 calling this function, all information displayed on the screen will be cleared.
 
-.. code-block::
+.. code-block:: c
 
     27. lcdPosition(fd, 0, 0);
 
@@ -228,20 +229,23 @@ Set the position of the cursor at row 0 and col 0
 (in fact it's the first line and first column) for 
 subsequent text entry.
 
-The prototype of lcdpostion function is as follows:
-lcdPosition (int handle, int x, int y) ;
+The prototype of **lcdpostion** function is as follows:
+
+.. code-block:: c
+
+    lcdPosition (int handle, int x, int y) ;
 
 Set the position of the cursor for subsequent text entry. 
-x is the column and 0 is the left-most edge. y is the line 
-and 0 is the top line.
+**x** is the column and **0** is the left-most edge. **y** is the line 
+and **0** is the top line.
 
-.. code-block::
+.. code-block:: c
 
     28.    lcdPuts(fd, "Welcome To--->");  
 
-Display "Welcome To--->" at the specified location of LCD1602.
+Display **"Welcome To--->"** at the specified location of LCD1602.
 
-.. code-block::
+.. code-block:: c
 
     36.        for(i=0; i<16; i++){  
     37.            lcdPosition(fd, i, 0);  
@@ -249,15 +253,12 @@ Display "Welcome To--->" at the specified location of LCD1602.
     39.            delay(100);  
     40.        }  
 
-Use the lcdPosition() function to place the cursor 
+Use the **lcdPosition()** function to place the cursor 
 at col i and row 0(the top line ) for subsequent text 
-entry. Then the characters in the array myBuf [] are 
+entry. Then the characters in the array **myBuf []** are 
 displayed one by one to the LCD1602. 
 
-\*\ is the address of myBuf, the real address 
-of characters stored in memory. After calling lcdPutchar(fd, *(myBuf+ I)), 
-the program will find the real address of the character, read the information 
-stored in the address, and display it on the LCD screen.
+\*\  is the address of myBuf, the real address of characters stored in memory. After calling lcdPutchar(fd, \*\(myBuf+ I)), the program will find the real address of the character, read the information stored in the address, and display it on the LCD screen.
 
 **For Python Language Users**
 ---------------------------------
@@ -283,38 +284,38 @@ LCD.
 **Code**
 ^^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: Python
 
-    1.from time import sleep
-    2.
-    3.def main():  
-    4.    global lcd   
-    5.    lcd = LCD()  
-    6.    line0 = "  sunfounder.com"  
-    7.    line1 = "---SUNFOUNDER---"  
-    8.  
-    9.    lcd.clear()  
-    10.    lcd.message("Welcome to --->\n  sunfounder.com")  
-    11.    sleep(3)  
-    12.  
-    13.    while True:  
-    14.        lcd.begin(0, 2)  
-    15.        lcd.clear()  
-    16.        for i in range(0, len(line0)):  
-    17.            lcd.setCursor(i, 0)  
-    18.            lcd.message(line0[i])  
-    19.            sleep(0.1)  
-    20.        for i in range(0, len(line1)):  
-    21.            lcd.setCursor(i, 1)  
-    22.            lcd.message(line1[i])  
-    23.            sleep(0.1)  
-    24.        sleep(1)  
-    25.  
-    26.if __name__ == '__main__':  
-    27.    try:  
-    28.        main()  
-    29.    except KeyboardInterrupt:  
-    30.        lcd.clear()  
+    from time import sleep
+
+    def main():  
+        global lcd   
+        lcd = LCD()  
+        line0 = "  sunfounder.com"  
+        line1 = "---SUNFOUNDER---"  
+      
+        lcd.clear()  
+        lcd.message("Welcome to --->\n  sunfounder.com")  
+        sleep(3)  
+      
+        while True:  
+            lcd.begin(0, 2)  
+            lcd.clear()  
+            for i in range(0, len(line0)):  
+                lcd.setCursor(i, 0)  
+                lcd.message(line0[i])  
+                sleep(0.1)  
+            for i in range(0, len(line1)):  
+                lcd.setCursor(i, 1)  
+                lcd.message(line1[i])  
+                sleep(0.1)  
+            sleep(1)  
+      
+    if __name__ == '__main__':  
+        try:  
+            main()  
+        except KeyboardInterrupt:  
+            lcd.clear()  
             lcd.destroy()  
 
 .. note::
@@ -325,20 +326,20 @@ LCD.
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: Python
 
     6.     line0 = "  sunfounder.com"  
     7.     line1 = "---SUNFOUNDER---"  
 
 Define 2 lines of characters that will be displayed on the LCD 1602.
 
-.. code-block::
+.. code-block:: Python
 
     10.    lcd.message("Welcome to --->\n  sunfounder.com")  
 
-On LCD1602, "Welcome to --->\n  sunfounder.com" pops up.
+On LCD1602, **"Welcome to --->\n  sunfounder.com"** pops up.
 
-.. code-block::
+.. code-block:: Python
 
     15.        lcd.begin(0, 2)  
 
@@ -346,7 +347,7 @@ Initializes the LCD screen and specifies the dimensions
 (width and height) of the display. begin() function needs 
 to be called before any other LCD library commands. 
 
-.. code-block::
+.. code-block:: Python
 
     16.        lcd.clear() 
      
@@ -354,18 +355,18 @@ This function is used to clear the lcd screen. After
 calling this function, all information displayed on 
 the screen will be cleared.
 
-.. code-block::
+.. code-block:: Python
 
     18.            lcd.setCursor(i, 0)  
 
 Set the position of the cursor at col i and row 
 0 (the first line) for subsequent text entry.
 
-.. code-block::
+.. code-block:: Python
 
     19.            lcd.message(line0[i])  
 
-The characters in the array line0[] will be displayed 
+The characters in the array **line0[]** will be displayed 
 at the specified location one by one.
 
 **Phenomenon Picture**

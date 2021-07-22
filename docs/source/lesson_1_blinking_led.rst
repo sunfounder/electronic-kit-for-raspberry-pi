@@ -1,4 +1,4 @@
-**Lesson 1 Blinking LED**
+Lesson 1 Blinking LED
 =============================
 
 **Introduction**
@@ -20,6 +20,7 @@ once!
 -----------------
 
 .. note:: This table gives the necessary product components of all lessons.
+
 In the following lessons, if there is no newly added component, the
 table will not appear again; instead, the list of newly added components
 will present for you.
@@ -190,7 +191,7 @@ as the 11th pin on the Raspberry Pi Physical, Pin 11.
 steps.**
 
 Go to **/home/pi/** and find the folder
-**electronic-kit\for-raspberry-pi**.
+**electronic-kit\\for-raspberry-pi**.
 
 Find **c** in the folder, right-click on it and select **Open in
 Terminal**.
@@ -280,62 +281,62 @@ following command to open *1_BlinkingLed.c* .
 
 The program code is shown as follows:
 
-.. code-block::
+.. code-block:: C
 
-    1.#include <wiringPi.h>  
-    2.#include <stdio.h>  
-    3.#define LedPin      0  
-    4.  
-    5.int main(void)  
-    6.{  
-    7.    // When initialize wiring failed, print message to screen  
-    8.    if(wiringPiSetup() == -1){  
-    9.        printf("setup wiringPi failed !");  
-    10.        return 1;   
-    11.    }  
-    12.      
-    13.    pinMode(LedPin, OUTPUT);   
-    14.      
-    15.    while(1){  
-    16.        // LED off  
-    17.        digitalWrite(LedPin, LOW);  
-    18.        printf("...LED off\n");  
-    19.        delay(500);  
-    20.        // LED on  
-    21.        digitalWrite(LedPin, HIGH);  
-    22.        printf("LED on...\n");  
-    23.        delay(500);  
-    24.    }  
-    25.  
-    26.    return 0;  
-    27.}  
+    #include <wiringPi.h>  
+    #include <stdio.h>  
+    #define LedPin      0  
+      
+    int main(void)  
+    {  
+        // When initialize wiring failed, print message to screen  
+        if(wiringPiSetup() == -1){  
+            printf("setup wiringPi failed !");  
+            return 1;   
+        }  
+          
+        pinMode(LedPin, OUTPUT);   
+          
+        while(1){  
+            // LED off  
+            digitalWrite(LedPin, LOW);  
+            printf("...LED off\n");  
+            delay(500);  
+            // LED on  
+            digitalWrite(LedPin, HIGH);  
+            printf("LED on...\n");  
+            delay(500);  
+        }  
+      
+        return 0;  
+    }    
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: C
 
-    1. #include <wiringPi.h> 
+    #include <wiringPi.h> 
 
 The hardware drive library is designed for the C language of Raspberry Pi. 
 Adding this library is conducive to the 
 initialization of hardware,and the output of I/O ports, PWM, etc.
 
-.. code-block::
+.. code-block:: C
 
-    2. #include <stdio.h>
+    #include <stdio.h>
 
 Standard I/O library. The printf function used for printing the 
 data displayed on the screen is realized by this 
 library. There are many other performance functions for you to explore.
 
-.. code-block::
+.. code-block:: C
 
-    3. #define LedPin      0  
+    #define LedPin      0  
 
 Assign GPIO 0 to LedPin that represents GPIO 0 in the code later.
 
-.. code-block::
+.. code-block:: c
 
     8.      if (wiringPiSetup() == -1){  
 
@@ -348,7 +349,7 @@ calling program is going to be using the wiringPi pin numbering scheme.
 This function needs to be called with root privileges.
 When initialize wiring failed, print message to screen.
 
-.. code-block::
+.. code-block:: c
 
     13.     pinMode(LedPin, OUTPUT);
 
@@ -358,7 +359,7 @@ hardware PWM output, you can also set other pins to PWM output using the softPWM
 Only wiringPi pin 7 (BCM_GPIO 4) supports CLOCK output modes. 
 Here we set LedPin as OUTPUT mode to write value to it.
 
-.. code-block::
+.. code-block:: c
 
     17.         digitalWrite(LedPin, LOW); 
 
@@ -371,7 +372,7 @@ of LED is connected to GPIO 0, thus the LED will light up
 if GPIO 0 is set high. On the contrary, set GPIO 0 as low 
 level, digitalWrite (LedPin, LOW), LED will go out.
 
-.. code-block::
+.. code-block:: c
 
     18.         printf("...LED off\n");
 
@@ -385,7 +386,7 @@ such as “%d”for decimal integer output. Non-format strings are printed as pr
 followed by "\n" that is a newline character, representing 
 automatic line wrapping after printing a string.
 
-.. code-block::
+.. code-block:: c
 
     19.         delay(500); 
 
@@ -397,9 +398,9 @@ fast and continuously loop and we can hardly observe the phenomenon.
 So we need the **delay** function to help us write and debug the
 program. **delay (500)** keeps the current HIGH or LOW state for 500ms(0.5s).
 
-.. code-block::
+.. code-block:: c
 
-    26.     **return** 0;
+    26.    return 0;
 
 Usually, it is placed in the last position of the **main** function, 
 indicating that the function returns 0 after  executing the function.
@@ -473,75 +474,75 @@ following command to open **1_BlinkingLed.c**
     :align: center
 
 **Code**
----------------
+
 
 The following is the program code:
 
-.. code-block::
+.. code-block:: python
 
-    1.import RPi.GPIO as GPIO    
-    2.import time     
-    3.  
-    4.# Set BCM 17 as LED pin  
-    5.LedPin = 17  
-    6.  
-    7.# Define a setup function for some setup  
-    8.def setup():  
-    9.    GPIO.setmode(GPIO.BCM)  
-    10.    GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.LOW)  
-    11.  
-    12.# Define a main function for main process  
-    13.def main():  
-    14.    while True:  
-    15.        print ('...LED ON')  
-    16.        # Turn on LED  
-    17.        GPIO.output(LedPin, GPIO.HIGH)  
-    18.        time.sleep(0.5)  
-    19.        print ('LED OFF...')  
-    20.        # Turn off LED  
-    21.        GPIO.output(LedPin, GPIO.LOW)   
-    22.        time.sleep(0.5)  
-    23.  
-    24.# Define a destroy function for clean up everything after the script finished   
-    25.def destroy():  
-    26.    # Turn off LED  
-    27.    GPIO.output(LedPin, GPIO.LOW)  
-    28.    # Release resource  
-    29.    GPIO.cleanup()                      
-    30.  
-    31.# If run this script directly, do:  
-    32.if __name__ == '__main__':  
-    33.    setup()  
-    34.    try:  
-    35.        main()  
-    36.    # When 'Ctrl+C' is pressed, the child program   
-    37.    # destroy() will be  executed.  
-    38.    except KeyboardInterrupt:  
-    39.        destroy()  
+    import RPi.GPIO as GPIO    
+    import time     
+      
+    # Set BCM 17 as LED pin  
+    LedPin = 17  
+      
+    # Define a setup function for some setup  
+    def setup():  
+        GPIO.setmode(GPIO.BCM)  
+        GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.LOW)  
+      
+    # Define a main function for main process  
+    def main():  
+        while True:  
+            print ('...LED ON')  
+            # Turn on LED  
+            GPIO.output(LedPin, GPIO.HIGH)  
+            time.sleep(0.5)  
+            print ('LED OFF...')  
+            # Turn off LED  
+            GPIO.output(LedPin, GPIO.LOW)   
+            time.sleep(0.5)  
+      
+    # Define a destroy function for clean up everything after the script finished   
+    def destroy():  
+        # Turn off LED  
+        GPIO.output(LedPin, GPIO.LOW)  
+        # Release resource  
+        GPIO.cleanup()                      
+      
+    # If run this script directly, do:  
+    if __name__ == '__main__':  
+        setup()  
+        try:  
+            main()  
+        # When 'Ctrl+C' is pressed, the child program   
+        # destroy() will be  executed.  
+        except KeyboardInterrupt:  
+            destroy()  
 
 **Code Explanation**
------------------------
+ 
 
-.. code-block::
+.. code-block:: python
 
   1.import RPi.GPIO as GPIO 
 
 In this way, import the RPi.GPIO library, then define a 
 variable, GPIO to replace RPI.GPIO in the following code.
 
-.. code-block::
+.. code-block:: python
 
   2.import time
 
 Import time library to help use delay function in the following program.
 
-.. code-block::
+.. code-block:: python
 
     5.LedPin = 17 
 
 LED connects to the pin 11 of the board, namely, the BCM 17 of the Raspberry Pi.
 
-.. code-block::
+.. code-block:: python
 
   9.    GPIO.setmode(GPIO.BCM) 
 
@@ -549,7 +550,7 @@ There are two ways of numbering the I/O pins on a Raspberry Pi
 within RPi.GPIO: BOARD numbers and BCM numbers. 
 In our lessons, what we use is BCM numbering method.
 
-.. code-block::
+.. code-block:: python
 
     10.    GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.LOW)
 
@@ -557,19 +558,19 @@ You need to set up every channel you use as input mode or
 output mode. Here we set the mode of LedPin to GPIO.OUT, 
 and initial level to LOW( 0v ).
 
-.. code-block::
+.. code-block:: python
 
    17.        GPIO.output(LedPin, GPIO.HIGH)
 
 Set LedPin to output high level to light up LED.
 
-.. code-block::
+.. code-block:: python
 
      18.        time.sleep(0.5)
 
 Delay for 0.5 second. Here, the statement is similar to delay function in C language, the unit is second.    
 
-.. code-block::
+.. code-block:: python
 
     32.if __name__ == '__main__':  
     33.    setup()  

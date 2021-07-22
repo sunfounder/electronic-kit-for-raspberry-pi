@@ -1,4 +1,4 @@
-**Lesson 12 NE555 Timer**
+Lesson 12 NE555 Timer
 ============================
 
 **Introduction**
@@ -45,38 +45,21 @@ package.
 
 -  Pin 1 (**GND**): the ground
 
--  Pin 2 (**TRIGGER** ): when the voltage at the pin reduces to 1/3 of
-the VCC (or the threshold defined by the control board), the
-output terminal sends out a High level
+-  Pin 2 (**TRIGGER** ): when the voltage at the pin reduces to 1/3 of the VCC (or the threshold defined by the control board), the output terminal sends out a High level
 
--  Pin 3 (**OUTPUT**): outputs High or Low, two states 0 and 1 decided
-by the input electrical level; maximum output current approx. 200mA
-at High
+-  Pin 3 (**OUTPUT**): outputs High or Low, two states 0 and 1 decided by the input electrical level; maximum output current approx. 200mA at High
 
--  Pin 4 (**RESET**): when a Low level is received at the pin, the timer
-will be reset and the output will return to Low level; usually
-connected to positive pole or neglected
+-  Pin 4 (**RESET**): when a Low level is received at the pin, the timer will be reset and the output will return to Low level; usually connected to positive pole or neglected
 
--  Pin 5 (**CONTROL VOLTAGE**): to control the threshold voltage of the
-chip (if it skips connection, by default, the threshold voltage is
-1/3 VCC and 2/3 VCC)
+-  Pin 5 (**CONTROL VOLTAGE**): to control the threshold voltage of the chip (if it skips connection, by default, the threshold voltage is 1/3 VCC and 2/3 VCC)
 
--  Pin 6 (**THRESHOLD)**: when the voltage at the pin increases to 2/3
-VCC (or the threshold defined by the control board), the output
-terminal sends out a High level
+-  Pin 6 (**THRESHOLD)**: when the voltage at the pin increases to 2/3 VCC (or the threshold defined by the control board), the output terminal sends out a High level
 
--  Pin 7 (**DISCHARGE)**: output synchronized with Pin 3, with the same
-logical level; but this pin does not output current, so pin 3 is
-the real High (or Low) when pin 7 is the virtual High (or Low);
-connected to the open collector (OC) inside to discharge the
-capacitor
+-  Pin 7 (**DISCHARGE)**: output synchronized with Pin 3, with the same logical level; but this pin does not output current, so pin 3 is the real High (or Low) when pin 7 is the virtual High (or Low); connected to the open collector (OC) inside to discharge the capacitor
 
--  Pin 8 (**VCC**): positive terminal for the NE555 timer IC, ranging
-+4.5V to +16V
+-  Pin 8 (**VCC**): positive terminal for the NE555 timer IC, ranging +4.5V to +16V
 
--  The NE555 timer works under the monostable, astable and bistable
-modes. In this experiment, apply it under the astable mode, which
-means it works as an oscillator, as shown below:
+-  The NE555 timer works under the monostable, astable and bistable modes. In this experiment, apply it under the astable mode, which means it works as an oscillator, as shown below:
 
 .. image:: media_arduino/image122.jpeg
     :width: 800
@@ -120,17 +103,17 @@ Dmax=(0.693(10K+10K))/(0.693(10K+10K)+0.693x10k) x100%=66.7%
 **Experimental Procedures**
 ------------------------------
 
-**Step 1:** Build the circuit
+**Step 1:** Build the circuit.
 
 .. image:: media_arduino/image123.png
     :width: 600
     :align: center
 
-**Step 2**: Open the code file
+**Step 2**: Open the code file.
 
-**Step 3:** Select correct Board and Port
+**Step 3:** Select correct Board and Port.
 
-**Step 4:** Upload the sketch to the SunFounder Uno board
+**Step 4:** Upload the sketch to the SunFounder Uno board.   
 
 After uploading, open the Serial Monitor and you will see the following
 window.
@@ -155,32 +138,27 @@ window.
 
     {
 
-        duration1 = pulseIn(ne555, HIGH); //Reads a pulse on ne555
+        duration1 = pulseIn(ne555, HIGH);  // Reads a pulse on ne555
 
-        duration2 = pulseIn(ne555, LOW); //Reads a pulse on ne555
+        duration2 = pulseIn(ne555, LOW);   // Reads a pulse on ne555
 
-        dc = float (duration1) / (duration1 + duration2) \* 100;
+        dc = float (duration1) / (duration1 + duration2) * 100;
 
         Serial.print("Duty cycle: ");
 
-        Serial.print(dc); //print the length of the pulse on the serial monitor
+        Serial.print(dc);  // print the length of the pulse on the serial monitor
 
         Serial.print(" %");
 
-        Serial.println(); //print an blank on serial monitor
+        Serial.println();  // print an blank on serial monitor
 
-        delay(500); //wait for 500 microseconds
+        delay(500);        // wait for 500 microseconds
 
     }
 
 Read a pulse waits for the ne555(pin 7) from HIGH to LOW firstly, then
-read a pulse waits for pin 7 from LOW to HIGH.
-
-so the range of the ideal duty cycle dc is float (duration1) /
-(duration1 + duration2) \* 100;
-
-| You can rotate the potentiometer and read the duty cycle from the
-  serial monitor.
+read a pulse waits for pin 7 from LOW to HIGH. So the range of the ideal duty cycle dc is float (duration1) /
+(duration1 + duration2) \* 100; You can rotate the potentiometer and read the duty cycle from the serial monitor.
 
 **pulseIn()**
 ----------------------------------
@@ -215,9 +193,9 @@ either `HIGH <https://www.arduino.cc/reference/en/language/variables/constants/
 (int)
 
 timeout (optional): the number of microseconds to wait for the pulse to
-start; default is one second (unsigned long)
+start; default is one second. (unsigned long)
 
 **Returns**
 
 the length of the pulse (in microseconds) or 0 if no pulse started
-before the timeout (unsigned long)
+before the timeout. (unsigned long)

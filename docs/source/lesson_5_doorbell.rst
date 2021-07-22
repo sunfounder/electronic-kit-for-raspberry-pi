@@ -1,4 +1,4 @@
-**Lesson 5 Doorbell**
+Lesson 5 Doorbell
 ======================
 
 **Introduction**
@@ -64,10 +64,10 @@ short pin is Cathode).
 
 **Step 4:** Upload the sketch to the board.
 
-Now, you should hear the buzzer beep.
-
 .. image:: media_arduino/image215.png
     :align: center
+
+Now, you should hear the buzzer beep.
 
 .. image:: media_arduino/image73.jpeg
     :width: 800
@@ -87,11 +87,11 @@ Now, you should hear the buzzer beep.
 
     const int buttonPin = 2; //the button connect to pin2
 
-    const int buzzerPin = 8;//the led connect to pin8
+    const int buzzerPin = 8; //the led connect to pin8
 
     /**********************************/
 
-    int buttonState = 0; // variable for reading the pushbutton status
+    int buttonState = 0; //variable for reading the pushbutton status
 
 Connect the button to pin 2 and buzzer to pin 8. Define a variable
 *buttonState* to restore the state of the button.
@@ -133,37 +133,37 @@ either HIGH or LOW.
 
 .. code-block:: arduino
 
-    if (buttonState == HIGH ) //When press the button, run the following
-    code.
-
+    if (buttonState == HIGH ) //When press the button, run the following code.
+    
     {
+        
+        for (i = 0; i < 50; i++) /*When i=o, which accords with the condition
+        i<=50, i++ equals to 1 (here in i = i + 1, the two "i"s are not the
+        same, but i_now = i_before + 1). Run the code in the curly braces: 
+        let the buzzer beep for 3ms and stop for 3ms. Then repeat 50 times.*/
 
-    for (i = 0; i < 50; i++) //When i=o, which accords with the condition
-    i<=50, i++ equals to 1 (here in i = i + 1, the two "i"s are not the
-    same, but i\ :sub:`now` = i\ :sub:`before` + 1). Run the code in the
-    curly braces: let the buzzer beep for 3ms and stop for 3ms. Then repeat
-    50 times.
+        { 
+            digitalWrite(buzzerPin, HIGH); //Let the buzzer beep.
 
-    { digitalWrite(buzzerPin, HIGH); //Let the buzzer beep.
+            delay(3);//wait for 3ms
 
-    delay(3);//wait for 3ms
+            digitalWrite(buzzerPin, LOW); //Stop the buzzer.
 
-    digitalWrite(buzzerPin, LOW); //Stop the buzzer.
+            delay(3);//wait for 3ms 
+        }
 
-    delay(3);//wait for 3ms }
+        for (i = 0; i < 80; i++) //Let the buzzer beep for 5ms and stop for 5ms, repeat 80 times.
+        
+        { 
+            digitalWrite(buzzerPin, HIGH);
 
-    for (i = 0; i < 80; i++) //Let the buzzer beep for 5ms and stop for 5ms,
-    repeat 80 times.
+            delay(5);//wait for 5ms
 
-    { digitalWrite(buzzerPin, HIGH);
+            digitalWrite(buzzerPin, LOW);
 
-    delay(5);//wait for 5ms
-
-    digitalWrite(buzzerPin, LOW);
-
-    delay(5);//wait for 5ms
-
-    }}
+            delay(5);//wait for 5ms
+        }
+    }
 
 In this part, when the **buttonState** is High level, then let the
 buzzer beeping in different frequency which can simulate the doorbell.

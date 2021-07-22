@@ -1,4 +1,4 @@
-**Lesson 15 NE555 Timer**
+Lesson 15 NE555 Timer
 ==============================
 
 **Introduction**
@@ -75,31 +75,31 @@ tube, and buffer.
 As shown in the picture, the pins are set dual 
 in-line with the 8-pin package.
 
-* Pin 1 (GND): the ground
+* Pin 1 (**GND**): the ground
 
 
-* Pin 2 (TRIGGER ): when the voltage at the pin reduces to 1/3 of the VCC (or the threshold defined by the control board), the output terminal sends out a High level
+* Pin 2 (**TRIGGER**): when the voltage at the pin reduces to 1/3 of the VCC (or the threshold defined by the control board), the output terminal sends out a High level
 
 
-* Pin 3 (OUTPUT): outputs High or Low, two states 0 and 1 decided by the input electrical level; maximum output current approx. 200mA at High
+* Pin 3 (**OUTPUT**): outputs High or Low, two states 0 and 1 decided by the input electrical level; maximum output current approx. 200mA at High
 
 
-* Pin 4 (RESET): when a Low level is received at the pin, the timer will be reset and the output will return to Low level; usually connected to positive pole or neglected
+* Pin 4 (**RESET**): when a Low level is received at the pin, the timer will be reset and the output will return to Low level; usually connected to positive pole or neglected
 
 
-* Pin 5 (CONTROL VOLTAGE): to control the threshold voltage of the chip (if it skips connection, by default, the threshold voltage is 1/3 VCC and 2/3 VCC)
+* Pin 5 (**CONTROL VOLTAGE**): to control the threshold voltage of the chip (if it skips connection, by default, the threshold voltage is 1/3 VCC and 2/3 VCC)
 
 
-* Pin 6 (THRESHOLD): when the voltage at the pin increases to 2/3 VCC (or the threshold defined by the control board), the output terminal sends out a High level.
+* Pin 6 (**THRESHOLD**): when the voltage at the pin increases to 2/3 VCC (or the threshold defined by the control board), the output terminal sends out a High level.
 
 
-* Pin 7 (DISCHARGE): output synchronized with Pin 3, with the same logical level; but this pin does not output current, so pin 3 is the real High (or Low) when pin 7 is the virtual High (or Low); connected to the open  collector (OC) inside to discharge the capacitor.
+* Pin 7 (**DISCHARGE**): output synchronized with Pin 3, with the same logical level; but this pin does not output current, so pin 3 is the real High (or Low) when pin 7 is the virtual High (or Low); connected to the open  collector (OC) inside to discharge the capacitor.
 
 
-* Pin 8 (VCC): positive terminal for the NE555 timer IC, ranging +4.5V to +16V
+* Pin 8 (**VCC**): positive terminal for the NE555 timer IC, ranging +4.5V to +16V
 
 
-* The NE555 timer works under the monostable, astable and bistable modes. In this experiment, apply it under the astable mode, which means it works as an oscillator, as shown below:
+The NE555 timer works under the monostable, astable and bistable modes. In this experiment, apply it under the astable mode, which means it works as an oscillator, as shown below:
 
 **Cap**
 
@@ -129,7 +129,7 @@ Build the circuit according to the following schematic diagram.
     :align: center
 
 **Working Process:**
---------------------
+
 
 The oscillator starts to shake once the circuit is power on. During
 energizing, since the voltage at C1 cannot change abruptly, which means
@@ -179,81 +179,82 @@ display screen and the level of pin3 in NE555 at this time.
 **Code**
 ^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: c
 
-    1.#include <stdio.h>  
-    2.#include <string.h>  
-    3.#include <errno.h>  
-    4.#include <stdlib.h>  
-    5.#include <wiringPi.h>  
-    6.  
-    7.#define  OutPin  1  
-    8.  
-    9.static volatile int globalCounter = 0 ;  
-    10.  
-    11.void exInt0_ISR(void)  //GPIO 1 interrupt service routine   
-    12.{  
-    13.    ++globalCounter;  
-    14.}  
-    15.  
-    16.int main (void)  
-    17.{  
-    18.  if(wiringPiSetup() < 0){  
-    19.    fprintf(stderr, "Unable to setup wiringPi:%s\n",strerror(errno));  
-    20.    return 1;  
-    21.  }  
-    22.      
-    23.    delay(2000);    
-    24.    pinMode(OutPin,INPUT);  
-    25.    pullUpDnControl(OutPin,PUD_UP);  
-    26.    wiringPiISR(OutPin, INT_EDGE_FALLING, &exInt0_ISR);  
-    27.    
-    28.   while(1){  
-    29.    printf("Current pluse number is : %d, %d\n", globalCounter,digitalRead(OutPin));  
-    30.        delay(100);  
-    31.    }  
-    32.  return 0;  
-    33.}  
+    #include <stdio.h>  
+    #include <string.h>  
+    #include <errno.h>  
+    #include <stdlib.h>  
+    #include <wiringPi.h>  
+      
+    #define  OutPin  1  
+      
+    static volatile int globalCounter = 0 ;  
+      
+    void exInt0_ISR(void)  //GPIO 1 interrupt service routine   
+    {  
+        ++globalCounter;  
+    }  
+      
+    int main (void)  
+    {
+        if(wiringPiSetup() < 0){  
+            fprintf(stderr, "Unable to setup wiringPi:%s\n",strerror(errno));  
+            return 1;  
+        }  
+          
+        delay(2000);    
+        pinMode(OutPin,INPUT);  
+        pullUpDnControl(OutPin,PUD_UP);  
+        wiringPiISR(OutPin, INT_EDGE_FALLING, &exInt0_ISR);  
+        
+        while(1){
+            printf("Current pluse number is : %d, %d\n", globalCounter,digitalRead(OutPin));  
+            delay(100);  
+        }  
+        return 0;  
+    }  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: c
 
     9.static volatile int globalCounter = 0 ;  
 
 Define a variable to record the number of pulses, 
 and initialize the number of pulses to 0.
 
-.. code-block::
+.. code-block:: c
 
     11.void exInt0_ISR(void)     
     12.{  
     13.    ++globalCounter;  
     14.} 
  
-Set an external interrupt function and globalCounter will 
+Set an external interrupt function and **globalCounter** will 
 automatically +1 when an interrupt occurs.
 
-.. code-block::
+.. code-block:: c
 
-    24.  pinMode(OutPin,INPUT);
+    24. pinMode(OutPin,INPUT);
     25. pullUpDnControl(OutPin,PUD_UP);   
 
-Set the out pin of NE555 to INPUT mode, 
+Set the out pin of NE555 to **INPUT** mode, 
 then let the pin be in pull-up state (1).
 
-.. code-block::
+.. code-block:: c
 
     26.  wiringPiISR(OutPin, INT_EDGE_FALLING, &exInt0_ISR);  
-Set an interrupt in OutPin, when the value of OutPin changes from 1 to 0. 
-Then call the exInt0_ISR() function to let the variable globalCounter add 1.
+    
+Set an interrupt in **OutPin**, when the value of **OutPin** changes from 1 to 0. 
+Then call the exInt0_ISR() function to let the variable **globalCounter** add 1.
 
-.. code-block::
+.. code-block:: c
 
     29.    printf("Current pluse number is : %d, %d\n", globalCounter,digitalRead(OutPin));  
 
-Print out the number of pulses, globalCounter and the value of OutPin at this time.
+Print out the number of pulses, **globalCounter** and the value of **OutPin** at this time.
 
 **For Python Language Users**
 -------------------------------
@@ -279,74 +280,76 @@ display.
 **Code**
 ^^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: python
 
-    1.import RPi.GPIO as GPIO  
-    2.import time  
-    3.  
-    4.SigPin = 18      
-    5.  
-    6.g_count = 0  
-    7.  
-    8.def count(ev=None):  
-    9.    global g_count  
-    10.    g_count += 1  
-    11.  
-    12.def setup():  
-    13.    GPIO.setmode(GPIO.BCM)        
-    14.    GPIO.setup(SigPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)      
-    15.    GPIO.add_event_detect(SigPin, GPIO.RISING, callback=count) # wait for rasing  
-    16.  
-    17.def main():  
-    18.    while True:  
-    19.        print ('g_count = %d' % g_count)  
-    20.        time.sleep(0.01)  
-    21.  
-    22.def destroy():  
-    23.    GPIO.cleanup()    # Release resource  
-    24.  
-    25.if __name__ == '__main__':     # Program start from here  
-    26.    setup()  
-    27.    try:  
-    28.        main()  
-    29.    except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.  
-    30.        destroy()  
+    import RPi.GPIO as GPIO  
+    import time  
+      
+    SigPin = 18      
+      
+    g_count = 0  
+      
+    def count(ev=None):  
+        global g_count  
+        g_count += 1  
+      
+    def setup():  
+        GPIO.setmode(GPIO.BCM)        
+        GPIO.setup(SigPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)      
+        GPIO.add_event_detect(SigPin, GPIO.RISING, callback=count) # wait for rasing  
+      
+    def main(): 
+        while True:  
+            print ('g_count = %d' % g_count)  
+            time.sleep(0.01)  
+      
+    def destroy():  
+        GPIO.cleanup()    # Release resource  
+      
+    if __name__ == '__main__':     # Program start from here  
+        setup()  
+        try:  
+            main()  
+        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.  
+            destroy()  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block::
+.. code-block:: python
 
     6. g_count = 0  
 
 Define a variable to record the 
-number of pulses, and initialize the number of pulses to 0.
+number of pulses, and initialize the number of pulses to **0**.
 
-.. code-block::
+.. code-block:: python
 
     7.def count(ev=None):  
     8.global g_count  
-    9.   g_count += 1
+    9.g_count += 1
 
-This function will change the value of the global variable g_count. 
+This function will change the value of the global variable **g_count**. 
 
-.. code-block::
+.. code-block:: python
 
     14.      GPIO.setup(SigPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)      
 
-Set the SigPin to input mode and pull up to high level(3.3V).
+Set the **SigPin** to input mode and pull up to high level(3.3V).
 
-.. code-block::
+.. code-block:: python
 
     15.  GPIO.add_event_detect(SigPin, GPIO.RISING, callback=count)   
-Set an interrupt in SigPin, when the value of SigPin changes from 
-0 to 1. Then call the count() function to let the variable g_count add 1.
 
-.. code-block::
+Set an interrupt in **SigPin**, when the value of **SigPin** changes from 
+0 to 1. Then call the **count()** function to let the variable **g_count** add 1.
+
+.. code-block:: python
 
     18.    while True:  
     19.        print ('g_count = %d' % g_count)  
     20.        time.sleep(0.01)  
+
 Print out the value of the number of pulse g_count at an interval of 0.01s.
 
 **Phenomenon Picture**

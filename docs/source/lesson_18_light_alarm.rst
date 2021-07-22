@@ -1,4 +1,4 @@
-**Lesson 18 Light Alarm**
+Lesson 18 Light Alarm
 =================================
 
 **Introduction**
@@ -67,8 +67,7 @@ The schematic diagram:
 
 Now, you can hear the buzzer beep when shining a flashlight on the LED.
 
-Note: You need to do this experiment in a dark environment, or the
-lights you give need to be much stronger than ambient light.
+.. note:: You need to do this experiment in a dark environment, or the lights you give need to be much stronger than ambient light.
 
 .. image:: media_arduino/image151.jpeg
     :width: 800
@@ -90,7 +89,7 @@ lights you give need to be much stronger than ambient light.
 
     {
 
-        Serial.begin(9600); // start serial port at 9600 bps:
+        Serial.begin(9600);    // start serial port at 9600 bps:
 
     }
 
@@ -108,8 +107,8 @@ lights you give need to be much stronger than ambient light.
 
             pinMode(5,OUTPUT); //set the digital pin 5 as an output
 
-            tone(5,10000); //Generates a square wave of the frequency of 10000 Hz
-            (and 50% duty cycle) on pin 5
+            tone(5,10000); 
+            //Generates a square wave of the frequency of 10000 Hz (and 50% duty cycle) on pin 5
 
             pinMode(5,INPUT); //set the pin 5 as an input
 

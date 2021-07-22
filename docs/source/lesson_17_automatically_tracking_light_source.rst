@@ -1,4 +1,4 @@
-**Lesson 17 Automatically Tracking Light Source**
+Lesson 17 Automatically Tracking Light Source
 ===================================================
 
 **Introduction**
@@ -39,9 +39,7 @@ at the direction of the light source.
     :width: 600
     :align: center
 
-.. note:: you need to bind one end of the resistor and photoresistor to
-the rocker arm of the servo (cross the pin through the holes of the
-arm).
+.. note:: you need to bind one end of the resistor and photoresistor to the rocker arm of the servo (cross the pin through the holes of the arm).
 
     1) Insert one pin of the photoresistor and 10 resistor through the holes
     on the rocker arm. Pay attention here to tightly winding them because
@@ -54,11 +52,13 @@ arm).
     2) Plug in the rock arm to the servo and use 3 jumper wires to hook up
     the 3 pins.
 
+    pay attention to plug the pin tightly in case of disentanglement.
+
     .. image:: media_arduino/image224.png
         :width: 800
         :align: center
 
-    pay attention to plug the pin tightly in case of disentanglement.
+    
 
     3) Hook up the middle pin to pin A0 of the Uno board, another pin of the
     10k resistor to GND, photoresistor to 5V.
@@ -115,13 +115,12 @@ the direction of light source.
 
     int outputValue = 0; //Save the value read from A0
 
-    int angle[] = {0,10, 20, 30, 40, 50, 60,70, 80, 90,
-    100,110,120,130,140,150,160,170,180}; //Define the angle of servo
+    int angle[] = {0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180}; 
+    //Define the angle of servo
 
     int maxVal = 0; //Record the maximum number
 
-    int maxPos = 0; //Record the angle of the servo when the read the
-    maximum number of photoresistor.
+    int maxPos = 0; //Record the angle of the servo when the read the maximum number of photoresistor.
 
 Define an integer array angle[], which contains 19 elements from 0 to
 18, representing 0 to 180 which indicates the degree of servo rotation.
@@ -141,28 +140,31 @@ forth.
 
         {
 
-            myservo.write(angle[i]);//write the angle from the angle[i] array to
-            servo. When i=0, angle[0]=0, i=1, angle[1]=10, and so on.
+            myservo.write(angle[i]); 
+            //write the angle from the angle[i] array to servo. 
+            //When i=0, angle[0]=0, i=1, angle[1]=10, and so on.
 
-            outputValue = analogRead(photocellPin);//read the value of A0
+            outputValue = analogRead(photocellPin); //read the value of A0
 
-            Serial.println(outputValue);//print it
+            Serial.println(outputValue); //print it
 
-            if(outputValue > maxVal)//if the current value of A0 is greater than
-            previous
+            if(outputValue > maxVal) 
+            //if the current value of A0 is greater than previous
 
             {
 
-            maxVal = outputValue;//write down the value
+                maxVal = outputValue; // write down the value
 
-            maxPos =i;//write down the angle
+                maxPos =i; // write down the angle
 
-            } delay(200); //delay 200ms 
+            } 
+            
+            delay(200); // delay 200ms 
             
         }
 
-        myservo.write(angle[ maxPos]);//write the angle to servo which A0 has
-        greatest value
+        myservo.write(angle[ maxPos]); 
+        // write the angle to servo which A0 has greatest value
 
         delay(1000); //delay 1s
 
