@@ -7,5 +7,5 @@ For Rasberry Pi User
     preparation/preparation
     libraries
     download_the_code
-    lessons
+    lessons_pi
     appendix

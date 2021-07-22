@@ -6,7 +6,6 @@ they are wiringPi and RPi.GPIO. The Raspbian OS image of Raspberry Pi
 installs them by default, so you can use them directly.
 
 **RPi.GPIO**
----------------
 
 If you are a Python user, you can program GPIOs with API provided by
 RPi.GPIO.
@@ -44,7 +43,6 @@ If you want to quit python CLI, type in:
     exit()
 
 **WiringPi** 
-------------------
 
 wiringPi is a C language GPIO library applied to the Raspberry Pi
 platform. It complies with GUN Lv3. The functions in wiringPi are

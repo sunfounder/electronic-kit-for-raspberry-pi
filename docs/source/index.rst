@@ -20,7 +20,7 @@ Here is the Email: cs@sunfounder.com.
 
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 3
 
     component_list
     for_rasberrypi_user

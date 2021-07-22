@@ -1,16 +1,16 @@
-Lesson 1 Install and Introduce Arduino IDE
+Install and Introduce Arduino IDE
 ======================================================
 
 **Description**
------------------
+
 
 Arduino is an open source platform with simple software and hardware. You can pick it up in short time even if you are a 
 beginner. It provides an integrated development environment (IDE) for code compiling, compatible with multiple control boards.
 So you can just download the Arduino IDE, upload the sketches (i.e. the code files) to the board, 
 and then you can see relative experimental phenomena. For more information, refer to http://www.arduino.cc.
 
-Install Arduino IDE	
-----------------------
+**Install Arduino IDE	**
+
 Here are the installation steps on the windows system.
 
 For other systems, please refer to: Install Arduinio IDE in different system and FAQ.pdf
@@ -27,7 +27,7 @@ There are two versions of Arduino for Windows: Installer or ZIP file.
 You're recommended to download the former.
 
 **For Installer File**
------------------------
+
 
 **Step 1:** Find the .exe file just downloaded.
 
@@ -63,7 +63,6 @@ installation is done, click **Close**
     Arduino 1.0.5 or 1.0.6. Also you can upgrade your computer.
 
 **For ZIP File**
------------------
 
 If you download the zip file before, when you connect the MCU to the
 computer, it may not be recognized. Then you need to install the driver
@@ -112,7 +111,6 @@ So the computer can recognize the board now. Click **Close**.
     :align: center
 
 **Open the Arduino Software (IDE)**
------------------------------------------
 
 Double-click the Arduino icon (arduino.exe) created by the installation
 process.
