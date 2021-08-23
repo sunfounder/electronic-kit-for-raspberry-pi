@@ -71,11 +71,19 @@ cathode is LOW, thus turning on the LED.
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/c/Lesson_9_4N35
 
 **2.** Compile the code.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -83,56 +91,64 @@ cathode is LOW, thus turning on the LED.
 
 **3.** Run the executable file.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     sudo ./a.out
 
 You will see the LED blinking.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **Code**
 ^^^^^^^^^^^
 
 .. code-block:: c
 
-    #include <wiringPi.h>     
-    #include <stdio.h>  
-      
-    #define OptoPin  0  
-      
-    int main(void)  
-    {  
-        // When initialize wiring failed, print message to screen  
-        if(wiringPiSetup() == -1){  
-            printf("setup wiringPi failed !");  
-            return 1;   
-        }  
-          
-        pinMode(OptoPin,OUTPUT);  
-          
-        while(1){  
-            // Turn LED off  
-            digitalWrite(OptoPin, HIGH);  
-            delay(500);  
-            // Turn LED on  
-            digitalWrite(OptoPin, LOW);  
-            delay(500);  
-        }  
-        return 0;  
-    }  
+    #include <wiringPi.h>     
+    #include <stdio.h>  
+      
+    #define OptoPin  0  
+      
+    int main(void)  
+    {  
+        // When initialize wiring failed, print message to screen  
+        if(wiringPiSetup() == -1){  
+            printf("setup wiringPi failed !");  
+            return 1;   
+        }  
+          
+        pinMode(OptoPin,OUTPUT);  
+          
+        while(1){  
+            // Turn LED off  
+            digitalWrite(OptoPin, HIGH);  
+            delay(500);  
+            // Turn LED on  
+            digitalWrite(OptoPin, LOW);  
+            delay(500);  
+        }  
+        return 0;  
+    }  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: c
 
-    14.    pinMode(OptoPin,OUTPUT);
+    14.    pinMode(OptoPin,OUTPUT);
 
 Initialize pins. Set the output pin of 4N35, 
 Optopin to **OUTPUT** mode.
 
 .. code-block:: c
 
-    18.        digitalWrite(OptoPin, HIGH);
+    18.        digitalWrite(OptoPin, HIGH);
 
 Set **OptoPin** as **LOW** (0V), thus the optocoupler is energized, 
 and the pin connected to LED conduct to low level. 
@@ -140,7 +156,7 @@ Then the LED will light up.
 
 .. code-block:: c
 
-    21.        digitalWrite(OptoPin, LOW); 
+    21.        digitalWrite(OptoPin, LOW); 
 
 Set **OptoPin** as **HIGH** (3.3V), thus the optocoupler is not 
 energized, and the pin connected to LED cannot conduct to 
@@ -154,11 +170,19 @@ low level. Then the LED goes out.
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/python
 
 **2.** Run the code.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -169,66 +193,73 @@ You will see the LED blinking.
 **Code**
 ^^^^^^^^^^
 
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``electronic-kit/for-raspberry-pi/python``. After modifying the code, you can run it directly to see the effect.
+
+.. raw:: html
+
+    <run></run>
+
 .. code-block:: python
 
-    import RPi.GPIO as GPIO  
-    import time  
-      
-    Pin_4N35 = 17  
-      
-    # Define a setup function for some setup  
-    def setup():  
-        GPIO.setmode(GPIO.BCM)  
-        GPIO.setup(Pin_4N35, GPIO.OUT, initial=GPIO.LOW)  
-      
-    # Define a main function for main process  
-    def main():  
-        while True:  
-            # Turn off LED  
-            GPIO.output(Pin_4N35, GPIO.HIGH)  
-            time.sleep(0.5)  
-            # Turn on LED  
-            GPIO.output(Pin_4N35, GPIO.LOW)   
-            time.sleep(0.5)  
-      
-    def destroy():  
-        # Turn off LED  
-        GPIO.output(Pin_4N35, GPIO.HIGH)  
-        # Release resource  
-        GPIO.cleanup()                       
-      
-    # If run this script directly, do:  
-    if __name__ == '__main__':  
-        setup()  
-        try:  
-            main()  
-        # When 'Ctrl+C' is pressed, the child program   
-        # destroy() will be  executed.  
-        except KeyboardInterrupt:  
-            destroy()   
+    import RPi.GPIO as GPIO  
+    import time  
+      
+    Pin_4N35 = 17  
+      
+    # Define a setup function for some setup  
+    def setup():  
+        GPIO.setmode(GPIO.BCM)  
+        GPIO.setup(Pin_4N35, GPIO.OUT, initial=GPIO.LOW)  
+      
+    # Define a main function for main process  
+    def main():  
+        while True:  
+            # Turn off LED  
+            GPIO.output(Pin_4N35, GPIO.HIGH)  
+            time.sleep(0.5)  
+            # Turn on LED  
+            GPIO.output(Pin_4N35, GPIO.LOW)   
+            time.sleep(0.5)  
+      
+    def destroy():  
+        # Turn off LED  
+        GPIO.output(Pin_4N35, GPIO.HIGH)  
+        # Release resource  
+        GPIO.cleanup()                       
+      
+    # If run this script directly, do:  
+    if __name__ == '__main__':  
+        setup()  
+        try:  
+            main()  
+        # When 'Ctrl+C' is pressed, the child program   
+        # destroy() will be  executed.  
+        except KeyboardInterrupt:  
+            destroy()   
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: python
+.. code-block:: 
 
-    15.        GPIO.output(Pin_4N35, GPIO.HIGH)
+    1.         GPIO.output(Pin_4N35, GPIO.HIGH)
 
 Set **OptoPin** as **high** level (3.3V), 
 thus the optocoupler is not energized, 
 and the pin connected to LED cannot conduct 
 to low level. Then the LED goes out.
 
-.. code-block:: python
+.. code-block:: 
 
-    16.        time.sleep(0.5)
+    1.         time.sleep(0.5)
 
 Wait for **0.5** second. The on-off frequency of the optocoupler 
 can be changed by modifying this parameter.
 
-.. code-block:: python
+.. code-block:: 
 
-    18.        GPIO.output(Pin_4N35, GPIO.LOW)
+    1.         GPIO.output(Pin_4N35, GPIO.LOW)
 
 Set **OptoPin** as low level (0V), thus the optocoupler is energized, 
 and the pin connected to LED conduct to low level. 

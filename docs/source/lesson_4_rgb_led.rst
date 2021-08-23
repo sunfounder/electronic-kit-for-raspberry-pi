@@ -62,17 +62,29 @@ the RGB LED will display different colors.
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/c/Lesson_4_RGBLed
 
 **2.** Compile the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     gcc 4_rgbLed.c -lwiringPi
 
 **3.** Run the executable file.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -81,80 +93,84 @@ the RGB LED will display different colors.
 After the code runs, you will see that RGB displays red, green, blue,
 yellow, pink, and cyan.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 
 **Code**
 ^^^^^^^^^^^
 
 .. code-block:: C
 
-    #include <wiringPi.h>  
-    #include <softPwm.h>  
-    #include <stdio.h>  
-      
-    #define uchar unsigned char  
-      
-    #define LedPinRed    0  
-    #define LedPinGreen  1  
-    #define LedPinBlue   2  
-      
-    // define function used for initializing I/O port to output for pwm.   
-    void ledInit(void){  
-        softPwmCreate(LedPinRed,  0, 100);  
-        softPwmCreate(LedPinGreen,0, 100);  
-        softPwmCreate(LedPinBlue, 0, 100);  
-    }  
-      
-    void ledColorSet(uchar r_val, uchar g_val, uchar b_val){  
-        softPwmWrite(LedPinRed,   r_val);  
-        softPwmWrite(LedPinGreen, g_val);  
-        softPwmWrite(LedPinBlue,  b_val);  
-    }  
-      
-    int main(void){  
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, printf message to screen  
-            printf("setup wiringPi failed !");  
-            return 1;   
-        }  
-      
-        ledInit();  
-      
-        while(1){  
-            printf("Red\n");  
-            ledColorSet(0xff,0x00,0x00);   //red          
-            delay(500);  
-            printf("Green\n");  
-            ledColorSet(0x00,0xff,0x00);   //green  
-            delay(500);  
-            printf("Blue\n");  
-            ledColorSet(0x00,0x00,0xff);   //blue  
-            delay(500);  
-            printf("Yellow\n");  
-            ledColorSet(0xff,0xff,0x00);   //yellow  
-            delay(500);  
-            printf("Purple\n");  
-            ledColorSet(0xff,0x00,0xff);   //purple  
-            delay(500);  
-            printf("Cyan\n");  
-            ledColorSet(0xc0,0xff,0x3e);   //cyan  
-            delay(500);  
-        }  
-      
-        return 0;  
-    }   
+    #include <wiringPi.h>  
+    #include <softPwm.h>  
+    #include <stdio.h>  
+      
+    #define uchar unsigned char  
+      
+    #define LedPinRed    0  
+    #define LedPinGreen  1  
+    #define LedPinBlue   2  
+      
+    // define function used for initializing I/O port to output for pwm.   
+    void ledInit(void){  
+        softPwmCreate(LedPinRed,  0, 100);  
+        softPwmCreate(LedPinGreen,0, 100);  
+        softPwmCreate(LedPinBlue, 0, 100);  
+    }  
+      
+    void ledColorSet(uchar r_val, uchar g_val, uchar b_val){  
+        softPwmWrite(LedPinRed,   r_val);  
+        softPwmWrite(LedPinGreen, g_val);  
+        softPwmWrite(LedPinBlue,  b_val);  
+    }  
+      
+    int main(void){  
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, printf message to screen  
+            printf("setup wiringPi failed !");  
+            return 1;   
+        }  
+      
+        ledInit();  
+      
+        while(1){  
+            printf("Red\n");  
+            ledColorSet(0xff,0x00,0x00);   //red          
+            delay(500);  
+            printf("Green\n");  
+            ledColorSet(0x00,0xff,0x00);   //green  
+            delay(500);  
+            printf("Blue\n");  
+            ledColorSet(0x00,0x00,0xff);   //blue  
+            delay(500);  
+            printf("Yellow\n");  
+            ledColorSet(0xff,0xff,0x00);   //yellow  
+            delay(500);  
+            printf("Purple\n");  
+            ledColorSet(0xff,0x00,0xff);   //purple  
+            delay(500);  
+            printf("Cyan\n");  
+            ledColorSet(0xc0,0xff,0x3e);   //cyan  
+            delay(500);  
+        }  
+      
+        return 0;  
+    }   
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: C
 
-    12.void ledInit(void){  
-    13.    softPwmCreate(LedPinRed,  0, 100);  
-    14.    softPwmCreate(LedPinGreen,0, 100);  
-    15.    softPwmCreate(LedPinBlue, 0, 100);  
-    16.}  
+    12.void ledInit(void){  
+    13.    softPwmCreate(LedPinRed,  0, 100);  
+    14.    softPwmCreate(LedPinGreen,0, 100);  
+    15.    softPwmCreate(LedPinBlue, 0, 100);  
+    16.}  
 
 
-Create a function to set the **LedPinRed**，**LedPinGreen** and **LedPinBlue** as PWM pins, 
+Create a function to set the **LedPinRed**，**LedPinGreen** and **LedPinBlue** as PWM pins, 
 then set their period between 0x100us-100x100us.
 
 The prototype of the function softPwmCreate(LedPinRed,  0, 100) is as follows：
@@ -171,11 +187,11 @@ The prototype of the function softPwmCreate(LedPinRed,  0, 100) is as follows：
 
 .. code-block:: C
 
-    18.void ledColorSet(uchar r_val, uchar g_val, uchar b_val){  
-    19.    softPwmWrite(LedPinRed,   r_val);  
-    20.    softPwmWrite(LedPinGreen, g_val);  
-    21.    softPwmWrite(LedPinBlue,  b_val);  
-    22.}  
+    18.void ledColorSet(uchar r_val, uchar g_val, uchar b_val){  
+    19.    softPwmWrite(LedPinRed,   r_val);  
+    20.    softPwmWrite(LedPinGreen, g_val);  
+    21.    softPwmWrite(LedPinBlue,  b_val);  
+    22.}  
 
 This function is to set the colors of the LED. Using RGB, 
 the formal parameter **r_val** represents 
@@ -195,13 +211,13 @@ the **value** will be given a fixed value, pwmRange.
 
 .. code-block:: C
 
-    30.    ledInit(); 
-     
-Call the **ledInit()** function in the **main** function to initialize the LED.  
+    30.    ledInit(); 
+     
+Call the **ledInit()** function in the **main** function to initialize the LED.  
 
 .. code-block:: C
 
-    34.    ledColorSet(0xff,0x00,0x00);   //red
+    34.    ledColorSet(0xff,0x00,0x00);   //red
 
 Call the function defined before. Write **0xff** into LedPinRed and **0x00** into 
 LedPinGreen and LedPinBlue. 
@@ -217,11 +233,19 @@ LEDs in other colors, just modify the parameters.
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/python
 
 **2.** Run the code.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -233,133 +257,140 @@ green, blue, yellow, pink, and cyan.
 **Code**
 ^^^^^^^^^^^^
 
-.. code-block:: Python
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``electronic-kit/for-raspberry-pi/python``. After modifying the code, you can run it directly to see the effect.
 
-    import RPi.GPIO as GPIO  
-    import time  
-      
-    COLOR = [0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0xFF00FF, 0x00FFFF]  
-    pins = {'Red':17, 'Green':18, 'Blue':27}  
-      
-    def setup():  
-        global p_R, p_G, p_B  
-        GPIO.setmode(GPIO.BCM)  
-        for i in pins:  
-            GPIO.setup(pins[i], GPIO.OUT, initial=GPIO.LOW)  
-      
-        # Set all led as pwm channel and frequece to 2KHz  
-        p_R = GPIO.PWM(pins['Red'], 2000)  
-        p_G = GPIO.PWM(pins['Green'], 2000)  
-        p_B = GPIO.PWM(pins['Blue'], 2000)  
-      
-        # Set all begin with value 0  
-        p_R.start(0)  
-        p_G.start(0)  
-        p_B.start(0)  
-      
-    def MAP(x, in_min, in_max, out_min, out_max):  
-        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min  
-      
-    def setColor(color):  
-        # Devide colors from 'color' veriable  
-        R_val = (color & 0xFF0000) >> 16  
-        G_val = (color & 0x00FF00) >> 8  
-        B_val = (color & 0x0000FF) >> 0  
-      
-        # Map color value from 0~255 to 0~100  
-        R_val = MAP(R_val, 0, 255, 0, 100)  
-        G_val = MAP(G_val, 0, 255, 0, 100)  
-        B_val = MAP(B_val, 0, 255, 0, 100)  
-          
-        # Change the colors  
-        p_R.ChangeDutyCycle(R_val)   
-        p_G.ChangeDutyCycle(G_val)  
-        p_B.ChangeDutyCycle(B_val)  
-      
-        print ("color_msg: R_val = %s,  G_val = %s, B_val = %s"%(R_val, G_val, B_val))     
-      
-    def main():  
-        while True:  
-            for color in COLOR:  
-                setColor(color)  
-                time.sleep(0.5)     
-      
-    def destroy():  
-        # Stop all pwm channel  
-        p_R.stop()  
-        p_G.stop()  
-        p_B.stop()  
-        # Turn off all LEDs  
-        GPIO.output(pins, GPIO.LOW)  
-        # Release resource  
-        GPIO.cleanup()  
-      
-    # If run this script directly, do:  
-    if __name__ == '__main__':  
-        setup()  
-        try:  
-            main()  
-        # When 'Ctrl+C' is pressed, the child program   
-        # destroy() will be  executed.  
-        except KeyboardInterrupt:  
-            destroy()  
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO  
+    import time  
+      
+    COLOR = [0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0xFF00FF, 0x00FFFF]  
+    pins = {'Red':17, 'Green':18, 'Blue':27}  
+      
+    def setup():  
+        global p_R, p_G, p_B  
+        GPIO.setmode(GPIO.BCM)  
+        for i in pins:  
+            GPIO.setup(pins[i], GPIO.OUT, initial=GPIO.LOW)  
+      
+        # Set all led as pwm channel and frequece to 2KHz  
+        p_R = GPIO.PWM(pins['Red'], 2000)  
+        p_G = GPIO.PWM(pins['Green'], 2000)  
+        p_B = GPIO.PWM(pins['Blue'], 2000)  
+      
+        # Set all begin with value 0  
+        p_R.start(0)  
+        p_G.start(0)  
+        p_B.start(0)  
+      
+    def MAP(x, in_min, in_max, out_min, out_max):  
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min  
+      
+    def setColor(color):  
+        # Devide colors from 'color' veriable  
+        R_val = (color & 0xFF0000) >> 16  
+        G_val = (color & 0x00FF00) >> 8  
+        B_val = (color & 0x0000FF) >> 0  
+      
+        # Map color value from 0~255 to 0~100  
+        R_val = MAP(R_val, 0, 255, 0, 100)  
+        G_val = MAP(G_val, 0, 255, 0, 100)  
+        B_val = MAP(B_val, 0, 255, 0, 100)  
+          
+        # Change the colors  
+        p_R.ChangeDutyCycle(R_val)   
+        p_G.ChangeDutyCycle(G_val)  
+        p_B.ChangeDutyCycle(B_val)  
+      
+        print ("color_msg: R_val = %s,  G_val = %s, B_val = %s"%(R_val, G_val, B_val))     
+      
+    def main():  
+        while True:  
+            for color in COLOR:  
+                setColor(color)  
+                time.sleep(0.5)     
+      
+    def destroy():  
+        # Stop all pwm channel  
+        p_R.stop()  
+        p_G.stop()  
+        p_B.stop()  
+        # Turn off all LEDs  
+        GPIO.output(pins, GPIO.LOW)  
+        # Release resource  
+        GPIO.cleanup()  
+      
+    # If run this script directly, do:  
+    if __name__ == '__main__':  
+        setup()  
+        try:  
+            main()  
+        # When 'Ctrl+C' is pressed, the child program   
+        # destroy() will be  executed.  
+        except KeyboardInterrupt:  
+            destroy()  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: Python
+.. code-block:: 
 
-     14.    p_R = GPIO.PWM(pins['Red'], 2000)  
+     14.    p_R = GPIO.PWM(pins['Red'], 2000)  
 
 This statement is used to set the pin to a specific PWM 
-frequency, in this case **2000**Hz.
+frequency, in this case **2000** Hz.
 
-.. code-block:: Python
+.. code-block:: 
 
-    23.def MAP(x, in_min, in_max, out_min, out_max):  
-    24.    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min  
+    23.def MAP(x, in_min, in_max, out_min, out_max):  
+    24.    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min  
 
 Define a **map** function for mapping values. For instance, x=50, in_min=0, 
 in_max=255, out_min=0, out_max=100. After the map 
 function mapping, it returns (50-0) * (100-0)/(255-0) +0=19.6, meaning that 50 
 in 0-255 equals 19.6 in 0-100.
 
-.. code-block:: Python
+.. code-block:: 
 
-    26.def setColor(color):
-    27.    R_val = (color & 0xFF0000) >> 16  
-    28.    G_val = (color & 0x00FF00) >> 8  
-    29.    B_val = (color & 0x0000FF) >> 0  
+    26.def setColor(color):
+    27.    R_val = (color & 0xFF0000) >> 16  
+    28.    G_val = (color & 0x00FF00) >> 8  
+    29.    B_val = (color & 0x0000FF) >> 0  
 
 Create a **setColor()** function to assign different value to the 
 three variables: R_val, G_val, B_val. Input color should be hexadecimal 
 with red value, blue value, green value. Assign the first two values of the 
 hexadecimal to R_val, the middle two to G_val, assign the last two values to 
 B_val, please refer to the shift operation of the hexadecimal for 
-details. For example, color=0xFF00FF, then R_val=(0xFF00FF & 0xFF0000)>>16 = 0xFF, 
+details. For example, color=0xFF00FF, then R_val=(0xFF00FF & 0xFF0000)>>16 = 0xFF, 
 G_val = 0x00, B_val=0xFF.
 
-.. code-block:: Python
+.. code-block:: 
 
-    32.# Map color value from 0~255 to 0~100  
-    33.    R_val = MAP(R_val, 0, 255, 0, 100)  
-    34.    G_val = MAP(G_val, 0, 255, 0, 100)  
-    35.    B_val = MAP(B_val, 0, 255, 0, 100)  
-    36.      
-    37.    # Change the colors  
-    38.    p_R.ChangeDutyCycle(R_val)   
-    39.    p_G.ChangeDutyCycle(G_val)  
-    40.    p_B.ChangeDutyCycle(B_val) 
+    32.# Map color value from 0~255 to 0~100  
+    33.    R_val = MAP(R_val, 0, 255, 0, 100)  
+    34.    G_val = MAP(G_val, 0, 255, 0, 100)  
+    35.    B_val = MAP(B_val, 0, 255, 0, 100)  
+    36.      
+    37.    # Change the colors  
+    38.    p_R.ChangeDutyCycle(R_val)   
+    39.    p_G.ChangeDutyCycle(G_val)  
+    40.    p_B.ChangeDutyCycle(B_val) 
 
 Map the RGB value from **0** - **255** to **0** - **100**. After that, get a value. 
 Then set it to be the duty cycle of R_val, 
 G_val and B_val, and the RGB LED displays corresponding colors.
 
-.. code-block:: Python
+.. code-block:: 
 
-    46.            for color in COLOR:  
-    47.            setColor(color)  
-    48.            time.sleep(0.5)
+    46.            for color in COLOR:  
+    47.            setColor(color)  
+    48.            time.sleep(0.5)
 
 Assign every item in the **COLOR** list to 
 the color respectively and change the color 

@@ -29,8 +29,8 @@ high level. This process can be realized by programming.
     :width: 800
     :align: center
 
-Build the Circuit
---------------------
+**Build the Circuit**
+-----------------------
 
 .. image:: media_pi/image202.png
     :width: 800
@@ -44,11 +44,19 @@ Build the Circuit
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/c/Lesson_2_FlowingLedLights
 
 **2.** Compile the code.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -61,6 +69,10 @@ Build the Circuit
 
 **3.** Run the executable file.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     sudo ./a.out
@@ -68,77 +80,81 @@ Build the Circuit
 Now, you will see these 8 LEDs are lit one by one from left
 to right, and then one by one from right to left.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **Code**
 ^^^^^^^^^^^^
 
 .. code-block:: C
 
-    #include <wiringPi.h>   
-    #include <stdio.h>  
-      
-    const int LedPin[]={0,1,2,3,4,5,6,10};   //Define 8 LED pin   
-      
-    int main(void)  
-    {  
-        // When initialize wiring failed, print message to screen  
-        if(wiringPiSetup() == -1){  
-            printf("setup wiringPi failed !");  
-            return 1;   
-        }  
-          
-        for(int j=0;j<8;j++)  
-        {  
-            pinMode(LedPin[j], OUTPUT);// Set LedPin as output to write value to it.  
-            digitalWrite(LedPin[j], LOW);  
-        }  
-          
-        while(1){  
-            for(int i=0;i<8;i++)  
-            {  
-                // LED on  
-                digitalWrite(LedPin[i], HIGH);                    
-                delay(100);            
-            }  
-            for(int i=7;i>-1;i--)  
-            {         
-                // LED off  
-                digitalWrite(LedPin[i], LOW);  
-                delay(100);  
-            }  
-        }  
-      
-        return 0;  
-    }  
+    #include <wiringPi.h>   
+    #include <stdio.h>  
+      
+    const int LedPin[]={0,1,2,3,4,5,6,10};   //Define 8 LED pin   
+      
+    int main(void)  
+    {  
+        // When initialize wiring failed, print message to screen  
+        if(wiringPiSetup() == -1){  
+            printf("setup wiringPi failed !");  
+            return 1;   
+        }  
+          
+        for(int j=0;j<8;j++)  
+        {  
+            pinMode(LedPin[j], OUTPUT);// Set LedPin as output to write value to it.  
+            digitalWrite(LedPin[j], LOW);  
+        }  
+          
+        while(1){  
+            for(int i=0;i<8;i++)  
+            {  
+                // LED on  
+                digitalWrite(LedPin[i], HIGH);                    
+                delay(100);            
+            }  
+            for(int i=7;i>-1;i--)  
+            {         
+                // LED off  
+                digitalWrite(LedPin[i], LOW);  
+                delay(100);  
+            }  
+        }  
+      
+        return 0;  
+    }  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: C
 
-    4.const int LedPin[]={0,1,2,3,4,5,6,10}; 
+    4.const int LedPin[]={0,1,2,3,4,5,6,10}; 
 
 Create an array, **LedPin** to define the eight LEDs then 
 connect them to **GPIO0** ~ **GPIO6**, **GPIO10** respectively.
 
 .. code-block:: C
 
-    14.    for(int j=0;j<8;j++)  
-    15.    {  
-    16.        pinMode(LedPin[j], OUTPUT); 
-    17.        digitalWrite(LedPin[j], LOW);  
-    18.    }  
+    14.    for(int j=0;j<8;j++)  
+    15.    {  
+    16.        pinMode(LedPin[j], OUTPUT); 
+    17.        digitalWrite(LedPin[j], LOW);  
+    18.    }  
 
 Use a **for** loop to set all 8 pins connected 
 to LEDs to **OUTPUT** mode and **LOW** level.
 
 .. code-block:: c
 
-    21.        for(int i=0;i<8;i++)  
-    22.        {  
-    23.            // LED on  
-    24.            digitalWrite(LedPin[i], HIGH);                    
-    25.            delay(100);           
-    26.        }  
+    21.        for(int i=0;i<8;i++)  
+    22.        {  
+    23.            // LED on  
+    24.            digitalWrite(LedPin[i], HIGH);                    
+    25.            delay(100);           
+    26.        }  
 
 Light up the LEDs in GPIO0~6 and GPIO10 successively. 
 i increases progressively from **0** to **7**, LED0 to LED7 
@@ -147,12 +163,12 @@ from left to right.
 
 .. code-block:: c
 
-    27.        for(int i=7;i>-1;i--)  
-    28.        {         
-    29.            // LED off  
-    30.            digitalWrite(LedPin[i], LOW);  
-    31.            delay(100);  
-    32.        }  
+    27.        for(int i=7;i>-1;i--)  
+    28.        {         
+    29.            // LED off  
+    30.            digitalWrite(LedPin[i], LOW);  
+    31.            delay(100);  
+    32.        }  
 
 Close the LEDs in GPIO0~6 and GPIO10 successively. i 
 increases progressively from **7** 
@@ -161,7 +177,7 @@ making it like a flowing LED light from right to left.
 
 
 
-**For Python Language Users:**
+**For Python Language Users**
 ---------------------------------
 
 **Command**
@@ -169,11 +185,19 @@ making it like a flowing LED light from right to left.
 
 **1.** Go to the folder of the code
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/python
 
 **2.** Run the code.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -185,68 +209,75 @@ and then one by one from right to left.
 **Code**
 ^^^^^^^^^^
 
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``electronic-kit/for-raspberry-pi/python``. After modifying the code, you can run it directly to see the effect.
+
+.. raw:: html
+
+    <run></run>
+
 .. code-block:: python
 
-    import RPi.GPIO as GPIO    
-    import time     
-      
-    pins = [17,18,27,22,23,24,25,8]  
-      
-    # Define a setup function for some setup  
-    def setup():  
-        GPIO.setmode(GPIO.BCM)     
-        for i in range(0, 8, 1):  
-            GPIO.setup(pins[i], GPIO.OUT, initial=GPIO.LOW)  
-      
-    # Define a main function for main process  
-    def main():  
-        while True:  
-            # print ('...LED ON')  
-            # Turn on LED  
-            for i in range(0, 8, 1):  
-                GPIO.output(pins[i], GPIO.HIGH)  
-                time.sleep(0.1)  
-                 
-            # print ('LED OFF...')  
-            # Turn off LED  
-            for i in range(7, -1, -1):  
-                GPIO.output(pins[i], GPIO.LOW)  
-                time.sleep(0.1)  
-      
-    # Define a destroy function for clean up everything after the script finished   
-    def destroy():  
-        # Turn off LED     
-        for i in range(0, 8, 1):  
-                GPIO.output(pins[i], GPIO.LOW)  
-        # Release resource  
-        GPIO.cleanup()                      
-      
-    # If run this script directly, do:  
-    if __name__ == '__main__':  
-        setup()  
-        try:  
-            main()  
-        # When 'Ctrl+C' is pressed, the child program   
-        # destroy() will be  executed.  
-        except KeyboardInterrupt:  
-            destroy()  
+    import RPi.GPIO as GPIO    
+    import time     
+      
+    pins = [17,18,27,22,23,24,25,8]  
+      
+    # Define a setup function for some setup  
+    def setup():  
+        GPIO.setmode(GPIO.BCM)     
+        for i in range(0, 8, 1):  
+            GPIO.setup(pins[i], GPIO.OUT, initial=GPIO.LOW)  
+      
+    # Define a main function for main process  
+    def main():  
+        while True:  
+            # print ('...LED ON')  
+            # Turn on LED  
+            for i in range(0, 8, 1):  
+                GPIO.output(pins[i], GPIO.HIGH)  
+                time.sleep(0.1)  
+                 
+            # print ('LED OFF...')  
+            # Turn off LED  
+            for i in range(7, -1, -1):  
+                GPIO.output(pins[i], GPIO.LOW)  
+                time.sleep(0.1)  
+      
+    # Define a destroy function for clean up everything after the script finished   
+    def destroy():  
+        # Turn off LED     
+        for i in range(0, 8, 1):  
+                GPIO.output(pins[i], GPIO.LOW)  
+        # Release resource  
+        GPIO.cleanup()                      
+      
+    # If run this script directly, do:  
+    if __name__ == '__main__':  
+        setup()  
+        try:  
+            main()  
+        # When 'Ctrl+C' is pressed, the child program   
+        # destroy() will be  executed.  
+        except KeyboardInterrupt:  
+            destroy()  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: python
+.. code-block:: 
 
-    9.    for i in range(0, 8, 1):  
-    10.        GPIO.setup(pins[i], GPIO.OUT, initial=GPIO.LOW)
+    9.    for i in range(0, 8, 1):  
+    10.        GPIO.setup(pins[i], GPIO.OUT, initial=GPIO.LOW)
 
 Use a **for** loop to set all 8 pins connected to LEDs to output mode 
 and LOW level.
 
-.. code-block:: python
+.. code-block:: 
 
-    17.        for i in range(0, 8, 1):  
-    18.            GPIO.output(pins[i], GPIO.HIGH) 
-    19. 			time.sleep(0.1)
+    17.        for i in range(0, 8, 1):  
+    18.            GPIO.output(pins[i], GPIO.HIGH) 
+    19. 			time.sleep(0.1)
 
 Variable **i** increases progressively from **0** to **8**,
 increasing by 1 every time. Accordingly, set the pins in the array
@@ -254,11 +285,11 @@ increasing by 1 every time. Accordingly, set the pins in the array
 lighting time is **0.1**\ s. Then, you will see 8 LEDs light up one
 by one.
 
-.. code-block:: python
+.. code-block:: 
 
-    23.        for i in range(7, -1, -1):  
-    24.            GPIO.output(pins[i], GPIO.LOW)  
-    25.            time.sleep(0.1)  
+    23.        for i in range(7, -1, -1):  
+    24.            GPIO.output(pins[i], GPIO.LOW)  
+    25.            time.sleep(0.1)  
 
 Variable **i** decreases progressively from **7** to **-1**,
 decreasing by 1 every time. Then LED0~LED7 change accordingly, making

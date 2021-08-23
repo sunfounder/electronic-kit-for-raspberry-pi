@@ -213,6 +213,10 @@ instead of right-clicking. But you can choose the method you prefer.
 **If you log into the Raspberry Pi remotely, use “cd” to change
 directory:**
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/c/Lesson_1_BlinkingLed
@@ -231,6 +235,10 @@ move on.
 
 **2.** Compile the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     gcc 1_BlinkingLed.c -o BlinkingLed -lwiringPi
@@ -246,6 +254,10 @@ move on.
     :align: center
 
 **3.** Run the executable file output in the previous step:
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -264,8 +276,16 @@ move on.
 As the code runs, you will see the LED blinking. You can press **Ctrl +
 C** to stop running the current code.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **4.** If you want to edit the code file *1_BlinkingLed.c*, type the
 following command to open *1_BlinkingLed.c* .
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -431,6 +451,10 @@ Then you can see the results.
 
 **If you log into the Raspberry Pi remotely, type in the command:**
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/python
@@ -443,6 +467,10 @@ Then you can see the results.
     :align: center
 
 **2.** Run the code.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -461,6 +489,10 @@ As the code runs, you will see the LED blinking. You can press
 **3.** If you want to edit the code file **1_BlinkingLed.c**, type the
 following command to open **1_BlinkingLed.c**
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     nano 1_BlinkingLed.py
@@ -474,75 +506,82 @@ following command to open **1_BlinkingLed.c**
     :align: center
 
 **Code**
+^^^^^^^^^
 
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``electronic-kit/for-raspberry-pi/python``. After modifying the code, you can run it directly to see the effect.
 
 The following is the program code:
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block:: python
 
-    import RPi.GPIO as GPIO    
-    import time     
-      
-    # Set BCM 17 as LED pin  
-    LedPin = 17  
-      
-    # Define a setup function for some setup  
-    def setup():  
-        GPIO.setmode(GPIO.BCM)  
-        GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.LOW)  
-      
-    # Define a main function for main process  
-    def main():  
-        while True:  
-            print ('...LED ON')  
-            # Turn on LED  
-            GPIO.output(LedPin, GPIO.HIGH)  
-            time.sleep(0.5)  
-            print ('LED OFF...')  
-            # Turn off LED  
-            GPIO.output(LedPin, GPIO.LOW)   
-            time.sleep(0.5)  
-      
-    # Define a destroy function for clean up everything after the script finished   
-    def destroy():  
-        # Turn off LED  
-        GPIO.output(LedPin, GPIO.LOW)  
-        # Release resource  
-        GPIO.cleanup()                      
-      
-    # If run this script directly, do:  
-    if __name__ == '__main__':  
-        setup()  
-        try:  
-            main()  
-        # When 'Ctrl+C' is pressed, the child program   
-        # destroy() will be  executed.  
-        except KeyboardInterrupt:  
-            destroy()  
+    import RPi.GPIO as GPIO    
+    import time     
+      
+    # Set BCM 17 as LED pin  
+    LedPin = 17  
+      
+    # Define a setup function for some setup  
+    def setup():  
+        GPIO.setmode(GPIO.BCM)  
+        GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.LOW)  
+      
+    # Define a main function for main process  
+    def main():  
+        while True:  
+            print ('...LED ON')  
+            # Turn on LED  
+            GPIO.output(LedPin, GPIO.HIGH)  
+            time.sleep(0.5)  
+            print ('LED OFF...')  
+            # Turn off LED  
+            GPIO.output(LedPin, GPIO.LOW)   
+            time.sleep(0.5)  
+      
+    # Define a destroy function for clean up everything after the script finished   
+    def destroy():  
+        # Turn off LED  
+        GPIO.output(LedPin, GPIO.LOW)  
+        # Release resource  
+        GPIO.cleanup()                      
+      
+    # If run this script directly, do:  
+    if __name__ == '__main__':  
+        setup()  
+        try:  
+            main()  
+        # When 'Ctrl+C' is pressed, the child program   
+        # destroy() will be  executed.  
+        except KeyboardInterrupt:  
+            destroy()  
 
 **Code Explanation**
  
 
-.. code-block:: python
+.. code-block:: 
 
   1.import RPi.GPIO as GPIO 
 
 In this way, import the RPi.GPIO library, then define a 
 variable, GPIO to replace RPI.GPIO in the following code.
 
-.. code-block:: python
+.. code-block:: 
 
   2.import time
 
 Import time library to help use delay function in the following program.
 
-.. code-block:: python
+.. code-block:: 
 
     5.LedPin = 17 
 
 LED connects to the pin 11 of the board, namely, the BCM 17 of the Raspberry Pi.
 
-.. code-block:: python
+.. code-block:: 
 
   9.    GPIO.setmode(GPIO.BCM) 
 
@@ -550,7 +589,7 @@ There are two ways of numbering the I/O pins on a Raspberry Pi
 within RPi.GPIO: BOARD numbers and BCM numbers. 
 In our lessons, what we use is BCM numbering method.
 
-.. code-block:: python
+.. code-block:: 
 
     10.    GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.LOW)
 
@@ -558,19 +597,19 @@ You need to set up every channel you use as input mode or
 output mode. Here we set the mode of LedPin to GPIO.OUT, 
 and initial level to LOW( 0v ).
 
-.. code-block:: python
+.. code-block:: 
 
    17.        GPIO.output(LedPin, GPIO.HIGH)
 
 Set LedPin to output high level to light up LED.
 
-.. code-block:: python
+.. code-block:: 
 
      18.        time.sleep(0.5)
 
 Delay for 0.5 second. Here, the statement is similar to delay function in C language, the unit is second.    
 
-.. code-block:: python
+.. code-block:: 
 
     32.if __name__ == '__main__':  
     33.    setup()  

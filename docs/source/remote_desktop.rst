@@ -109,6 +109,10 @@ Login to Raspberry Pi by using SSH.
 
 Input the following instructions to install XRDP.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
       sudo apt-get update

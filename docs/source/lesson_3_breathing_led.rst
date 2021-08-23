@@ -49,8 +49,8 @@ on the length of the period.
     :width: 600
     :align: center
 
-Schematic Diagram
------------------
+**Schematic Diagram**
+----------------------
 
 .. image:: media_pi/image262.png
     :width: 400
@@ -60,8 +60,8 @@ Schematic Diagram
     :width: 600
     :align: center
 
-Build the Circuit
---------------------
+**Build the Circuit**
+----------------------
 
 .. image:: media_pi/image92.png
     :width: 600
@@ -75,17 +75,29 @@ Build the Circuit
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/c/Lesson_3_BreathingLed
 
 **2.** Compile the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     gcc 3_BreathingLed.c -lwiringPi
 
 **3.** Run the executable file.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -94,50 +106,54 @@ Build the Circuit
 As the code runs, you can see that the brightness of the LED becomes
 stronger or weaker.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **Code**
 ^^^^^^^^^
 
 .. code-block:: C
 
-    #include <stdio.h>  
-    #include <wiringPi.h>  
-    #include <softPwm.h>  
-      
-    #define LedPin 1   
-      
-    int main (void)  
-    {  
-    // When initialize wiring failed, print message to screen  
-        if(wiringPiSetup() == -1){  
-            printf("setup wiringPi failed !");  
-            return 1;   
-        }  
-          
-        softPwmCreate(LedPin,  0, 100);  
-      
-        int i;  
-      
-        while(1) // loop forever  
-        {  
-            for(i=0;i<100;i++){  // i,as the value of pwm, increases progressively during 0-1024.    
-                softPwmWrite(LedPin, i);   
-                delay(10);     
-            }   
-      
-            for(i=100;i>=0;i--){  
-                softPwmWrite(LedPin, i);  
-                delay(10);  
-            }   
-        }  
-        return 0 ;  
-    }   
+    #include <stdio.h>  
+    #include <wiringPi.h>  
+    #include <softPwm.h>  
+      
+    #define LedPin 1   
+      
+    int main (void)  
+    {  
+    // When initialize wiring failed, print message to screen  
+        if(wiringPiSetup() == -1){  
+            printf("setup wiringPi failed !");  
+            return 1;   
+        }  
+          
+        softPwmCreate(LedPin,  0, 100);  
+      
+        int i;  
+      
+        while(1) // loop forever  
+        {  
+            for(i=0;i<100;i++){  // i,as the value of pwm, increases progressively during 0-1024.    
+                softPwmWrite(LedPin, i);   
+                delay(10);     
+            }   
+      
+            for(i=100;i>=0;i--){  
+                softPwmWrite(LedPin, i);  
+                delay(10);  
+            }   
+        }  
+        return 0 ;  
+    }   
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: C
 
-    #include <softPwm.h> 
+    #include <softPwm.h> 
 
 WiringPi includes a software-driven **PWM** library of 
 outputting a PWM signal on any of the Raspberry Pi's 
@@ -148,7 +164,7 @@ limitations, control of a light/LED or a motor is very achievable.
 
 .. code-block:: C
 
-  15.    softPwmCreate(LedPin,  0, 100);  
+  15.    softPwmCreate(LedPin,  0, 100);  
 
 The function is to use software library to create a PWM pin, set its period between 0x100us-100x100us. 
 The prototype of the function softPwmCreate(LedPinRed,  0, 100) is as follows：
@@ -165,7 +181,7 @@ The prototype of the function softPwmCreate(LedPinRed,  0, 100) is as follows：
 
 .. code-block:: C
 
-      22.            softPwmWrite(LedPin, i); 
+      22.            softPwmWrite(LedPin, i); 
 
 The function is used to write the PWM value **i** to the **LedPin**. 
 
@@ -182,7 +198,7 @@ defined previously, if it is larger than pwmRange, the value will be given a fix
 
 .. code-block:: C
 
-       23.            delay(10);
+       23.            delay(10);
 
 Wait for 10ms, interval time between the changes indicates the speed of breathing.
 
@@ -194,11 +210,19 @@ Wait for 10ms, interval time between the changes indicates the speed of breathin
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/python
 
 **2.** Run the code.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -210,91 +234,98 @@ stronger or weaker.
 **Code**
 ^^^^^^^^^^^^
 
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``electronic-kit/for-raspberry-pi/python``. After modifying the code, you can run it directly to see the effect.
+
+.. raw:: html
+
+    <run></run>
+
 .. code-block:: python
 
-    import RPi.GPIO as GPIO  
-    import time  
-      
-    LedPin = 18  
-      
-    def setup():  
-        global pLed  
-        GPIO.setmode(GPIO.BCM)  
-        GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.LOW)  
-        pLed = GPIO.PWM(LedPin, 1000)  
-        pLed.start(0)  
-      
-    def main():  
-        # Set increase/decrease step  
-        step =2   
-        delay = 0.05  
-        while True:  
-            # Increase duty cycle from 0 to 100  
-            for dc in range(0, 101, step):  
-                pLed.ChangeDutyCycle(dc)  
-                print (' ++ Duty cycle: %s'%dc)  
-                time.sleep(delay)  
-            time.sleep(1)  
-      
-            # decrease duty cycle from 100 to 0  
-            for dc in range(100, -1, -step):  
-                # Change duty cycle to dc  
-                pLed.ChangeDutyCycle(dc)  
-                print ('  -- Duty cycle: %s'%dc)  
-                time.sleep(delay)  
-            time.sleep(1)  
-      
-    def destroy():  
-        # Stop pLed  
-        pLed.stop()  
-        # Turn off LED  
-        GPIO.output(LedPin, GPIO.LOW)  
-        # Release resource  
-        GPIO.cleanup()  
-      
-    # If run this script directly, do:  
-    if __name__ == '__main__':  
-        setup()  
-        try:  
-            main()  
-        # When 'Ctrl+C' is pressed, the child program   
-        # destroy() will be  executed.  
-        except KeyboardInterrupt:  
-            destroy()  
+    import RPi.GPIO as GPIO  
+    import time  
+      
+    LedPin = 18  
+      
+    def setup():  
+        global pLed  
+        GPIO.setmode(GPIO.BCM)  
+        GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.LOW)  
+        pLed = GPIO.PWM(LedPin, 1000)  
+        pLed.start(0)  
+      
+    def main():  
+        # Set increase/decrease step  
+        step =2   
+        delay = 0.05  
+        while True:  
+            # Increase duty cycle from 0 to 100  
+            for dc in range(0, 101, step):  
+                pLed.ChangeDutyCycle(dc)  
+                print (' ++ Duty cycle: %s'%dc)  
+                time.sleep(delay)  
+            time.sleep(1)  
+      
+            # decrease duty cycle from 100 to 0  
+            for dc in range(100, -1, -step):  
+                # Change duty cycle to dc  
+                pLed.ChangeDutyCycle(dc)  
+                print ('  -- Duty cycle: %s'%dc)  
+                time.sleep(delay)  
+            time.sleep(1)  
+      
+    def destroy():  
+        # Stop pLed  
+        pLed.stop()  
+        # Turn off LED  
+        GPIO.output(LedPin, GPIO.LOW)  
+        # Release resource  
+        GPIO.cleanup()  
+      
+    # If run this script directly, do:  
+    if __name__ == '__main__':  
+        setup()  
+        try:  
+            main()  
+        # When 'Ctrl+C' is pressed, the child program   
+        # destroy() will be  executed.  
+        except KeyboardInterrupt:  
+            destroy()  
 
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: python
+.. code-block:: 
 
-    10.    pLed = GPIO.PWM(LedPin, 1000)
+    10.    pLed = GPIO.PWM(LedPin, 1000)
 
 To create a PWM instance. Set **pLed** as pwm output and frequence to **1K** Hz.
 
-.. code-block:: python
+.. code-block:: 
 
-   11.    pLed.start(0) 
+   11.    pLed.start(0) 
 
 Set pLed begin with value **0**.
 
-.. code-block:: python
+.. code-block:: 
 
-    19.        for dc in range(0, 101, step):  
-    20.            # Change duty cycle to dc  
-    21.            pLed.ChangeDutyCycle(dc)  
-    22.            print (' ++ Duty cycle: %s'%dc)  
-    23.            time.sleep(delay)  
+    19.        for dc in range(0, 101, step):  
+    20.            # Change duty cycle to dc  
+    21.            pLed.ChangeDutyCycle(dc)  
+    22.            print (' ++ Duty cycle: %s'%dc)  
+    23.            time.sleep(delay)  
 
 Increase the duty cycle by 2 at a time, from **0** to 
 **101**, and you'll see the LED getting brighter and brighter.
 
-.. code-block:: python
+.. code-block:: 
 
-    26. for dc in range(100, -1, -step):  
-    27.            pLed.ChangeDutyCycle(dc)  
-    28.            print ('  -- Duty cycle: %s'%dc)  
-    29.            time.sleep(delay)  
+    26. for dc in range(100, -1, -step):  
+    27.            pLed.ChangeDutyCycle(dc)  
+    28.            print ('  -- Duty cycle: %s'%dc)  
+    29.            time.sleep(delay)  
 
 Similarly, when the duty cycle is reduced by 2 from 
 **100** to **-1**, the LED brightness will be dimmer and dimmer.

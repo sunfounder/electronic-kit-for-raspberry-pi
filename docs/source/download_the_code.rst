@@ -8,6 +8,10 @@ Before you download the code, please note that the example code is
 
 Log into Raspberry Pi and then change directory to */home/pi.*
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
    cd /home/pi/
@@ -18,9 +22,15 @@ Log into Raspberry Pi and then change directory to */home/pi.*
 
 Clone the repository from GitHub.
 
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
    git clone https://github.com/sunfounder/electronic-kit.git
 
 **Method 2: Download the Code.**
 
 Download the source code from GitHub:
-https://github.com/sunfounder/electronic-kit.git
+https://github.com/sunfounder/electronic-kit.git.

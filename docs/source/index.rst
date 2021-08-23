@@ -2,8 +2,8 @@ SunFounder Electronic Kit for Raspberry Pi and Arduino
 ===========================================================
 
 
-About this kit
----------------
+About the Electronic Kit
+---------------------------
 
 This kit is suitable for SunFounder Uno, SunFounder Mega 2560,
 SunFounder Duemilanove and SunFounder Nano. All the code in this user
@@ -25,6 +25,8 @@ Here is the Email: cs@sunfounder.com.
     component_list
     for_rasberrypi_user
     for_arduino_user
+    faq
+    thank-learning
 
 Copyright Notice
 --------------------------

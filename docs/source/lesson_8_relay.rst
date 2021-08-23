@@ -33,21 +33,21 @@ signal.
 
 There are 5 parts in every relay:
 
-1. **Electromagnet -** It consists of an iron core wounded by coil of
+1. **Electromagnet -** It consists of an iron core wounded by coil of
 wires. When electricity is passed through, it becomes magnetic.
 Therefore, it is called electromagnet.
 
-2. **Armature -** The movable magnetic strip is known as armature. When
+2. **Armature -** The movable magnetic strip is known as armature. When
 current flows through them, the coil is energized thus producing a
 magnetic field which is used to make or break the normally open (N/O) or
 normally close (N/C) points. And the armature can be moved with direct
 current (DC) as well as alternating current (AC).
 
-3. **Spring** - When no currents flow through the coil on the
+3. **Spring** - When no currents flow through the coil on the
 electromagnet, the spring pulls the armature away so the circuit cannot
 be completed.
 
-4. Set of electrical **contacts** - There are two contact points:
+4. Set of electrical **contacts** - There are two contact points:
 
 * **Normally open** - connected when the relay is activated, and disconnected when it is inactive.
 
@@ -65,7 +65,7 @@ normally open contacts. So the circuit with the load is energized. Then
 breaking the circuit would a similar case, as the moving contact will be
 pulled up to the normally closed contacts under the force of the spring.
 In this way, the switching on and off of the relay can control the state
-of a load circuit. 
+of a load circuit. 
 
 .. image:: media_pi/image125.jpeg
     :width: 800
@@ -95,7 +95,7 @@ of the emitter junction. Based on the semiconductor type, transistors
 can be divided into two groups, the NPN and PNP ones. From the
 abbreviation, we can tell that the former is made of two N-type
 semiconductors and one P-type and that the latter is the opposite. See
-the figure below. 
+the figure below. 
 
 .. image:: media_pi/image127.png
     :width: 800
@@ -156,17 +156,29 @@ voltage.
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/c/Lesson_8_Relay
 
 **2.** Compile the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     gcc 8_Relay.c -lwiringPi
 
 **3.** Run the executable file.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -175,43 +187,47 @@ voltage.
 Now, the LED will blink, you can hear a tick-tock caused by breaking the
 normally close contact and closing the normally open one.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **Code**
 ^^^^^^^^^^^
 
 .. code-block:: C
 
-    #include <wiringPi.h>  
-    #include <stdio.h>  
-      
-    #define RelayPin 0  
-      
-    int main(void){  
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen  
-            printf("setup wiringPi failed !");  
-            return 1;   
-        }  
-          
-        pinMode(RelayPin, OUTPUT);     
-      
-        while(1){  
-            // Tick   
-            printf("......Relay Open \n");  
-            digitalWrite(RelayPin, LOW);  
-            delay(1000);  
-            // Tock  
-            printf("Relay Close......\n");  
-            digitalWrite(RelayPin, HIGH);  
-            delay(1000);  
-        }  
-        return 0;  
-    }  
+    #include <wiringPi.h>  
+    #include <stdio.h>  
+      
+    #define RelayPin 0  
+      
+    int main(void){  
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen  
+            printf("setup wiringPi failed !");  
+            return 1;   
+        }  
+          
+        pinMode(RelayPin, OUTPUT);     
+      
+        while(1){  
+            // Tick   
+            printf("......Relay Open \n");  
+            digitalWrite(RelayPin, LOW);  
+            delay(1000);  
+            // Tock  
+            printf("Relay Close......\n");  
+            digitalWrite(RelayPin, HIGH);  
+            delay(1000);  
+        }  
+        return 0;  
+    }  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: C
 
-    17.        digitalWrite(RelayPin, LOW); 
+    17.        digitalWrite(RelayPin, LOW); 
 
 Set the I/O port **RelayPin** as **LOW** (0V), so the 
 transistor is not energized and the coil is not 
@@ -220,7 +236,7 @@ relay opens and the LED remains off.
 
 .. code-block:: C
 
-    21.        digitalWrite(RelayPin, HIGH); 
+    21.        digitalWrite(RelayPin, HIGH); 
 
 Set the I/O port as **HIGH** (5V) to energize the transistor. 
 The coil of the relay is powered and generate electromagnetic 
@@ -234,11 +250,19 @@ force, and the relay closes. Then you can see the LED is lit.
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/python
 
 **2.** Run the code.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -250,77 +274,84 @@ the normally closed contact and closing the normally open one.
 **Code**
 ^^^^^^^^^^
 
-.. code-block:: Python
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``electronic-kit/for-raspberry-pi/python``. After modifying the code, you can run it directly to see the effect.
 
-    import RPi.GPIO as GPIO  
-    import time  
-      
-    relayPin = 17  
-      
-    # Define a setup function for some setup  
-    def setup():  
-        GPIO.setmode(GPIO.BCM)  
-        GPIO.setup(relayPin, GPIO.OUT, initial=GPIO.LOW)  
-      
-    # Define a main function for main process  
-    def main():  
-        while True:  
-            print ('...Relay open')  
-            # Tick  
-            GPIO.output(relayPin, GPIO.LOW)  
-            time.sleep(1)  
-            print ('Relay close...')  
-            # Tock  
-            GPIO.output(relayPin, GPIO.HIGH)   
-            time.sleep(1)  
-      
-    def destroy():  
-        # Turn off LED  
-        GPIO.output(relayPin, GPIO.LOW)  
-        # Release resource  
-        GPIO.cleanup()                       
-      
-    # If run this script directly, do:  
-    if __name__ == '__main__':  
-        setup()  
-        try:  
-            main()  
-        # When 'Ctrl+C' is pressed, the child program   
-        # destroy() will be  executed.  
-        except KeyboardInterrupt:  
-            destroy()  
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO  
+    import time  
+      
+    relayPin = 17  
+      
+    # Define a setup function for some setup  
+    def setup():  
+        GPIO.setmode(GPIO.BCM)  
+        GPIO.setup(relayPin, GPIO.OUT, initial=GPIO.LOW)  
+      
+    # Define a main function for main process  
+    def main():  
+        while True:  
+            print ('...Relay open')  
+            # Tick  
+            GPIO.output(relayPin, GPIO.LOW)  
+            time.sleep(1)  
+            print ('Relay close...')  
+            # Tock  
+            GPIO.output(relayPin, GPIO.HIGH)   
+            time.sleep(1)  
+      
+    def destroy():  
+        # Turn off LED  
+        GPIO.output(relayPin, GPIO.LOW)  
+        # Release resource  
+        GPIO.cleanup()                       
+      
+    # If run this script directly, do:  
+    if __name__ == '__main__':  
+        setup()  
+        try:  
+            main()  
+        # When 'Ctrl+C' is pressed, the child program   
+        # destroy() will be  executed.  
+        except KeyboardInterrupt:  
+            destroy()  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: Python
+.. code-block:: 
 
-    9.    GPIO.setup(relayPin, GPIO.OUT, initial=GPIO.LOW) 
+    9.    GPIO.setup(relayPin, GPIO.OUT, initial=GPIO.LOW) 
 
 Initialize pins. And the output pin of relay is set to 
 output mode and default low level.
 
-.. code-block:: Python
+.. code-block:: 
 
-    17.        time.sleep(1)
+    17.        time.sleep(1)
 
 Wait for 1 second. Change the switching frequency of 
 the relay by changing this parameter. 
 Note: Relay is a kind of metal dome formed in mechanical structure. 
 So its lifespan will be shortened under high-frequency using.
 
-.. code-block:: Python
+.. code-block:: 
 
-    16.        GPIO.output(relayPin, GPIO.LOW)
+    16.        GPIO.output(relayPin, GPIO.LOW)
 
 Set the I/O port as low level (0V), thus the 
 transistor is not energized and the 
 coil is not powered. There is no electromagnetic 
 force, so the relay opens and the LED remains off.
 
-.. code-block:: Python
+.. code-block:: 
 
-    20.        GPIO.output(relayPin, GPIO.HIGH) 
+    20.        GPIO.output(relayPin, GPIO.HIGH) 
 
 Set the I/O port as high level (5V) to 
 energize the transistor. The coil of the relay is 

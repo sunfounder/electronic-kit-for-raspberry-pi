@@ -93,17 +93,29 @@ high level), then the LED 2 turns on.
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/c/Lesson_7_SlideSwitch
 
 **2.** Compile the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     gcc 7_Slider.c -lwiringPi
 
 **3.** Run the executable file.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -112,69 +124,73 @@ high level), then the LED 2 turns on.
 When the slide is pulled to the right, the LED2 is on and LED1 off. If
 the slide is pulled to the left, the LED1 is on and LED2 off.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **Code**
 ^^^^^^^^^^^^^^^
 
 .. code-block:: c
 
-    #include <wiringPi.h>  
-    #include <stdio.h>  
-      
-    #define slidePin        0  
-    #define led1            2  
-    #define led2            3  
-      
-    int main(void)  
-    {  
-        // When initialize wiring failed, print message to screen  
-        if(wiringPiSetup() == -1){  
-            printf("setup wiringPi failed !");  
-            return 1;   
-        }  
-          
-        pinMode(slidePin, INPUT);  
-        pinMode(led1, OUTPUT);  
-        pinMode(led2, OUTPUT);  
-          
-        while(1){  
-            // slide switch high, led1 on  
-            if(digitalRead(slidePin) == 1){  
-                digitalWrite(led1, HIGH);  
-                digitalWrite(led2, LOW);  
-                printf("LED1 on\n");  
-                delay(100);  
-            }  
-            // slide switch low, led2 on  
-            if(digitalRead(slidePin) == 0){  
-                digitalWrite(led2, HIGH);  
-                digitalWrite(led1, LOW);  
-                printf(".....LED2 on\n");  
-                delay(100);  
-            }  
-        }  
-        return 0;  
-    }  
+    #include <wiringPi.h>  
+    #include <stdio.h>  
+      
+    #define slidePin        0  
+    #define led1            2  
+    #define led2            3  
+      
+    int main(void)  
+    {  
+        // When initialize wiring failed, print message to screen  
+        if(wiringPiSetup() == -1){  
+            printf("setup wiringPi failed !");  
+            return 1;   
+        }  
+          
+        pinMode(slidePin, INPUT);  
+        pinMode(led1, OUTPUT);  
+        pinMode(led2, OUTPUT);  
+          
+        while(1){  
+            // slide switch high, led1 on  
+            if(digitalRead(slidePin) == 1){  
+                digitalWrite(led1, HIGH);  
+                digitalWrite(led2, LOW);  
+                printf("LED1 on\n");  
+                delay(100);  
+            }  
+            // slide switch low, led2 on  
+            if(digitalRead(slidePin) == 0){  
+                digitalWrite(led2, HIGH);  
+                digitalWrite(led1, LOW);  
+                printf(".....LED2 on\n");  
+                delay(100);  
+            }  
+        }  
+        return 0;  
+    }  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: c
 
-    16.    pinMode(slidePin, INPUT);  
-    17.    pinMode(led1, OUTPUT);  
-    18.    pinMode(led2, OUTPUT);  
+    16.    pinMode(slidePin, INPUT);  
+    17.    pinMode(led1, OUTPUT);  
+    18.    pinMode(led2, OUTPUT);  
 
 Initialize the pins connected to slide switch to the 
 **INPUT** mode, and initialize the LED lights to the **OUTPUT** mode.
 
 .. code-block:: c
 
-    22.        if(digitalRead(slidePin) == 1){  
-    23.            digitalWrite(led1, HIGH);  
-    24.            digitalWrite(led2, LOW);  
-    25.            printf("LED1 on\n");  
-    26.            delay(100);  
-    27.        }  
+    22.        if(digitalRead(slidePin) == 1){  
+    23.            digitalWrite(led1, HIGH);  
+    24.            digitalWrite(led2, LOW);  
+    25.            printf("LED1 on\n");  
+    26.            delay(100);  
+    27.        }  
 
 When the slide is pulled to the left, the middle pin and 
 left one are connected; the Raspberry Pi reads a high level at 
@@ -182,12 +198,12 @@ the middle pin, so the LED1 is on and LED2 off.
 
 .. code-block:: c
 
-    28.        if(digitalRead(slidePin) == 0){  
-    29.            digitalWrite(led2, HIGH);  
-    30.            digitalWrite(led1, LOW);  
-    31.            printf(".....LED2 on\n");  
-    32.            delay(100);  
-    33.        }  
+    28.        if(digitalRead(slidePin) == 0){  
+    29.            digitalWrite(led2, HIGH);  
+    30.            digitalWrite(led1, LOW);  
+    31.            printf(".....LED2 on\n");  
+    32.            delay(100);  
+    33.        }  
 
 When the slide is pulled to the right, the middle pin 
 and right one are connected; the Raspberry Pi reads a 
@@ -201,11 +217,19 @@ low, so the LED2 is on and LED1 off.
 
 1. Go to the folder of the code
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/python
 
 2. Run the code
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -217,82 +241,89 @@ the slide is pulled to the left, the LED1 is on and LED2 off.
 **Code**
 ^^^^^^^^^^^^^^^
 
-.. code-block:: Python
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``electronic-kit/for-raspberry-pi/python``. After modifying the code, you can run it directly to see the effect.
 
-    import RPi.GPIO as GPIO  
-    import time  
-      
-    slidePin = 17  
-    led1Pin = 27  
-    led2Pin = 22  
-      
-    # Define a setup function for some setup  
-    def setup():  
-        GPIO.setmode(GPIO.BCM)  
-        GPIO.setup(slidePin, GPIO.IN)  
-        GPIO.setup(led1Pin, GPIO.OUT, initial=GPIO.LOW)  
-        GPIO.setup(led2Pin, GPIO.OUT, initial=GPIO.LOW)  
-      
-    def main():  
-        while True:  
-            # slide switch high, led1 on  
-            if GPIO.input(slidePin) == 1:  
-                print ('LED1 ON ')  
-                GPIO.output(led2Pin, GPIO.LOW)  
-                GPIO.output(led1Pin, GPIO.HIGH)  
-      
-            # slide switch low, led2 on  
-            if GPIO.input(slidePin) == 0:  
-                print ('    LED2 ON ')  
-                GPIO.output(led1Pin, GPIO.LOW)  
-                GPIO.output(led2Pin, GPIO.HIGH)  
-            time.sleep(0.5)  
-      
-    def destroy():  
-        # Turn off LED  
-        GPIO.output(led1Pin, GPIO.LOW)  
-        GPIO.output(led2Pin, GPIO.LOW)  
-        # Release resource  
-        GPIO.cleanup()                       
-      
-    # If run this script directly, do:  
-    if __name__ == '__main__':  
-        setup()  
-        try:  
-            main()  
-        # When 'Ctrl+C' is pressed, the child program   
-        # destroy() will be  executed.  
-        except KeyboardInterrupt:  
-            destroy()          
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO  
+    import time  
+      
+    slidePin = 17  
+    led1Pin = 27  
+    led2Pin = 22  
+      
+    # Define a setup function for some setup  
+    def setup():  
+        GPIO.setmode(GPIO.BCM)  
+        GPIO.setup(slidePin, GPIO.IN)  
+        GPIO.setup(led1Pin, GPIO.OUT, initial=GPIO.LOW)  
+        GPIO.setup(led2Pin, GPIO.OUT, initial=GPIO.LOW)  
+      
+    def main():  
+        while True:  
+            # slide switch high, led1 on  
+            if GPIO.input(slidePin) == 1:  
+                print ('LED1 ON ')  
+                GPIO.output(led2Pin, GPIO.LOW)  
+                GPIO.output(led1Pin, GPIO.HIGH)  
+      
+            # slide switch low, led2 on  
+            if GPIO.input(slidePin) == 0:  
+                print ('    LED2 ON ')  
+                GPIO.output(led1Pin, GPIO.LOW)  
+                GPIO.output(led2Pin, GPIO.HIGH)  
+            time.sleep(0.5)  
+      
+    def destroy():  
+        # Turn off LED  
+        GPIO.output(led1Pin, GPIO.LOW)  
+        GPIO.output(led2Pin, GPIO.LOW)  
+        # Release resource  
+        GPIO.cleanup()                       
+      
+    # If run this script directly, do:  
+    if __name__ == '__main__':  
+        setup()  
+        try:  
+            main()  
+        # When 'Ctrl+C' is pressed, the child program   
+        # destroy() will be  executed.  
+        except KeyboardInterrupt:  
+            destroy()          
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: Python
+.. code-block:: 
 
-    11.    GPIO.setup(slidePin, GPIO.IN)  
-    12.    GPIO.setup(led1Pin, GPIO.OUT, initial=GPIO.LOW)  
-    13.    GPIO.setup(led2Pin, GPIO.OUT, initial=GPIO.LOW)  
+    11.    GPIO.setup(slidePin, GPIO.IN)  
+    12.    GPIO.setup(led1Pin, GPIO.OUT, initial=GPIO.LOW)  
+    13.    GPIO.setup(led2Pin, GPIO.OUT, initial=GPIO.LOW)  
 
 Initialize the pin, then set the pin connected to 
 slide switch to the input mode and LEDs to the output mode.
 
-.. code-block:: Python
+.. code-block:: 
 
-    18.    if GPIO.input(slidePin) == 1:  
-    19.            GPIO.output(led2Pin, GPIO.LOW)  
-    20.            GPIO.output(led1Pin, GPIO.HIGH)  
+    18.    if GPIO.input(slidePin) == 1:  
+    19.            GPIO.output(led2Pin, GPIO.LOW)  
+    20.            GPIO.output(led1Pin, GPIO.HIGH)  
 
 When the slide is pulled to the left, the middle 
 pin and left one are connected; 
 the Raspberry Pi reads a high level at the middle pin, 
 so the LED1 is on and LED2 off.
 
-.. code-block:: Python
+.. code-block:: 
 
-    24.       if GPIO.input(slidePin) == 0:  
-    25.            GPIO.output(led1Pin, GPIO.LOW)  
-    26.            GPIO.output(led2Pin, GPIO.HIGH)  
+    24.       if GPIO.input(slidePin) == 0:  
+    25.            GPIO.output(led1Pin, GPIO.LOW)  
+    26.            GPIO.output(led2Pin, GPIO.HIGH)  
 
 When the slide is pulled to the right, the 
 middle pin and right one are connected; the 

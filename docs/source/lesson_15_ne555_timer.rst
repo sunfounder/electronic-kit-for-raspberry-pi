@@ -157,17 +157,29 @@ Then the capacitor is recharged and the output voltage flips again:
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/c/Lesson_15_NE555_Timer
 
 **2.** Compile the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     gcc 15_NE555_Timer.c -lwiringPi
 
 **3.** Run the executable file.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -176,83 +188,87 @@ Then the capacitor is recharged and the output voltage flips again:
 When the code is running, you will see the number of pulses on the
 display screen and the level of pin3 in NE555 at this time.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **Code**
 ^^^^^^^^^^^^
 
 .. code-block:: c
 
-    #include <stdio.h>  
-    #include <string.h>  
-    #include <errno.h>  
-    #include <stdlib.h>  
-    #include <wiringPi.h>  
-      
-    #define  OutPin  1  
-      
-    static volatile int globalCounter = 0 ;  
-      
-    void exInt0_ISR(void)  //GPIO 1 interrupt service routine   
-    {  
-        ++globalCounter;  
-    }  
-      
-    int main (void)  
+    #include <stdio.h>  
+    #include <string.h>  
+    #include <errno.h>  
+    #include <stdlib.h>  
+    #include <wiringPi.h>  
+      
+    #define  OutPin  1  
+      
+    static volatile int globalCounter = 0 ;  
+      
+    void exInt0_ISR(void)  //GPIO 1 interrupt service routine   
+    {  
+        ++globalCounter;  
+    }  
+      
+    int main (void)  
     {
-        if(wiringPiSetup() < 0){  
-            fprintf(stderr, "Unable to setup wiringPi:%s\n",strerror(errno));  
-            return 1;  
-        }  
-          
-        delay(2000);    
-        pinMode(OutPin,INPUT);  
-        pullUpDnControl(OutPin,PUD_UP);  
-        wiringPiISR(OutPin, INT_EDGE_FALLING, &exInt0_ISR);  
-        
-        while(1){
-            printf("Current pluse number is : %d, %d\n", globalCounter,digitalRead(OutPin));  
-            delay(100);  
-        }  
-        return 0;  
-    }  
+        if(wiringPiSetup() < 0){  
+            fprintf(stderr, "Unable to setup wiringPi:%s\n",strerror(errno));  
+            return 1;  
+        }  
+          
+        delay(2000);    
+        pinMode(OutPin,INPUT);  
+        pullUpDnControl(OutPin,PUD_UP);  
+        wiringPiISR(OutPin, INT_EDGE_FALLING, &exInt0_ISR);  
+        
+        while(1){
+            printf("Current pluse number is : %d, %d\n", globalCounter,digitalRead(OutPin));  
+            delay(100);  
+        }  
+        return 0;  
+    }  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: c
 
-    9.static volatile int globalCounter = 0 ;  
+    9.static volatile int globalCounter = 0 ;  
 
 Define a variable to record the number of pulses, 
 and initialize the number of pulses to 0.
 
 .. code-block:: c
 
-    11.void exInt0_ISR(void)     
-    12.{  
-    13.    ++globalCounter;  
-    14.} 
- 
+    11.void exInt0_ISR(void)     
+    12.{  
+    13.    ++globalCounter;  
+    14.} 
+ 
 Set an external interrupt function and **globalCounter** will 
 automatically +1 when an interrupt occurs.
 
 .. code-block:: c
 
-    24. pinMode(OutPin,INPUT);
-    25. pullUpDnControl(OutPin,PUD_UP);   
+    24. pinMode(OutPin,INPUT);
+    25. pullUpDnControl(OutPin,PUD_UP);   
 
 Set the out pin of NE555 to **INPUT** mode, 
 then let the pin be in pull-up state (1).
 
 .. code-block:: c
 
-    26.  wiringPiISR(OutPin, INT_EDGE_FALLING, &exInt0_ISR);  
+    26.  wiringPiISR(OutPin, INT_EDGE_FALLING, &exInt0_ISR);  
     
 Set an interrupt in **OutPin**, when the value of **OutPin** changes from 1 to 0. 
 Then call the exInt0_ISR() function to let the variable **globalCounter** add 1.
 
 .. code-block:: c
 
-    29.    printf("Current pluse number is : %d, %d\n", globalCounter,digitalRead(OutPin));  
+    29.    printf("Current pluse number is : %d, %d\n", globalCounter,digitalRead(OutPin));  
 
 Print out the number of pulses, **globalCounter** and the value of **OutPin** at this time.
 
@@ -264,11 +280,19 @@ Print out the number of pulses, **globalCounter** and the value of **OutPin** at
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/python
 
 **2.** Run the code.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -280,75 +304,82 @@ display.
 **Code**
 ^^^^^^^^^^^^^
 
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``electronic-kit/for-raspberry-pi/python``. After modifying the code, you can run it directly to see the effect.
+
+.. raw:: html
+
+    <run></run>
+
 .. code-block:: python
 
-    import RPi.GPIO as GPIO  
-    import time  
-      
-    SigPin = 18      
-      
-    g_count = 0  
-      
-    def count(ev=None):  
-        global g_count  
-        g_count += 1  
-      
-    def setup():  
-        GPIO.setmode(GPIO.BCM)        
-        GPIO.setup(SigPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)      
-        GPIO.add_event_detect(SigPin, GPIO.RISING, callback=count) # wait for rasing  
-      
-    def main(): 
-        while True:  
-            print ('g_count = %d' % g_count)  
-            time.sleep(0.01)  
-      
-    def destroy():  
-        GPIO.cleanup()    # Release resource  
-      
-    if __name__ == '__main__':     # Program start from here  
-        setup()  
-        try:  
-            main()  
-        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.  
-            destroy()  
+    import RPi.GPIO as GPIO  
+    import time  
+      
+    SigPin = 18      
+      
+    g_count = 0  
+      
+    def count(ev=None):  
+        global g_count  
+        g_count += 1  
+      
+    def setup():  
+        GPIO.setmode(GPIO.BCM)        
+        GPIO.setup(SigPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)      
+        GPIO.add_event_detect(SigPin, GPIO.RISING, callback=count) # wait for rasing  
+      
+    def main(): 
+        while True:  
+            print ('g_count = %d' % g_count)  
+            time.sleep(0.01)  
+      
+    def destroy():  
+        GPIO.cleanup()    # Release resource  
+      
+    if __name__ == '__main__':     # Program start from here  
+        setup()  
+        try:  
+            main()  
+        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.  
+            destroy()  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: python
+.. code-block::
 
-    6. g_count = 0  
+    6. g_count = 0  
 
 Define a variable to record the 
 number of pulses, and initialize the number of pulses to **0**.
 
-.. code-block:: python
+.. code-block::
 
-    7.def count(ev=None):  
-    8.global g_count  
-    9.g_count += 1
+    7.def count(ev=None):  
+    8.global g_count  
+    9.g_count += 1
 
 This function will change the value of the global variable **g_count**. 
 
-.. code-block:: python
+.. code-block::
 
-    14.      GPIO.setup(SigPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)      
+    14.      GPIO.setup(SigPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)      
 
-Set the **SigPin** to input mode and pull up to high level(3.3V).
+Set the **SigPin** to input mode and pull up to high level(3.3V).
 
-.. code-block:: python
+.. code-block::
 
-    15.  GPIO.add_event_detect(SigPin, GPIO.RISING, callback=count)   
+    15.  GPIO.add_event_detect(SigPin, GPIO.RISING, callback=count)   
 
 Set an interrupt in **SigPin**, when the value of **SigPin** changes from 
 0 to 1. Then call the **count()** function to let the variable **g_count** add 1.
 
-.. code-block:: python
+.. code-block::
 
-    18.    while True:  
-    19.        print ('g_count = %d' % g_count)  
-    20.        time.sleep(0.01)  
+    18.    while True:  
+    19.        print ('g_count = %d' % g_count)  
+    20.        time.sleep(0.01)  
 
 Print out the value of the number of pulse g_count at an interval of 0.01s.
 

@@ -70,11 +70,19 @@ are at high level, the buzzer will be silent.
 
 1. Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/c/Lesson_10_ActiveBuzzer
 
 2. Compile the code.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -82,11 +90,19 @@ are at high level, the buzzer will be silent.
 
 3. Run the executable file.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     sudo ./a.out
 
 Now, you may hear the buzzer beep.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 ^^^^^^^^^^^
@@ -94,44 +110,44 @@ Now, you may hear the buzzer beep.
 
 .. code-block:: C
 
-    #include <wiringPi.h>  
-    #include <stdio.h>  
-      
-    #define BeepPin 0  
-      
-    int main(void){  
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen  
-            printf("setup wiringPi failed !");  
-            return 1;   
-        }  
-          
-        pinMode(BeepPin, OUTPUT);     
-      
-        while(1){  
-            //beep on  
-            digitalWrite(BeepPin, HIGH);  
-            delay(100);  
-            //beep off  
-            digitalWrite(BeepPin, LOW);  
-            delay(100);  
-        }  
-        return 0;  
-    }  
+    #include <wiringPi.h>  
+    #include <stdio.h>  
+      
+    #define BeepPin 0  
+      
+    int main(void){  
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen  
+            printf("setup wiringPi failed !");  
+            return 1;   
+        }  
+          
+        pinMode(BeepPin, OUTPUT);     
+      
+        while(1){  
+            //beep on  
+            digitalWrite(BeepPin, HIGH);  
+            delay(100);  
+            //beep off  
+            digitalWrite(BeepPin, LOW);  
+            delay(100);  
+        }  
+        return 0;  
+    }  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: C
 
- 12.    pinMode(BeepPin, OUTPUT); 
+ 12.    pinMode(BeepPin, OUTPUT); 
 
 Set the pin connected to the buzzer to **OUTPUT** mode.
 
 .. code-block:: C
 
-    16.        digitalWrite(BeepPin, HIGH);
+    16.        digitalWrite(BeepPin, HIGH);
 
-When BeepPin is at high level, the base pin(b pin) of the 
+When BeepPin is at high level, the base pin(b pin) of the 
 connected transistor inputs high level and the collector pin(c pin) 
 output low level. That is, when the cathode of the buzzer is at low 
 level and the anode of the buzzer is connected to a 5V high 
@@ -139,10 +155,10 @@ level, the buzzer sounds.
 
 .. code-block:: C
 
-    19.        digitalWrite(BeepPin, LOW);
+    19.        digitalWrite(BeepPin, LOW);
 
 The **BeepPin** is connected to the transistor and then to the 
-cathode of the buzzer. When BeepPin is low level, the base pin 
+cathode of the buzzer. When BeepPin is low level, the base pin 
 (b pin) of the connected transistor inputs low level, then the 
 collector pin(c pin) outputs high level; that is, when the level 
 at both ends of the connected buzzer is high, the buzzer is silent.
@@ -155,11 +171,19 @@ at both ends of the connected buzzer is high, the buzzer is silent.
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/python
 
 **2.** Run the code.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -170,66 +194,73 @@ Now, you should hear the buzzer beep.
 **Code**
 ^^^^^^^^^^^^
 
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``electronic-kit/for-raspberry-pi/python``. After modifying the code, you can run it directly to see the effect.
+
+.. raw:: html
+
+    <run></run>
+
 .. code-block:: python
 
-    import RPi.GPIO as GPIO  
-    import time  
-      
-    BeepPin = 17  
-      
-    def setup():  
-        GPIO.setmode(GPIO.BCM)  
-        GPIO.setup(BeepPin, GPIO.OUT, initial=GPIO.LOW)  
-      
-    def main():  
-        while True:  
-            # Buzzer on (Beep)  
-            GPIO.output(BeepPin, GPIO.HIGH)  
-            time.sleep(0.1)  
-            # Buzzer off  
-            GPIO.output(BeepPin, GPIO.LOW)  
-            time.sleep(0.1)  
-      
-    def destroy():  
-        # Turn off buzzer  
-        GPIO.output(BeepPin, GPIO.LOW)  
-        # Release resource  
-        GPIO.cleanup()      
-      
-    # If run this script directly, do:  
-    if __name__ == '__main__':  
-        setup()  
-        try:  
-            main()  
-        # When 'Ctrl+C' is pressed, the child program   
-        # destroy() will be  executed.  
-        except KeyboardInterrupt:  
-            destroy()  
+    import RPi.GPIO as GPIO  
+    import time  
+      
+    BeepPin = 17  
+      
+    def setup():  
+        GPIO.setmode(GPIO.BCM)  
+        GPIO.setup(BeepPin, GPIO.OUT, initial=GPIO.LOW)  
+      
+    def main():  
+        while True:  
+            # Buzzer on (Beep)  
+            GPIO.output(BeepPin, GPIO.HIGH)  
+            time.sleep(0.1)  
+            # Buzzer off  
+            GPIO.output(BeepPin, GPIO.LOW)  
+            time.sleep(0.1)  
+      
+    def destroy():  
+        # Turn off buzzer  
+        GPIO.output(BeepPin, GPIO.LOW)  
+        # Release resource  
+        GPIO.cleanup()      
+      
+    # If run this script directly, do:  
+    if __name__ == '__main__':  
+        setup()  
+        try:  
+            main()  
+        # When 'Ctrl+C' is pressed, the child program   
+        # destroy() will be  executed.  
+        except KeyboardInterrupt:  
+            destroy()  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: python
+.. code-block::
 
-    8.    GPIO.setup(BeepPin, GPIO.OUT, initial=GPIO.LOW) 
+    1.    GPIO.setup(BeepPin, GPIO.OUT, initial=GPIO.LOW) 
 
 Initialize the pin connected to the buzzer to output 
 mode and set it to the default low level.
 
-.. code-block:: python
+.. code-block::
 
-    13.        GPIO.output(BeepPin, GPIO.HIGH) 
+    1.         GPIO.output(BeepPin, GPIO.HIGH) 
 
 The **BeepPin** is connected to the transistor and then to the cathode 
-of the buzzer. When BeepPin is at high level, the base pin(b pin) 
+of the buzzer. When BeepPin is at high level, the base pin(b pin) 
 of the connected transistor inputs high level, then the collector 
 pin(c pin) outputs low level; that is, when the cathode of the 
 buzzer is at low level and the anode of the buzzer is connected 
 to a 5V high level, the buzzer sounds.
 
-.. code-block:: python
+.. code-block::
 
-    16.        GPIO.output(BeepPin, GPIO.LOW) 
+    1.         GPIO.output(BeepPin, GPIO.LOW) 
 
 When **BeepPin** is at low level, the base pin(b pin) of the connected 
 transistor inputs low level, then the collector pin(c pin) outputs high 

@@ -103,17 +103,29 @@ register is output to the bus (**Q0-Q7**).
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
-    cd/home/pi/electronic-kit/for-raspberry-pi/c/Lesson_18_Driving_Leds_by_74hc595
+    cd /home/pi/electronic-kit/for-raspberry-pi/c/Lesson_18_Driving_Leds_by_74hc595
 
 **2.** Compile the code.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
     gcc 18_74hc595.c -lwiringPi
 
 **3.** Run the executable file.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -124,112 +136,116 @@ right, and then all LEDs light up and flash 3 times. After that, these
 eight LEDs are lit from right to left, then they all turn on before
 flashing 3 times. This loop continues in this way.
 
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 **Code**
 ^^^^^^^^^^^^
 
 .. code-block:: C
 
-    #include <wiringPi.h>  
-    #include <stdio.h>  
-      
-    #define   SDI   0   //serial data input  
-    #define   RCLK  1   //memory clock input(STCP)  
-    #define   SRCLK 2   //shift register clock input(SHCP)  
-      
-    unsigned char LED[8] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80};  
-      
-    void pulse(int pin){  
-        digitalWrite(pin, 0);  
-        digitalWrite(pin, 1);  
-    }  
-      
-    void SIPO(unsigned char byte){  
-        int i;    
-        for(i=0;i<8;i++){  
-            digitalWrite(SDI, ((byte & (0x80 >> i)) > 0));  
-            pulse(SRCLK);  
-        }  
-    }  
-      
-    void init(void){  
-        pinMode(SDI, OUTPUT);   
-        pinMode(RCLK, OUTPUT);   
-        pinMode(SRCLK, OUTPUT);   
-      
-        digitalWrite(SDI, 0);  
-        digitalWrite(RCLK, 0);  
-        digitalWrite(SRCLK, 0);  
-    }  
-      
-    int main(void){  
-        int i;  
-      
-        if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen  
-            printf("setup wiringPi failed !");  
-            return 1;   
-        }  
-      
-        init();  
-      
-        while(1){  
-            for(i=0;i<8;i++){  
-                SIPO(LED[i]);  
-                pulse(RCLK);  
-                delay(150);                
-            }  
-            delay(500);  
-      
-            for(i=0;i<3;i++){  
-                SIPO(0xff);  
-                pulse(RCLK);  
-                delay(100);  
-                SIPO(0x00);  
-                pulse(RCLK);  
-                delay(100);  
-            }  
-            delay(500);  
-      
-            for(i=0;i<8;i++){  
-                SIPO(LED[8-i-1]);  
-                pulse(RCLK);  
-                delay(150);  
-            }  
-            delay(500);  
-      
-            for(i=0;i<3;i++){  
-                SIPO(0xff);  
-                pulse(RCLK);  
-                delay(100);  
-                SIPO(0x00);  
-                pulse(RCLK);  
-                delay(100);  
-            }  
-            delay(500);  
-        }  
-        return 0;  
-    }  
+    #include <wiringPi.h>  
+    #include <stdio.h>  
+      
+    #define   SDI   0   //serial data input  
+    #define   RCLK  1   //memory clock input(STCP)  
+    #define   SRCLK 2   //shift register clock input(SHCP)  
+      
+    unsigned char LED[8] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80};  
+      
+    void pulse(int pin){  
+        digitalWrite(pin, 0);  
+        digitalWrite(pin, 1);  
+    }  
+      
+    void SIPO(unsigned char byte){  
+        int i;    
+        for(i=0;i<8;i++){  
+            digitalWrite(SDI, ((byte & (0x80 >> i)) > 0));  
+            pulse(SRCLK);  
+        }  
+    }  
+      
+    void init(void){  
+        pinMode(SDI, OUTPUT);   
+        pinMode(RCLK, OUTPUT);   
+        pinMode(SRCLK, OUTPUT);   
+      
+        digitalWrite(SDI, 0);  
+        digitalWrite(RCLK, 0);  
+        digitalWrite(SRCLK, 0);  
+    }  
+      
+    int main(void){  
+        int i;  
+      
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen  
+            printf("setup wiringPi failed !");  
+            return 1;   
+        }  
+      
+        init();  
+      
+        while(1){  
+            for(i=0;i<8;i++){  
+                SIPO(LED[i]);  
+                pulse(RCLK);  
+                delay(150);                
+            }  
+            delay(500);  
+      
+            for(i=0;i<3;i++){  
+                SIPO(0xff);  
+                pulse(RCLK);  
+                delay(100);  
+                SIPO(0x00);  
+                pulse(RCLK);  
+                delay(100);  
+            }  
+            delay(500);  
+      
+            for(i=0;i<8;i++){  
+                SIPO(LED[8-i-1]);  
+                pulse(RCLK);  
+                delay(150);  
+            }  
+            delay(500);  
+      
+            for(i=0;i<3;i++){  
+                SIPO(0xff);  
+                pulse(RCLK);  
+                delay(100);  
+                SIPO(0x00);  
+                pulse(RCLK);  
+                delay(100);  
+            }  
+            delay(500);  
+        }  
+        return 0;  
+    }  
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: C
 
-    10.void pulse(int pin){  
-    11.    digitalWrite(pin, 0);  
-    12.    digitalWrite(pin, 1);  
-    13.}  
+    10.void pulse(int pin){  
+    11.    digitalWrite(pin, 0);  
+    12.    digitalWrite(pin, 1);  
+    13.}  
 
 Define an pulse function to generate an pulse.
 
 .. code-block:: C
 
-    15.void SIPO(unsigned char byte){  
-    16.    int i;  
-    17.    for(i=0;i<8;i++){  
-    18.        digitalWrite(SDI, ((byte & (0x80 >> i)) > 0));  
-    19.        pulse(SRCLK);  
-    20.    }  
-    21.}  
+    15.void SIPO(unsigned char byte){  
+    16.    int i;  
+    17.    for(i=0;i<8;i++){  
+    18.        digitalWrite(SDI, ((byte & (0x80 >> i)) > 0));  
+    19.        pulse(SRCLK);  
+    20.    }  
+    21.}  
 
 The function **SIPO** is used to assign the byte data to **SDI(DS)** by bits. 
 
@@ -255,15 +271,15 @@ bits of 0000 0001 to shift register.
 
 .. code-block:: C
 
-    23.void init(void){  
-    24.    pinMode(SDI, OUTPUT);   
-    25.    pinMode(RCLK, OUTPUT); 
-    26.    pinMode(SRCLK, OUTPUT); 
-    27.  
-    28.    digitalWrite(SDI, 0);  
-    29.    digitalWrite(RCLK, 0);  
-    30.    digitalWrite(SRCLK, 0);  
-    31.}  
+    23.void init(void){  
+    24.    pinMode(SDI, OUTPUT);   
+    25.    pinMode(RCLK, OUTPUT); 
+    26.    pinMode(SRCLK, OUTPUT); 
+    27.  
+    28.    digitalWrite(SDI, 0);  
+    29.    digitalWrite(RCLK, 0);  
+    30.    digitalWrite(SRCLK, 0);  
+    31.}  
 
 Initialize pins. Set all control pins of 74HC595 to output mode and 
 initialize them to low level. At the same time, the LEDs are set to 
@@ -271,10 +287,10 @@ output mode, default low level.
 
 .. code-block:: C
 
-    44.        for(i=0;i<8;i++){  
-    45.            SIPO(LED[i]);  
-    46.            pulse(RCLK);  
-    47.            delay(150); 
+    44.        for(i=0;i<8;i++){  
+    45.            SIPO(LED[i]);  
+    46.            pulse(RCLK);  
+    47.            delay(150); 
     48.        }
 
 Use the **for** loop to count 8 times in cycle, 
@@ -290,26 +306,26 @@ LED[i] to the bus (Q7-Q0), and you'll see eight LEDs turning on from left to rig
 
 .. code-block:: C
 
-    51.        for(i=0;i<3;i++){  
-    52.            SIPO(0xff);  
-    53.            pulse(RCLK);  
-    54.            delay(100);  
-    55.            SIPO(0x00);  
-    56.            pulse(RCLK);  
-    57.            delay(100);  
-    58.        }
+    51.        for(i=0;i<3;i++){  
+    52.            SIPO(0xff);  
+    53.            pulse(RCLK);  
+    54.            delay(100);  
+    55.            SIPO(0x00);  
+    56.            pulse(RCLK);  
+    57.            delay(100);  
+    58.        }
     
 In this part, the **for** loop is used to three times repeat the program in **for()** 
 statement. SIPO(0xff) means 8 LEDs are lit up, SIPO(0x00) represents 8 LEDs turn 
-off. That is, let 8 LEDs turn off 3 times simultaneously.   
+off. That is, let 8 LEDs turn off 3 times simultaneously.   
 
 .. code-block:: C
-       
-    61.        for(i=0;i<8;i++){  
-    62.            SIPO(LED[8-i-1]);  
-    63.            pulse(RCLK);  
-    64.            delay(150);  
-    65.        }  
+       
+    61.        for(i=0;i<8;i++){  
+    62.            SIPO(LED[8-i-1]);  
+    63.            pulse(RCLK);  
+    64.            delay(150);  
+    65.        }  
 
 By the same token, this for loop allows 8 LEDs be 
 lit up one by one in reverse order. Here, **i** gradually 
@@ -319,14 +335,14 @@ so that you can get 8 LEDs lit up one by one in reverse order.
 
 .. code-block:: C
 
-    68.        for(i=0;i<3;i++){  
-    69.            SIPO(0xff);  
-    70.            pulse(RCLK);  
-    71.            delay(100);  
-    72.            SIPO(0x00);  
-    73.            pulse(RCLK);  
-    74.            delay(100);  
-    75.        }  
+    68.        for(i=0;i<3;i++){  
+    69.            SIPO(0xff);  
+    70.            pulse(RCLK);  
+    71.            delay(100);  
+    72.            SIPO(0x00);  
+    73.            pulse(RCLK);  
+    74.            delay(100);  
+    75.        }  
 
 Then, make the eight LEDs turn on or off 3 times simultaneously.
 
@@ -338,11 +354,19 @@ Then, make the eight LEDs turn on or off 3 times simultaneously.
 
 **1.** Go to the folder of the code.
 
+.. raw:: html
+
+    <run></run>
+
 .. code-block::
 
     cd /home/pi/electronic-kit/for-raspberry-pi/python
 
 **2.** Run the code.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block::
 
@@ -353,131 +377,174 @@ right, and then all LEDs light up and flash 3 times. After that, these
 eight LEDs are lit from right to left, then they all turn on before
 flashing 3 times. This loop continues in this way.
 
-**Code**  
+**Code**  
 ^^^^^^^^^
+
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``electronic-kit/for-raspberry-pi/python``. After modifying the code, you can run it directly to see the effect.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block:: python
 
-    import RPi.GPIO as GPIO  
-    import time  
-      
-    SDI   = 17  
-    RCLK  = 18  
-    SRCLK = 27  
-      
-    LED0 = [0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80]    #original mode  
-    BLINK = [0xff,0x00,0xff,0x00,0xff,0x00]         #blink  
-      
-    def setup():  
-        GPIO.setmode(GPIO.BCM)      
-        GPIO.setup(SDI, GPIO.OUT, initial=GPIO.LOW)  
-        GPIO.setup(RCLK, GPIO.OUT, initial=GPIO.LOW)  
-        GPIO.setup(SRCLK, GPIO.OUT, initial=GPIO.LOW)  
-      
-    # Shift the data to 74HC595  
-    def hc595_shift(dat):  
-        for bit in range(0, 8):   
-            GPIO.output(SDI, 0x80 & (dat << bit))  
-            GPIO.output(SRCLK, GPIO.HIGH)  
-            time.sleep(0.001)  
-            GPIO.output(SRCLK, GPIO.LOW)  
-        GPIO.output(RCLK, GPIO.HIGH)  
-        time.sleep(0.001)  
-        GPIO.output(RCLK, GPIO.LOW)  
-      
-    def main():  
-        print_message()  
-        mode = LED0   
-        sleeptime = 0.15          
-        blink_sleeptime = 0.15  
-          
-        while True:  
-            # Change LED status from mode  
-            for onoff in mode:  
-                hc595_shift(onoff)             
-                time.sleep(sleeptime)            
-              
-            for onoff in BLINK:  
-                hc595_shift(onoff)  
-                time.sleep(blink_sleeptime)  
-      
-            # Change LED status from mode reverse  
-            for onoff in reversed(mode):  
-                hc595_shift(onoff)            
-                time.sleep(sleeptime)           
-      
-            for onoff in BLINK:  
-                hc595_shift(onoff)             
-                time.sleep(blink_sleeptime)  
-      
-    def destroy():  
-        GPIO.cleanup()  
-      
-    if __name__ == '__main__':  
-        setup()  
-        try:  
-            main()  
-        except KeyboardInterrupt:  
-            destroy()   
+    #!/usr/bin/env python3
+
+    #================================================
+    #
+    #   This program is for SunFounder SuperKit for Rpi.
+    #
+    #   Extend use of 8 LED with 74HC595.
+    #
+    #   Change the  WhichLeds and sleeptime value under
+    #   loop() function to change LED mode and speed.
+    #
+    #=================================================
+
+    import RPi.GPIO as GPIO
+    import time
+
+    SDI   = 17
+    RCLK  = 18
+    SRCLK = 27
+
+    #===============   LED Mode Defne ================
+    #   You can define yourself, in binay, and convert it to Hex 
+    #   8 bits a group, 0 means off, 1 means on
+    #   like : 0101 0101, means LED1, 3, 5, 7 are on.(from left to right)
+    #   and convert to 0x55.
+
+    LED0 = [0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80]    #original mode
+    BLINK = [0xff,0x00,0xff,0x00,0xff,0x00]         #blink
+    #=================================================
+
+    def print_message():
+        print ("========================================")
+        print ("|           LEDs with 74HC595          |")
+        print ("|    ------------------------------    |")
+        print ("|         SDI connect to GPIO 0        |")
+        print ("|         RCLK connect to GPIO 1       |")
+        print ("|        SRCLK connect to GPIO 2       |")
+        print ("|                                      |")
+        print ("|       Control LEDs with 74HC595      |")
+        print ("|                                      |")
+        print ("|                            SunFounder|")
+        print ("========================================\n")
+        print ('Program is running...')
+        print ('Please press Ctrl+C to end the program...')
+        #input ("Press Enter to begin\n")
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)    # Number GPIOs by its BCM location
+        GPIO.setup(SDI, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(RCLK, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(SRCLK, GPIO.OUT, initial=GPIO.LOW)
+
+    # Shift the data to 74HC595
+    def hc595_shift(dat):
+        for bit in range(0, 8): 
+            GPIO.output(SDI, 0x80 & (dat << bit))
+            GPIO.output(SRCLK, GPIO.HIGH)
+            time.sleep(0.001)
+            GPIO.output(SRCLK, GPIO.LOW)
+        GPIO.output(RCLK, GPIO.HIGH)
+        time.sleep(0.001)
+        GPIO.output(RCLK, GPIO.LOW)
+
+    def main():
+        print_message()
+        mode = LED0 
+        sleeptime = 0.15        # Change speed, lower value, faster speed
+        blink_sleeptime = 0.15
+        
+        while True:
+            # Change LED status from mode
+            for onoff in mode:
+                hc595_shift(onoff)           
+                time.sleep(sleeptime)          
+            
+            for onoff in BLINK:
+                hc595_shift(onoff)
+                time.sleep(blink_sleeptime)
+
+            # Change LED status from mode reverse
+            for onoff in reversed(mode):
+                hc595_shift(onoff)          
+                time.sleep(sleeptime)         
+
+            for onoff in BLINK:
+                hc595_shift(onoff)           
+                time.sleep(blink_sleeptime)
+
+    def destroy():
+        GPIO.cleanup()
+
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        except KeyboardInterrupt:
+            destroy()
 
 **Code Explanation**
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: python
+.. code-block::
 
-    8.LED0 = [0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80]    #original mode  
+    8.LED0 = [0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80]    #original mode  
 
 
 Use array to define LED flashing mode, you can also customize 
 several hexadecimals to light up 8 LEDs.
 
-.. code-block:: python
+.. code-block::
 
-    11.def setup():  
-    12.    GPIO.setmode(GPIO.BCM)    # Number GPIOs by its BCM location  
-    13.    GPIO.setup(SDI, GPIO.OUT, initial=GPIO.LOW)  
-    14.    GPIO.setup(RCLK, GPIO.OUT, initial=GPIO.LOW)  
-    15.    GPIO.setup(SRCLK, GPIO.OUT, initial=GPIO.LOW)  
+    11.def setup():  
+    1.     GPIO.setmode(GPIO.BCM)    # Number GPIOs by its BCM location  
+    2.     GPIO.setup(SDI, GPIO.OUT, initial=GPIO.LOW)  
+    3.     GPIO.setup(RCLK, GPIO.OUT, initial=GPIO.LOW)  
+    4.     GPIO.setup(SRCLK, GPIO.OUT, initial=GPIO.LOW)  
 
 
 Initialize pins. Set all control pins of 74HC595 to output mode 
 and initialize them to low level. At the same time, the LED 
-lights are set to output mode, default low level. 
+lights are set to output mode, default low level. 
 
-.. code-block:: python
+.. code-block::
 
-    18.def hc595_shift(dat):  
+    18.def hc595_shift(dat):  
 
 Define a function **hc595_shift()** to output the 8 bits of **dat** to Q0-Q7. 
 
-.. code-block:: python
+.. code-block::
 
-    19. for bit in range(0, 8):   
-    20.        GPIO.output(SDI, 0x80 & (dat << bit))  
-    21.        GPIO.output(SRCLK, GPIO.HIGH)  
-    22.        time.sleep(0.001)  
-    23.        GPIO.output(SRCLK, GPIO.LOW)
+    1.  for bit in range(0, 8):   
+    2.         GPIO.output(SDI, 0x80 & (dat << bit))  
+    3.         GPIO.output(SRCLK, GPIO.HIGH)  
+    4.         time.sleep(0.001)  
+    5.         GPIO.output(SRCLK, GPIO.LOW)
 
 Assign the **dat** to SDI(DS) according to bits. Pin **SRCLK** will convert from 
 low to high, and generate a rising edge pulse, then shift the data in 
 pin SDI to shift register. Execute the loop 8 times to shift the 8 bits 
 of **dat** to the shift register in proper order.
 
-.. code-block:: python
+.. code-block::
 
-    24.    GPIO.output(RCLK, GPIO.HIGH)  
-    25.    time.sleep(0.001)  
-    26.    GPIO.output(RCLK, GPIO.LOW)  
+    1.     GPIO.output(RCLK, GPIO.HIGH)  
+    2.     time.sleep(0.001)  
+    3.     GPIO.output(RCLK, GPIO.LOW)  
 
 Pin **RCLK** converts from low to high and generate a rising edge, 
 then shift data from shift register to storage register. 
 Finally the data in the memory register is output to the bus (Q0-Q7).
 
-.. code-block:: python
+.. code-block::
 
-    36.        for onoff in mode:  
-    37.            hc595_shift(onoff)  
-    38.            time.sleep(sleeptime)  
+    1.         for onoff in mode:  
+    2.             hc595_shift(onoff)  
+    3.             time.sleep(sleeptime)  
 
 Here we use a onoff variable to control the LED that changes 
 within the range of mode, and hc595_shift (onoff) means 
@@ -489,20 +556,20 @@ lights up the last LED. Along the same vein, when the value of mode
 is the second datum of LED0 (onoff = 0x02 = 00000010), the second 
 last LED turns on.  
 
-.. code-block:: python
+.. code-block::
 
-    45.        for onoff in reversed(mode):  
-    46.            hc595_shift(onoff) 
-    47.            time.sleep(sleeptime)
+    1.         for onoff in reversed(mode):  
+    2.             hc595_shift(onoff) 
+    3.             time.sleep(sleeptime)
 
 According to the same principle, a reversed is used here 
 to get LEDs lit up in reverse order. 
 
-.. code-block:: python
+.. code-block::
 
-    49.        for onoff in BLINK:  
-    50.            hc595_shift(onoff)  
-    51.            time.sleep(blink_sleeptime)  
+    1.         for onoff in BLINK:  
+    2.             hc595_shift(onoff)  
+    3.             time.sleep(blink_sleeptime)  
 
 In the same way, light up 8 LEDs; exactly, 8 LEDs are turned 
 on or off 3 times synchronously in the same pattern as 
