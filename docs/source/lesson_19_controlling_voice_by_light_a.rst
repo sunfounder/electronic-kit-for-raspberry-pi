@@ -1,4 +1,4 @@
-Lesson 20 Controlling Voice by Light
+Lesson 19 Controlling Voice by Light
 ==============================================
 
 **Introduction**
@@ -71,7 +71,7 @@ buzzer beeping will slow down.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/914d5b15-2802-4fb5-b35f-b37943ff5451/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis** **20-1** **Set the array elements**
+**Code Analysis** **19-1** **Set the array elements**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

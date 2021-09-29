@@ -1,4 +1,4 @@
-Lesson 7 RGB LED
+Lesson 6 RGB LED
 ===========================
 
 **Introduction**
@@ -142,7 +142,7 @@ first, then red, orange, yellow, green, blue, indigo, and purple.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/2d0d5c93-d003-4408-99a6-00d921636ab1/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis** **7-1** **Set the color**
+**Code Analysis** **6-1** **Set the color**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Here use the *color()* function to set the color of the RGB LED. In the
@@ -215,7 +215,7 @@ You can use the paint tool on your computer to get the RGB value.
 
     }
 
-**Code Analysis** **7-2** **color() function**
+**Code Analysis** **6-2** **color() function**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

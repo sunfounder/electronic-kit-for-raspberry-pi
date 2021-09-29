@@ -1,4 +1,4 @@
-Lesson 18 Light Alarm
+Lesson 17 Light Alarm
 =================================
 
 **Introduction**
@@ -80,7 +80,7 @@ Now, you can hear the buzzer beep when shining a flashlight on the LED.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/35e4882b-ac84-430e-a4f7-622742173520/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis** **18-1** **Whole Code**
+**Code Analysis** **17-1** **Whole Code**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

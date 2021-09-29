@@ -1,4 +1,4 @@
-Lesson 17 Automatically Tracking Light Source
+Lesson 16 Automatically Tracking Light Source
 ===================================================
 
 **Introduction**
@@ -100,7 +100,7 @@ the direction of light source.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/281d8f9c-413e-44b1-853e-4cfb274c4697/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis** **17-1** **Initialize and define variables**
+**Code Analysis** **16-1** **Initialize and define variables**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -127,7 +127,7 @@ Define an integer array angle[], which contains 19 elements from 0 to
 For example, angle[0] means 0 degree, angle[1] is 10 degrees, and so
 forth.
 
-**Code Analysis** **17-2** **Servo rock arm stop at the direction of light source**
+**Code Analysis** **16-2** **Servo rock arm stop at the direction of light source**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

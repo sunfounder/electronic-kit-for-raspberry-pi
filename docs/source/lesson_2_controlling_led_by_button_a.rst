@@ -1,4 +1,4 @@
-Lesson 3 Controlling LED by Button
+Lesson 2 Controlling LED by Button
 ============================================
 
 **Introduction**
@@ -93,7 +93,7 @@ Now, press the button, and the LED on the Uno board will light up.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/f9499711-9951-4290-a98d-ec7427880573/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis 3-1 Define variables**
+**Code Analysis 2-1 Define variables**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -107,7 +107,7 @@ Now, press the button, and the LED on the Uno board will light up.
 Connect the button to pin 12. LED has been connected to pin 13. Define a
 variable *buttonState* to restore the state of the button.
 
-**Code Analysis 3-2 Set the input and output status of the pins**
+**Code Analysis 2-2 Set the input and output status of the pins**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -120,7 +120,7 @@ We need to know the status of the button in this experiment, so here set
 the *buttonPin* as INPUT; to set HIGH/LOW of the LED, we set *LedPin* as
 OUTPUT.
 
-**Code Analysis 3-3** **Read the status of the button**
+**Code Analysis 2-3** **Read the status of the button**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -133,7 +133,7 @@ button and store it in *buttonState*.
 **digitalRead (Pin)**: Reads the value from a specified digital pin,
 either HIGH or LOW.
 
-**Code Analysis 3-4 Turn on the LED when the button is pressed**
+**Code Analysis 2-4 Turn on the LED when the button is pressed**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

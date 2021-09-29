@@ -1,4 +1,4 @@
-Lesson 21 74HC595
+Lesson 20 74HC595
 ==========================
 
 **Introduction**
@@ -175,7 +175,7 @@ You should now see the 7-segment display from 0 to 9 and A to F.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/42eb9580-b03f-45ae-87e0-c447d20170a8/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis** **21-1** **Set the array elements**
+**Code Analysis** **20-1** **Set the array elements**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -201,7 +201,7 @@ Change the binary numbers into decimal ones:
 So that's the value for the number **2** to be displayed. You can
 calculate other characters similarly.
 
-**Code Analysis** **21-2** **Display 0-F in the 7-segment display**
+**Code Analysis** **20-2** **Display 0-F in the 7-segment display**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

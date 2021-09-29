@@ -1,4 +1,4 @@
-Lesson 15 Thermistor
+Lesson 14 Thermistor
 ==========================
 
 **Introduction**
@@ -139,7 +139,7 @@ Celsius and Fahrenheit degrees on the LCD1602.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/1b522b1f-eee7-4b55-9e29-e9e16b6bdcb5/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis** **15-1** **Set the variables**
+**Code Analysis** **14-1** **Set the variables**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -153,7 +153,7 @@ Celsius and Fahrenheit degrees on the LCD1602.
 Define the beta coefficient as 3950, which is described in the datasheet
 of thermistor.
 
-**Code Analysis** **15-2** **Get the temperature**
+**Code Analysis** **14-2** **Get the temperature**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -168,7 +168,7 @@ of thermistor.
     float tempF = 1.8 * tempC + 32.0;  
     // define the temperature in Fahrenheit. As we know Fahrenheit equals to 1.8 * Celsius + 32. 
 
-**Code Analysis** **15-3** **Display the temperature on LCD1602**
+**Code Analysis** **14-3** **Display the temperature on LCD1602**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

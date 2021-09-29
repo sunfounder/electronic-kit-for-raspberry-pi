@@ -1,4 +1,4 @@
-Lesson 19 Answer Machine
+Lesson 18 Answer Machine
 ============================
 
 **Introduction**
@@ -74,7 +74,7 @@ again.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/64d9c12b-16a7-4f1d-b33e-2cfc3e2349bb/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis** **19-1** **loop() function**
+**Code Analysis** **18-1** **loop() function**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -145,7 +145,7 @@ Use the same way to detect the button2 and button3, if one of the
 buttons is detected to be pressed, the buzzer beeps and lights the
 corresponding LED until button 4 is pressed again.
 
-**Code Analysis** **19-2** **Alarm() function**
+**Code Analysis** **18-2** **Alarm() function**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

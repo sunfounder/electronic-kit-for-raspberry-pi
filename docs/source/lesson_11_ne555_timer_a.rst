@@ -1,4 +1,4 @@
-Lesson 12 NE555 Timer
+Lesson 11 NE555 Timer
 ============================
 
 **Introduction**
@@ -129,7 +129,7 @@ window.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/4c252e5a-ffbc-497e-875b-66561523d401/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis** **12-1** **Calculate the duty cycle**
+**Code Analysis** **11-1** **Calculate the duty cycle**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

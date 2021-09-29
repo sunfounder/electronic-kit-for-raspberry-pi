@@ -1,4 +1,4 @@
-For Rasberry Pi User
+For Raspberry Pi User
 ========================
 
 .. toctree::

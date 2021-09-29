@@ -191,7 +191,7 @@ as the 11th pin on the Raspberry Pi Physical, Pin 11.
 steps.**
 
 Go to **/home/pi/** and find the folder
-**electronic-kit\\for-raspberry-pi**.
+**electronic-kit/for-raspberry-pi**.
 
 Find **c** in the folder, right-click on it and select **Open in
 Terminal**.

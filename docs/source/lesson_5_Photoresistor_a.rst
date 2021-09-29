@@ -1,4 +1,4 @@
-Lesson 6 Photoresistor
+Lesson 5 Photoresistor
 ===============================
 
 **Introduction**
@@ -70,7 +70,7 @@ When you place it in a dark environment, all the LEDs will go out.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/3ea9e490-2a11-47f8-95b6-740e125347f0/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis** **6-1** **Set the variables**
+**Code Analysis** **5-1** **Set the variables**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -88,7 +88,7 @@ When you place it in a dark environment, all the LEDs will go out.
 The 8 LEDs are connected to pin5-pin12, in this code, use a array to
 store the pins, ledPins[0] is equal to 5, ledPins[1] to 6 and so on.
 
-**Code Analysis** **6-2** **Set 8 pins to OUTPUT**
+**Code Analysis** **5-2** **Set 8 pins to OUTPUT**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -105,7 +105,7 @@ Using the for() statement set the 8 pins to OUTPUT. The variable led is
 added from 0 to 8, and the pinMode() function sets pin5 to pin12 to
 OUTPUT in turn.
 
-**Code Analysis** **6-3** **Read the analog value of the photoresistor**
+**Code Analysis** **5-3** **Read the analog value of the photoresistor**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -139,7 +139,7 @@ character. Characters and strings are sent as is.
 Serial.print(), but it is followed by a carriage return character (ASCII
 13, or '\\r') and a newline character (ASCII 10, or '\\n').
 
-**Code Analysis** **6-4** **Map the analog value to 8 LEDs**
+**Code Analysis** **5-4** **Map the analog value to 8 LEDs**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -164,7 +164,7 @@ one range to another. That is, a value of *fromLow* would get mapped to
 one of *toLow*, and a value of *fromHigh* to one of *toHigh*, values
 in-between to values in-between, etc.
 
-**Code Analysis** **6-5** **Light up the LEDs**
+**Code Analysis** **5-5** **Light up the LEDs**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

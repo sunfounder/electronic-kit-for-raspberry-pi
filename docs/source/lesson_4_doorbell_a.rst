@@ -1,4 +1,4 @@
-Lesson 5 Doorbell
+Lesson 4 Doorbell
 ======================
 
 **Introduction**
@@ -80,7 +80,7 @@ Now, you should hear the buzzer beep.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/0129cc3d-8759-4c29-add0-7fca61da8d22/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis 5-1 Define variables**
+**Code Analysis 4-1 Define variables**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -96,7 +96,7 @@ Now, you should hear the buzzer beep.
 Connect the button to pin 2 and buzzer to pin 8. Define a variable
 *buttonState* to restore the state of the button.
 
-**Code Analysis 5-2 Set the input and output status of the pins**
+**Code Analysis 4-2 Set the input and output status of the pins**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -115,7 +115,7 @@ We need to know the status of the button in this experiment, so here set
 the *buttonPin* as INPUT; to set HIGH/LOW of the buzzer, we set
 *buzzerPin* as OUTPUT.
 
-**Code Analysis 5-3** **Read the status of the button**
+**Code Analysis 4-3** **Read the status of the button**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -128,7 +128,7 @@ button and store it in *buttonState*.
 **digitalRead (Pin)**: Reads the value from a specified digital pin,
 either HIGH or LOW.
 
-**Code Analysis 5-4 Turn on the LED when the button is pressed**
+**Code Analysis 4-4 Turn on the LED when the button is pressed**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

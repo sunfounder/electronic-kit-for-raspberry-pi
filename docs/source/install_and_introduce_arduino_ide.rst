@@ -9,7 +9,7 @@ beginner. It provides an integrated development environment (IDE) for code compi
 So you can just download the Arduino IDE, upload the sketches (i.e. the code files) to the board, 
 and then you can see relative experimental phenomena. For more information, refer to http://www.arduino.cc.
 
-**Install Arduino IDE	**
+**Install Arduino IDE**
 
 Here are the installation steps on the windows system.
 

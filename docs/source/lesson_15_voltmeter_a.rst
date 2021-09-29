@@ -1,4 +1,4 @@
-Lesson 16 Voltmeter
+Lesson 15 Voltmeter
 ========================
 
 **Introduction**
@@ -67,7 +67,7 @@ voltage displayed on the LCD1602 varies accordingly.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/3de830b2-cb83-42fd-81d0-8067548c5741/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis** **16-1** **Define the pins of LCD1602 andpotentiometer**
+**Code Analysis** **15-1** **Define the pins of LCD1602 andpotentiometer**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -87,7 +87,7 @@ Call the LiquidCrystal library and define the pins of LCD1602 connect to
 
 Assign the value of A0 to analogIn.
 
-**Code Analysis** **16-2** **Initialize the LCD1602 and serial monitor**
+**Code Analysis** **15-2** **Initialize the LCD1602 and serial monitor**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -108,7 +108,7 @@ Initialize the baud rate of serial monitor to 9600bps and set the
 position of the characters on the LCD as Line 2, Column 16. Print
 “Voltage Value: ” on the LCD1602.
 
-**Code Analysis** **16-3** **Read the analog of A0 and convert to voltage**
+**Code Analysis** **15-3** **Read the analog of A0 and convert to voltage**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

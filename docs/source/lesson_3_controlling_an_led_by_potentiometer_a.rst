@@ -1,4 +1,4 @@
-Lesson 4 Controlling an LED by Potentiometer
+Lesson 3 Controlling an LED by Potentiometer
 =================================================
 
 **Introduction**
@@ -163,7 +163,7 @@ potentiometer knob.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/d7b68ea0-0661-4f32-a5c1-22a993cfa76f/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis** **4-1** **Read the value from A0**
+**Code Analysis** **3-1** **Read the value from A0**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -176,7 +176,7 @@ This line is to store the values A0 has read in the inputValue which has been de
 means that it will map input voltages between 0 and 5 volts into integer
 values between 0 and 1023.
 
-**Code Analysis** **4-2 Print values on Serial Monitor**
+**Code Analysis** **3-2 Print values on Serial Monitor**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -195,7 +195,7 @@ character. Characters and strings are sent as is.
 but it is followed by a carriage return character (ASCII 13, or '\\r')
 and a newline character (ASCII 10, or '\\n').
 
-**Code Analysis 4-3 Map the values**
+**Code Analysis 3-3 Map the values**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -221,7 +221,7 @@ the Serial Monitor and analyze it.
 
     Serial.println(outputValue); // print outputValue
 
-**Code Analysis** **4-4** **Write the value of the potentiometer to LED**
+**Code Analysis** **3-4** **Write the value of the potentiometer to LED**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

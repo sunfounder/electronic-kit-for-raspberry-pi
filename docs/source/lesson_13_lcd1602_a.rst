@@ -1,4 +1,4 @@
-Lesson 14 LCD1602
+Lesson 13 LCD1602
 ============================
 
 **Introduction**
@@ -111,7 +111,7 @@ world**" rolling on the LCD.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/5ce71eba-634d-490d-b22f-f4a9f15ead81/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis** **14-1** **Include a library**
+**Code Analysis** **13-1** **Include a library**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -136,7 +136,7 @@ function implementation, variable definition, etc.) and LiquidCrystal.h
 definition, etc.). If you want to explore how a function is implemented,
 you can look up in the file *LiquidCrystal.cpp*.
 
-**Code Analysis** **14-2** **Displayed characters**
+**Code Analysis** **13-2** **Displayed characters**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -152,7 +152,7 @@ element in the array, which is a space, and *array1[1]* means the second
 element *S* and so on. So *array1[25]* is the last element (here it's
 also a space).
 
-**Code Analysis** **14-3** **Define the pins of LCD1602**
+**Code Analysis** **13-3** **Define the pins of LCD1602**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -169,7 +169,7 @@ for details.
 So this line defines that pin RS is connected to pin 4, the enable pin
 to pin 6, and d4-d7 to pin10-13 respectively.
 
-**Code Analysis** **14-4** **Initialize the LCD**
+**Code Analysis** **13-4** **Initialize the LCD**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -177,7 +177,7 @@ to pin 6, and d4-d7 to pin10-13 respectively.
     lcd.begin(16, 2); 
     // set up the LCD's number of columns and rows: begin(col,row) is to set the display of LCD. Here set as 16 x 2.
 
-**Code Analysis** **14-5** **Set the cursor position of LCD**
+**Code Analysis** **13-5** **Set the cursor position of LCD**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -187,7 +187,7 @@ to pin 6, and d4-d7 to pin10-13 respectively.
 **setCursor(col,row)** sets the position of the cursor which is where
 the characters start to show. Here set it as 15col, 0 row.
 
-**Code Analysis** **14-6** **LCD displays the elements inside array1[]and array2[]**
+**Code Analysis** **13-6** **LCD displays the elements inside array1[]and array2[]**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

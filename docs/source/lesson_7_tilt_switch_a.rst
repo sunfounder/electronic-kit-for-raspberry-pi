@@ -1,4 +1,4 @@
-Lesson 8 Tilt Switch
+Lesson 7 Tilt Switch
 ============================
 
 **Introduction**
@@ -61,7 +61,7 @@ light up.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/33d3f8ae-249a-4943-a35a-f2649d3c8700/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis 8-1 Whole Code**
+**Code Analysis 7-1 Whole Code**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

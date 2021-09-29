@@ -1,4 +1,4 @@
-Lesson 2 Blinking LED
+Lesson 1 Blinking LED
 ===========================
 
 **Introduction**
@@ -162,8 +162,8 @@ Then plug the board into the computer with a 5V USB cable.
 .. image:: media_arduino/image42.png
     :align: center
 
-**Step 2**: Open the Lesson_2_Blinking_LED.ino code file in the path of
-*electronic-kit\\for-Arduino\\code\\Lesson_2_Blinking_LED*
+**Step 2**: Open the Lesson_1_Blinking_LED.ino code file in the path of
+*electronic-kit\\for-Arduino\\code\\Lesson_1_Blinking_LED*
 
 **Step 3:** Select the Board and Port
 
@@ -208,7 +208,7 @@ You should now see the LED blinking.
 
 
 
-**Code Analysis 2-1 Define variables**
+**Code Analysis 1-1 Define variables**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -220,7 +220,7 @@ mistakes. This line defines a constant variable *ledPin* for the pin 9.
 In the following code, *ledPin* stands for pin 9. You can also directly
 use pin 9 instead.
 
-**Code Analysis 2-2 setup() function**
+**Code Analysis 1-2 setup() function**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A typical Arduino program consists of two subprograms: *setup()* for
@@ -252,7 +252,7 @@ The void before the setup means that this function will not return a
 value. Even when no pins need to be initialized, you still need this
 function. Otherwise there will be errors in compiling.
 
-**Code Analysis 2-3** **loop function**
+**Code Analysis 1-3** **loop function**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

@@ -1,4 +1,4 @@
-Lesson 13 Servo
+Lesson 12 Servo
 =======================
 
 **Introduction**
@@ -74,7 +74,7 @@ direction.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/2f51197c-4e6c-40d9-8615-e9b65b512518/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis** **13-1** **Include a library**
+**Code Analysis** **12-1** **Include a library**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -86,7 +86,7 @@ With the Servo.h file included, you can call the functions in this file later.
 Servo is a built-in library in the Arduino IDE. You can find the Servo folder under the installation path 
 *C:\\Program Files\\Arduino\\libraries*.
 
-**Code Analysis** **13-2** **Initialize the servo**
+**Code Analysis** **12-2** **Initialize the servo**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
@@ -109,7 +109,7 @@ accordingly. On a standard servo, this will set the angle of the shaft
 (in degrees), moving the shaft to that orientation. Here let the servo
 stay in the 0 angle firstly.
 
-**Code Analysis** **13-3** **Servo rotate**
+**Code Analysis** **12-3** **Servo rotate**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino

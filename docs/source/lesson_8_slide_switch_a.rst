@@ -1,4 +1,4 @@
-Lesson 9 Slide Switch
+Lesson 8 Slide Switch
 ==========================
 
 **Introduction**
@@ -96,7 +96,7 @@ When you toggle the switch to pin12, the LED lights.
 
     <iframe src=https://create.arduino.cc/editor/sunfounder01/070a7e98-b057-42ae-9bfd-6b3357a9f9c1/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
-**Code Analysis 9-1 Read the switch state to turn on/off the LED**
+**Code Analysis 8-1 Read the switch state to turn on/off the LED**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: arduino
