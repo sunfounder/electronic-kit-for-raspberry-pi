@@ -134,7 +134,7 @@ appear one by one on the LCD.
 
 .. note::
 
-    If it does not work after running, please refer to :ref:`C code is not working?`
+    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`C code is not working?`.
 
 **Code**
 ^^^^^^^^^^^
