@@ -1,3 +1,17 @@
+.. note::
+
+    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+
+    **Why Join?**
+
+    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
+    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
+    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
+    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
+    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+
+    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+
 SunFounder Electronic Kit for Raspberry Pi and Arduino
 ===========================================================
 
@@ -16,7 +30,7 @@ components, this kit will help you "control" the physical world.
 
 If you want to learn another projects which we don’t have, please feel free to send Email and we will update to our online tutorials as soon as possible, any suggestions are welcomed.
 
-Here is the Email: cs@sunfounder.com.
+Here is the Email: service@sunfounder.com.
 
 
 **About the display language**
