@@ -12,12 +12,13 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-SunFounder Electronic Kit for Raspberry Pi and Arduino
-===========================================================
+SunFounder |link_Electronic_Kit| for Raspberry Pi and Arduino
+====================================================================
 
+* |link_Electronics_Kit|
 
-About the Electronic Kit
----------------------------
+About the |link_Electronic_Kit|
+-----------------------------------
 
 This kit is suitable for SunFounder Uno, SunFounder Mega 2560,
 SunFounder Duemilanove and SunFounder Nano. All the code in this user

@@ -95,4 +95,12 @@ rst_epilog = """
 
     <a href="https://bit.ly/raphaelkit " target="_blank">here</a>
 
+.. |link_Electronics_Kit| raw:: html
+
+    <a href="https://www.sunfounder.com/products/electronics-fun-kit?_pos=1&_sid=b6d9b3e7a&_ss=r" target="_blank">Purchase Link for Electronic Kit</a>
+
+.. |link_Electronic_Kit| raw:: html
+
+    <a href="https://www.sunfounder.com/products/electronics-fun-kit?_pos=1&_sid=b6d9b3e7a&_ss=r" target="_blank">Electronic Kit</a>
+
 """
